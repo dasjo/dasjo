@@ -1,0 +1,31 @@
+{
+  "name": "dasjo",
+  "version": "1.0.0",
+  "description": "Personal website for Josef Dabernig.",
+  "main": "index.js",
+  "dependencies": {
+    "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27",
+    "gatsby": "^2.23.6",
+    "gatsby-plugin-ts": "^2.7.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "typescript": "^3.9.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nisarhassan12/dasjo.git"
+  },
+  "author": "Nisar Hassan Naqvi <syednisarhassan12@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nisarhassan12/dasjo/issues"
+  },
+  "homepage": "https://github.com/nisarhassan12/dasjo#readme"
+}
