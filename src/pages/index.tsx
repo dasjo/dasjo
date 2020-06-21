@@ -1,5 +1,11 @@
 import React from "react";
+import IndexLayout from "../layouts";
+import Header from "../components/index/Header";
 
-const IndexPage = () => <p>Basic Setup</p>;
+const IndexPage = () => (
+  <IndexLayout>
+    <Header />
+  </IndexLayout>
+);
 
 export default IndexPage;
