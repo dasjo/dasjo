@@ -2,6 +2,7 @@ import React from "react";
 
 import styled from "@emotion/styled";
 import Josef from "../../resources/josef.jpg";
+import { Link } from "gatsby";
 
 const StyledHeader = styled.header`
   padding: var(--gutter-huge) 0;
@@ -25,6 +26,10 @@ const StyledHeader = styled.header`
   img {
     width: 100%;
   }
+
+  p {
+    margin-bottom: var(--gutter-small);
+  }
 `;
 
 const Header = () => (
@@ -44,6 +49,9 @@ const Header = () => (
           solutions. Let's improve the status quo using open communication,
           creative tools and validating ideas.
         </p>
+        <Link className="btn" to="/contact/">
+          Get in touch
+        </Link>
       </div>
       <div className="img-box">
         <img src={Josef} alt="Josef Dabernig" />

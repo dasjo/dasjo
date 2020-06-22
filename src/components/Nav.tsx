@@ -20,7 +20,7 @@ const StyledNav = styled.nav`
 
   li {
     &:not(:last-child) {
-      margin-right: var(--gutter-large);
+      margin-right: 6.5rem;
     }
   }
 

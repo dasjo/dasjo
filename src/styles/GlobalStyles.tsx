@@ -26,11 +26,13 @@ const GlobalStyles = () => (
 
       :root {
         --font-size-small: 1.8rem;
-        --font-size-normal: 2.2rem;
+        --font-size-normal: 2.1rem;
         --font-size-medium: 4rem;
-        --font-size-large: 6.5rem;
+        --font-size-large: 6rem;
 
+        --white: #fff;
         --white-0: #fcfdff;
+        --black-0: #112211;
 
         --grid-max-width: 1160px;
 
@@ -50,6 +52,7 @@ const GlobalStyles = () => (
         font-family: "Hk Grotesk", sans-serif;
         font-weight: 400;
         line-height: 1.6;
+        color: var(--black-0);
         background: var(--white-0);
       }
 
@@ -85,6 +88,14 @@ const GlobalStyles = () => (
 
       a {
         text-decoration: none;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 1rem 4rem;
+        border: 1px solid;
+        color: var(--white);
+        background: var(--black-0);
       }
 
       /* ---------------------------------------- */
