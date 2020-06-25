@@ -1,18 +1,35 @@
-import React from "react";
+import React from 'react';
 
-import styled from "@emotion/styled";
-import Josef from "../../resources/josef.jpg";
-import { Link } from "gatsby";
+import styled from '@emotion/styled';
+import Josef from '../../resources/josef.jpg';
+import { Link } from 'gatsby';
+import { breakpoints } from '../../styles/variables';
 
 const StyledHeader = styled.header`
-  padding: var(--gutter-huge) 0;
+  padding: var(--gutter-huge) 0 var(--gutter-huge-1);
   display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
+  
+  @media(min-width: calc(${breakpoints.large0} + 1px)) {
+    align-items: center;
+  }
+
+  @media (max-width: ${breakpoints.large0}) {
+    flex-direction: column-reverse;
+  }
+
+  @media(max-width: ${breakpoints.small}) {
+    text-align: center;
+  }
 
   .text-box {
-    flex: 0 0 50%;
-    margin-left: var(--gutter-large);
+    @media(min-width: calc(${breakpoints.large0} + 1px)) {
+      flex: 0 0 50%;
+      margin-right: var(--gutter-large-1);
+    }
+
+    @media(max-width: ${breakpoints.large0}) {
+      max-width: var(--container-small-0);
+    }
   }
 
   h1 span {
@@ -25,6 +42,11 @@ const StyledHeader = styled.header`
 
   img {
     width: 100%;
+
+    @media(max-width: ${breakpoints.large0}) {
+      max-width: 40rem;
+      margin-bottom: var(--gutter-medium);
+    }
   }
 
   p {

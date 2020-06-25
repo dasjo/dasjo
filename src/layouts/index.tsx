@@ -1,9 +1,11 @@
-import React from "react";
+import React from 'react';
 
-import { Helmet } from "react-helmet";
-import { StaticQuery, graphql } from "gatsby";
-import LayoutRoot from "../components/LayoutRoot";
-import Nav from "../components/Nav";
+import { Helmet } from 'react-helmet';
+import { StaticQuery, graphql } from 'gatsby';
+import LayoutRoot from '../components/LayoutRoot';
+import Nav from '../components/Nav';
+import Footer from '../components/Footer';
+import LayoutMain from '../components/LayoutMain';
 
 type StaticQueryProps = {
   site: {
@@ -30,7 +32,7 @@ const IndexLayout = ({ children }: IndexLayoutProps) => (
     `}
     render={(data: StaticQueryProps) => (
       <LayoutRoot>
-        <>
+        <div className="page-wrapper">
           <Helmet>
             <html lang="en" />
             <title>{data.site.siteMetadata.title}</title>
@@ -40,8 +42,9 @@ const IndexLayout = ({ children }: IndexLayoutProps) => (
             />
           </Helmet>
           <Nav />
-          {children}
-        </>
+          <LayoutMain>{children}</LayoutMain>
+          <Footer />
+        </div>
       </LayoutRoot>
     )}
   />

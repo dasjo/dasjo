@@ -1,54 +1,267 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 
-import styled from "@emotion/styled";
-import Logo from "../resources/logo.svg";
+import styled from '@emotion/styled';
+import Logo from '../resources/logo.svg';
+import { breakpoints } from '../styles/variables';
+import { Link } from 'gatsby';
 
 const StyledNav = styled.nav`
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: var(--gutter-medium) 0;
 
+  @media(max-width: ${breakpoints.medium}) {
+    flex-direction: column;
+  }
+
   img {
+    display: block;
     height: 5rem;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5rem;
+    width: 5rem;
+    background: none;
+    border: none;
+
+    @media(min-width: calc(${breakpoints.medium} + 1px)) {
+      display: none;
+    }
+
+    &:hover,
+    &:focus {
+      .burger {
+        &,
+        &::before,
+        &::after {
+          background: var(--blue-0);
+        }
+
+        &::before {
+          top: -1.1rem;
+        }
+
+        &::after {
+          top: 1.1rem;
+        }
+      }
+    }
+
+    &.shown {
+      .burger {
+        background: transparent;
+
+        &::before {
+          top: 0;
+          transform: rotate(135deg);
+        }
+
+        &::after {
+          top: 0;
+          transform: rotate(-135deg);
+        }
+      }
+    }
+  }
+
+  .burger {
+    position: relative;
+    display: inline-block;
+    width: 3.5rem;
+    height: 2px;
+    background: var(--black-0);
+    transition: all .2s;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      display: inline-block;
+      width: 3.5rem;
+      height: 2px;
+      background: var(--black-0);
+      transition: all .2s;
+    }
+
+    &::before {
+      top: -1rem;
+    }
+
+    &::after {
+      top: 1rem;
+    }
+  }
+
+  .burger-container {
+    @media(max-width: ${breakpoints.medium}) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+
+      svg {
+        border: 3px solid;
+      }
+    }
   }
 
   ul {
     display: flex;
     list-style: none;
+
+    @media(max-width: ${breakpoints.medium}) {
+      display: none;
+      position: absolute;
+      top: 100%;
+      height: calc(100vh - 100%);
+      width: 100vw;
+      margin-top: var(--gutter-large-1);
+      flex-direction: column;
+      align-items: center;
+      background: var(--white-0);
+      z-index: 1000;
+
+      &.shown {
+        display: flex;
+      }
+
+      &.hidden {
+        display: none;
+      }
+    }
   }
 
   li {
     &:not(:last-child) {
-      margin-right: 6.5rem;
+      @media (min-width: calc(${breakpoints.medium} + 1px)) {
+        margin-right: var(--gutter-medium);
+      }
+
+      @media (min-width: calc(${breakpoints.medium} + 1px)) {
+        margin-right: var(--gutter-large-1);
+      }
+
+      @media(max-width: ${breakpoints.medium}) {
+        margin-bottom: var(--gutter-small);
+      }
     }
   }
 
   a {
     color: inherit;
   }
+
+  .link {
+    display: block;
+    overflow-x: hidden;
+
+    &::after {
+      content: '';
+      display: block;
+      height: 2px;
+      margin-top: .5rem;
+      width: 100%;
+      background: var(--black-0);
+      transform: translateX(-100%);
+      transition: all .2s;
+    }
+
+    &:hover,
+    &:focus,
+    &--active {
+      color: var(--blue-0);
+      transition: all .2s;
+
+      &::after {
+        background: var(--blue-0);
+        transform: translateX(0);
+      }
+    }
+
+    /* &--active {
+      color: var(--blue-0);
+      transition: all .2s;
+
+      &::after {
+
+      }
+    } */
+  }
 `;
 
-const Nav = () => (
-  <div className="row">
-    <StyledNav>
-      <img src={Logo} alt="Dasjo" />
-      <ul>
-        <li>
-          <a href="/experience">Experience</a>
-        </li>
-        <li>
-          <a href="/writing">Writing</a>
-        </li>
-        <li>
-          <a href="/speaking">Speaking</a>
-        </li>
-        <li>
-          <a href="/photography">Photography</a>
-        </li>
-      </ul>
-    </StyledNav>
-  </div>
-);
+const Nav = () => {
+  const [isShown, setIsShown] = useState<boolean>(false);
+
+  useEffect(() => {
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isShown) {
+        setIsShown(false);
+      }
+    });
+  });
+
+  const toggleIsShown = () => {
+    setIsShown(!isShown);
+  };
+
+  return (
+    <div className="row">
+      <StyledNav>
+        <div className="burger-container">
+          <Link to="/">
+            <img src={Logo} alt="Dasjo" />
+          </Link>
+          <button
+            onClick={toggleIsShown}
+            className={`${isShown ? 'shown' : ''}`}
+          >
+            <span className="burger"></span>
+          </button>
+        </div>
+        <ul className={isShown ? 'shown' : 'hidden'}>
+          <li>
+            <Link
+              className="link"
+              activeClassName="link--active"
+              to="/experience"
+            >
+              Experience
+            </Link>
+          </li>
+          <li>
+            <Link className="link" activeClassName="link--active" to="/writing">
+              Writing
+            </Link>
+          </li>
+          <li>
+            <Link
+              className="link"
+              activeClassName="link--active"
+              to="/speaking"
+            >
+              Speaking
+            </Link>
+          </li>
+          <li>
+            <Link
+              className="link"
+              activeClassName="link--active"
+              to="/photography"
+            >
+              Photography
+            </Link>
+          </li>
+        </ul>
+      </StyledNav>
+    </div>
+  );
+};
 
 export default Nav;
