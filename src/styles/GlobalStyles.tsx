@@ -165,6 +165,7 @@ const GlobalStyles = () => (
 
       a {
         text-decoration: none;
+        cursor: pointer;
       }
 
       .btn {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import styled from '@emotion/styled';
 import Logo from '../resources/logo.svg';
+import { Global, css } from '@emotion/core';
 import { breakpoints } from '../styles/variables';
 import { Link } from 'gatsby';
 
@@ -214,6 +215,13 @@ const Nav = () => {
   return (
     <div className="row">
       <StyledNav>
+        <Global
+          styles={css`
+            html {
+              overflow-y: ${isShown ? 'hidden' : ''};
+            }
+          `}
+        />
         <div className="burger-container">
           <Link to="/">
             <img src={Logo} alt="Dasjo" />

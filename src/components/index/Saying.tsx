@@ -22,15 +22,7 @@ export interface SayingProps {
 const Saying = ({ quote, author }: SayingProps) => (
   <StyledSaying>
     <p>{quote}</p>
-    <p>
-      {author.split(',').map((w, i) => (
-        <span key={i + w} style={{ textDecoration: 'underline' }}>
-          {w}
-          {!(i === author.split(',').length - 1) ? ', ' : ''}
-        </span>
-      ))}
-      .
-    </p>
+    <p>{author}</p>
   </StyledSaying>
 );
 
