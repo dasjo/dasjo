@@ -10,14 +10,14 @@
     cd dasjo/
 ```
 
-- Make sure that you have Node installed if so then you can run the following:
+- Make sure that you have `node` and `yarn` installed if so then you can run the following:
 
 ```
-    npm install
+    yarn install
 ```
 
 - You can start a webserver by running the following and then preview the site at [localhost:8000](localhost:8000):
 
 ```
-    npm start
+    yarn start
 ```
