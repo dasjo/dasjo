@@ -38,7 +38,13 @@ module.exports = {
           },
           {
             baseId,
+            tableName: `Person`,
+          },
+          {
+            baseId,
             tableName: `Quotes`,
+            queryName: `quotes`,
+            tableLinks: [`person`]
           },
         ],
       },

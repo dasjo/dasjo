@@ -10,10 +10,12 @@ export const IndexPageQuery = graphql`
     allAirtable(filter: { table: { eq: "Quotes" } }) {
       nodes {
         data {
-          Quote
-          Person
-          Company
-          Tags
+          quote
+          person {
+            data {
+              title
+            }
+          }
         }
       }
     }

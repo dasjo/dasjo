@@ -33,6 +33,7 @@ export type Airtable = Node & {
   internal: Internal;
   table?: Maybe<Scalars['String']>;
   recordId?: Maybe<Scalars['String']>;
+  queryName?: Maybe<Scalars['String']>;
   data?: Maybe<AirtableData>;
 };
 
@@ -58,34 +59,38 @@ export type AirtableConnectionGroupArgs = {
 };
 
 export type AirtableData = {
-  Attachments?: Maybe<Array<Maybe<AirtableDataAttachments>>>;
-  Tags?: Maybe<Array<Maybe<Scalars['String']>>>;
-  Date?: Maybe<Scalars['Date']>;
-  Text_EN?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  attachments?: Maybe<Array<Maybe<AirtableDataAttachments>>>;
+  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
+  date?: Maybe<Scalars['Date']>;
+  text_en?: Maybe<Scalars['String']>;
+  link?: Maybe<Scalars['String']>;
+  organisation?: Maybe<Array<Maybe<Scalars['String']>>>;
+  role?: Maybe<Array<Maybe<Scalars['String']>>>;
+  featured?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['Int']>;
+  quote?: Maybe<Scalars['String']>;
+  company?: Maybe<Array<Maybe<Scalars['String']>>>;
+  person?: Maybe<Array<Maybe<Airtable>>>;
+  quotes?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name?: Maybe<Scalars['String']>;
+  speaking?: Maybe<Array<Maybe<Scalars['String']>>>;
+  mentions?: Maybe<Array<Maybe<Scalars['String']>>>;
+  writing?: Maybe<Array<Maybe<Scalars['String']>>>;
+  photography?: Maybe<Array<Maybe<Scalars['String']>>>;
+  values___principles?: Maybe<Array<Maybe<Scalars['String']>>>;
+  highlights?: Maybe<Array<Maybe<Scalars['String']>>>;
+  work?: Maybe<Array<Maybe<Scalars['String']>>>;
+  about?: Maybe<Scalars['String']>;
+  volunteering?: Maybe<Array<Maybe<Scalars['String']>>>;
+  education?: Maybe<Array<Maybe<Scalars['String']>>>;
+  notes?: Maybe<Scalars['String']>;
+  from?: Maybe<Scalars['Date']>;
+  to?: Maybe<Scalars['Date']>;
+  roles?: Maybe<Array<Maybe<Scalars['String']>>>;
   Link?: Maybe<Scalars['String']>;
-  Organisation?: Maybe<Array<Maybe<Scalars['String']>>>;
-  Featured?: Maybe<Scalars['Boolean']>;
-  Quote?: Maybe<Scalars['String']>;
-  Company?: Maybe<Array<Maybe<Scalars['String']>>>;
-  Person?: Maybe<Array<Maybe<Scalars['String']>>>;
-  Speaking?: Maybe<Array<Maybe<Scalars['String']>>>;
-  Quotes?: Maybe<Array<Maybe<Scalars['String']>>>;
-  Mentions?: Maybe<Array<Maybe<Scalars['String']>>>;
-  Blog?: Maybe<Array<Maybe<Scalars['String']>>>;
-  Photography?: Maybe<Array<Maybe<Scalars['String']>>>;
-  Values___Principles?: Maybe<Array<Maybe<Scalars['String']>>>;
-  Highlights?: Maybe<Array<Maybe<Scalars['String']>>>;
-  Work?: Maybe<Array<Maybe<Scalars['String']>>>;
-  About?: Maybe<Scalars['String']>;
-  Volunteering?: Maybe<Array<Maybe<Scalars['String']>>>;
-  Education?: Maybe<Array<Maybe<Scalars['String']>>>;
-  Notes?: Maybe<Scalars['String']>;
-  From?: Maybe<Scalars['Date']>;
-  To?: Maybe<Scalars['Date']>;
-  Roles?: Maybe<Array<Maybe<Scalars['String']>>>;
-  URL?: Maybe<Scalars['String']>;
-  Location?: Maybe<Array<Maybe<Scalars['String']>>>;
-  Text_DE?: Maybe<Scalars['String']>;
+  location?: Maybe<Array<Maybe<Scalars['String']>>>;
+  text_de?: Maybe<Scalars['String']>;
 };
 
 
@@ -183,34 +188,38 @@ export type AirtableDataAttachmentsThumbnailsSmallFilterInput = {
 };
 
 export type AirtableDataFilterInput = {
-  Attachments?: Maybe<AirtableDataAttachmentsFilterListInput>;
-  Tags?: Maybe<StringQueryOperatorInput>;
-  Date?: Maybe<DateQueryOperatorInput>;
-  Text_EN?: Maybe<StringQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  attachments?: Maybe<AirtableDataAttachmentsFilterListInput>;
+  tags?: Maybe<StringQueryOperatorInput>;
+  date?: Maybe<DateQueryOperatorInput>;
+  text_en?: Maybe<StringQueryOperatorInput>;
+  link?: Maybe<StringQueryOperatorInput>;
+  organisation?: Maybe<StringQueryOperatorInput>;
+  role?: Maybe<StringQueryOperatorInput>;
+  featured?: Maybe<BooleanQueryOperatorInput>;
+  id?: Maybe<IntQueryOperatorInput>;
+  quote?: Maybe<StringQueryOperatorInput>;
+  company?: Maybe<StringQueryOperatorInput>;
+  person?: Maybe<AirtableFilterListInput>;
+  quotes?: Maybe<StringQueryOperatorInput>;
+  name?: Maybe<StringQueryOperatorInput>;
+  speaking?: Maybe<StringQueryOperatorInput>;
+  mentions?: Maybe<StringQueryOperatorInput>;
+  writing?: Maybe<StringQueryOperatorInput>;
+  photography?: Maybe<StringQueryOperatorInput>;
+  values___principles?: Maybe<StringQueryOperatorInput>;
+  highlights?: Maybe<StringQueryOperatorInput>;
+  work?: Maybe<StringQueryOperatorInput>;
+  about?: Maybe<StringQueryOperatorInput>;
+  volunteering?: Maybe<StringQueryOperatorInput>;
+  education?: Maybe<StringQueryOperatorInput>;
+  notes?: Maybe<StringQueryOperatorInput>;
+  from?: Maybe<DateQueryOperatorInput>;
+  to?: Maybe<DateQueryOperatorInput>;
+  roles?: Maybe<StringQueryOperatorInput>;
   Link?: Maybe<StringQueryOperatorInput>;
-  Organisation?: Maybe<StringQueryOperatorInput>;
-  Featured?: Maybe<BooleanQueryOperatorInput>;
-  Quote?: Maybe<StringQueryOperatorInput>;
-  Company?: Maybe<StringQueryOperatorInput>;
-  Person?: Maybe<StringQueryOperatorInput>;
-  Speaking?: Maybe<StringQueryOperatorInput>;
-  Quotes?: Maybe<StringQueryOperatorInput>;
-  Mentions?: Maybe<StringQueryOperatorInput>;
-  Blog?: Maybe<StringQueryOperatorInput>;
-  Photography?: Maybe<StringQueryOperatorInput>;
-  Values___Principles?: Maybe<StringQueryOperatorInput>;
-  Highlights?: Maybe<StringQueryOperatorInput>;
-  Work?: Maybe<StringQueryOperatorInput>;
-  About?: Maybe<StringQueryOperatorInput>;
-  Volunteering?: Maybe<StringQueryOperatorInput>;
-  Education?: Maybe<StringQueryOperatorInput>;
-  Notes?: Maybe<StringQueryOperatorInput>;
-  From?: Maybe<DateQueryOperatorInput>;
-  To?: Maybe<DateQueryOperatorInput>;
-  Roles?: Maybe<StringQueryOperatorInput>;
-  URL?: Maybe<StringQueryOperatorInput>;
-  Location?: Maybe<StringQueryOperatorInput>;
-  Text_DE?: Maybe<StringQueryOperatorInput>;
+  location?: Maybe<StringQueryOperatorInput>;
+  text_de?: Maybe<StringQueryOperatorInput>;
 };
 
 export type AirtableEdge = {
@@ -308,39 +317,93 @@ export type AirtableFieldsEnum =
   | 'internal___type'
   | 'table'
   | 'recordId'
-  | 'data___Attachments'
-  | 'data___Attachments___id'
-  | 'data___Attachments___url'
-  | 'data___Attachments___filename'
-  | 'data___Attachments___size'
-  | 'data___Attachments___type'
-  | 'data___Tags'
-  | 'data___Date'
-  | 'data___Text_EN'
+  | 'queryName'
+  | 'data___title'
+  | 'data___attachments'
+  | 'data___attachments___id'
+  | 'data___attachments___url'
+  | 'data___attachments___filename'
+  | 'data___attachments___size'
+  | 'data___attachments___type'
+  | 'data___tags'
+  | 'data___date'
+  | 'data___text_en'
+  | 'data___link'
+  | 'data___organisation'
+  | 'data___role'
+  | 'data___featured'
+  | 'data___id'
+  | 'data___quote'
+  | 'data___company'
+  | 'data___person'
+  | 'data___person___id'
+  | 'data___person___parent___id'
+  | 'data___person___parent___children'
+  | 'data___person___children'
+  | 'data___person___children___id'
+  | 'data___person___children___children'
+  | 'data___person___internal___content'
+  | 'data___person___internal___contentDigest'
+  | 'data___person___internal___description'
+  | 'data___person___internal___fieldOwners'
+  | 'data___person___internal___ignoreType'
+  | 'data___person___internal___mediaType'
+  | 'data___person___internal___owner'
+  | 'data___person___internal___type'
+  | 'data___person___table'
+  | 'data___person___recordId'
+  | 'data___person___queryName'
+  | 'data___person___data___title'
+  | 'data___person___data___attachments'
+  | 'data___person___data___tags'
+  | 'data___person___data___date'
+  | 'data___person___data___text_en'
+  | 'data___person___data___link'
+  | 'data___person___data___organisation'
+  | 'data___person___data___role'
+  | 'data___person___data___featured'
+  | 'data___person___data___id'
+  | 'data___person___data___quote'
+  | 'data___person___data___company'
+  | 'data___person___data___person'
+  | 'data___person___data___quotes'
+  | 'data___person___data___name'
+  | 'data___person___data___speaking'
+  | 'data___person___data___mentions'
+  | 'data___person___data___writing'
+  | 'data___person___data___photography'
+  | 'data___person___data___values___principles'
+  | 'data___person___data___highlights'
+  | 'data___person___data___work'
+  | 'data___person___data___about'
+  | 'data___person___data___volunteering'
+  | 'data___person___data___education'
+  | 'data___person___data___notes'
+  | 'data___person___data___from'
+  | 'data___person___data___to'
+  | 'data___person___data___roles'
+  | 'data___person___data___Link'
+  | 'data___person___data___location'
+  | 'data___person___data___text_de'
+  | 'data___quotes'
+  | 'data___name'
+  | 'data___speaking'
+  | 'data___mentions'
+  | 'data___writing'
+  | 'data___photography'
+  | 'data___values___principles'
+  | 'data___highlights'
+  | 'data___work'
+  | 'data___about'
+  | 'data___volunteering'
+  | 'data___education'
+  | 'data___notes'
+  | 'data___from'
+  | 'data___to'
+  | 'data___roles'
   | 'data___Link'
-  | 'data___Organisation'
-  | 'data___Featured'
-  | 'data___Quote'
-  | 'data___Company'
-  | 'data___Person'
-  | 'data___Speaking'
-  | 'data___Quotes'
-  | 'data___Mentions'
-  | 'data___Blog'
-  | 'data___Photography'
-  | 'data___Values___Principles'
-  | 'data___Highlights'
-  | 'data___Work'
-  | 'data___About'
-  | 'data___Volunteering'
-  | 'data___Education'
-  | 'data___Notes'
-  | 'data___From'
-  | 'data___To'
-  | 'data___Roles'
-  | 'data___URL'
-  | 'data___Location'
-  | 'data___Text_DE';
+  | 'data___location'
+  | 'data___text_de';
 
 export type AirtableFilterInput = {
   id?: Maybe<StringQueryOperatorInput>;
@@ -349,7 +412,12 @@ export type AirtableFilterInput = {
   internal?: Maybe<InternalFilterInput>;
   table?: Maybe<StringQueryOperatorInput>;
   recordId?: Maybe<StringQueryOperatorInput>;
+  queryName?: Maybe<StringQueryOperatorInput>;
   data?: Maybe<AirtableDataFilterInput>;
+};
+
+export type AirtableFilterListInput = {
+  elemMatch?: Maybe<AirtableFilterInput>;
 };
 
 export type AirtableGroupConnection = {
@@ -1213,6 +1281,7 @@ export type QueryAirtableArgs = {
   internal?: Maybe<InternalFilterInput>;
   table?: Maybe<StringQueryOperatorInput>;
   recordId?: Maybe<StringQueryOperatorInput>;
+  queryName?: Maybe<StringQueryOperatorInput>;
   data?: Maybe<AirtableDataFilterInput>;
 };
 
@@ -1772,6 +1841,8 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___pluginOptions___tables'
   | 'pluginCreator___pluginOptions___tables___baseId'
   | 'pluginCreator___pluginOptions___tables___tableName'
+  | 'pluginCreator___pluginOptions___tables___queryName'
+  | 'pluginCreator___pluginOptions___tables___tableLinks'
   | 'pluginCreator___pluginOptions___path'
   | 'pluginCreator___pluginOptions___pathCheck'
   | 'pluginCreator___nodeAPIs'
@@ -1962,6 +2033,8 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___tables'
   | 'pluginOptions___tables___baseId'
   | 'pluginOptions___tables___tableName'
+  | 'pluginOptions___tables___queryName'
+  | 'pluginOptions___tables___tableLinks'
   | 'pluginOptions___path'
   | 'pluginOptions___pathCheck'
   | 'nodeAPIs'
@@ -2093,11 +2166,15 @@ export type SitePluginPluginOptionsFilterInput = {
 export type SitePluginPluginOptionsTables = {
   baseId?: Maybe<Scalars['String']>;
   tableName?: Maybe<Scalars['String']>;
+  queryName?: Maybe<Scalars['String']>;
+  tableLinks?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 export type SitePluginPluginOptionsTablesFilterInput = {
   baseId?: Maybe<StringQueryOperatorInput>;
   tableName?: Maybe<StringQueryOperatorInput>;
+  queryName?: Maybe<StringQueryOperatorInput>;
+  tableLinks?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SitePluginPluginOptionsTablesFilterListInput = {
@@ -2143,9 +2220,12 @@ export type Unnamed_1_Query = { site?: Maybe<{ siteMetadata?: Maybe<Pick<SiteSit
 export type Unnamed_2_QueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type Unnamed_2_Query = { allAirtable: { nodes: Array<{ data?: Maybe<Pick<AirtableData, 'Quote' | 'Person' | 'Company' | 'Tags'>> }> } };
+export type Unnamed_2_Query = { allAirtable: { nodes: Array<{ data?: Maybe<(
+        Pick<AirtableData, 'quote'>
+        & { person?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>> }
+      )> }> } };
 
 export type Unnamed_3_QueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type Unnamed_3_Query = { allAirtable: { nodes: Array<{ data?: Maybe<{ Attachments?: Maybe<Array<Maybe<{ thumbnails?: Maybe<{ large?: Maybe<Pick<AirtableDataAttachmentsThumbnailsLarge, 'url'>> }> }>>> }> }> } };
+export type Unnamed_3_Query = { allAirtable: { nodes: Array<{ data?: Maybe<{ attachments?: Maybe<Array<Maybe<{ thumbnails?: Maybe<{ large?: Maybe<Pick<AirtableDataAttachmentsThumbnailsLarge, 'url'>> }> }>>> }> }> } };

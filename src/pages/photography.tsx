@@ -8,7 +8,7 @@ export const photographyPageQuery = graphql`
     allAirtable(filter: { table: { eq: "Photography" } }) {
       nodes {
         data {
-          Attachments {
+          attachments {
             thumbnails {
               large {
                 url
