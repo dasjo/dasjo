@@ -1,10 +1,35 @@
 import React from 'react';
 import IndexLayout from '../layouts';
+import SectionPhotography from '../components/photography/SectionPhotography';
+import { graphql } from 'gatsby';
 
-const PhotographyPage = () => (
-  <IndexLayout>
-    <h2>PhotographyPage</h2>
-  </IndexLayout>
-);
+export const photographyPageQuery = graphql`
+  query {
+    allAirtable(filter: { table: { eq: "Photography" } }) {
+      nodes {
+        data {
+          Attachments {
+            thumbnails {
+              large {
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+const PhotographyPage = ({ data }: any) => {
+  console.log(data);
+  return (
+    <IndexLayout>
+      <div className="row">
+        <SectionPhotography photographs={data.allAirtable.nodes} />
+      </div>
+    </IndexLayout>
+  );
+};
 
 export default PhotographyPage;
