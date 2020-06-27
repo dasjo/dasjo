@@ -1,7 +1,7 @@
-import React from 'react';
-
-import IndexLayout from '../layouts';
 import Header from '../components/index/Header';
+import IndexLayout from '../layouts';
+import React from 'react';
+import { SayingProps } from '../components/index/Saying';
 import WhatPeopleSay from '../components/index/WhatPeopleSay';
 import { graphql } from 'gatsby';
 
@@ -22,18 +22,20 @@ export const IndexPageQuery = graphql`
   }
 `;
 
-const IndexPage = ({ data }: any) => (
-  <IndexLayout>
-    <>
-      <Header />
-      <WhatPeopleSay />
-      <section className="row" style={{ fontSize: '70%' }}>
-        {data.allAirtable.nodes.map((p: any) => (
-          <pre>{JSON.stringify(p, null, 2)}</pre>
-        ))}
-      </section>
-    </>
-  </IndexLayout>
-);
+const IndexPage = ({ data }: any) => {
+  const sayings: SayingProps[] = data.allAirtable.nodes.map((saying: any) => ({
+    quote: saying.data.quote,
+    person: saying.data.person[0].data.title,
+  }));
+
+  return (
+    <IndexLayout>
+      <>
+        <Header />
+        <WhatPeopleSay sayings={sayings} />
+      </>
+    </IndexLayout>
+  );
+};
 
 export default IndexPage;

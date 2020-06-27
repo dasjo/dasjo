@@ -1,7 +1,7 @@
-import React from 'react';
-
 import { Global, css } from '@emotion/core';
+
 import HKGrotesk from '../fonts/HKGrotesk-Regular.woff';
+import React from 'react';
 import { breakpoints } from './variables';
 
 const GlobalStyles = () => (
@@ -33,6 +33,9 @@ const GlobalStyles = () => (
         --font-size-medium-1: 5rem;
         --font-size-medium-2: 5.5rem;
         --font-size-large: 6rem;
+
+        --font-stack-main: 'Jost', sans-serif;
+        --font-stack-sub: 'HK Grotesk', sans-serif;
 
         --white: #fff;
         --white-0: #fcfdff;
@@ -73,7 +76,7 @@ const GlobalStyles = () => (
 
       body {
         font-size: var(--font-size-normal);
-        font-family: 'Hk Grotesk', sans-serif;
+        font-family: var(--font-stack-sub);
         font-weight: 400;
         line-height: 1.6;
         color: var(--black-0);
@@ -117,7 +120,7 @@ const GlobalStyles = () => (
       h2,
       h3 {
         line-height: 1.1;
-        font-family: 'Jost', sans-serif;
+        font-family: var(--font-stack-main);
       }
 
       h1 {

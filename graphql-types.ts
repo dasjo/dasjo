@@ -61,7 +61,7 @@ export type AirtableConnectionGroupArgs = {
 export type AirtableData = {
   title?: Maybe<Scalars['String']>;
   attachments?: Maybe<Array<Maybe<AirtableDataAttachments>>>;
-  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
+  tags?: Maybe<Array<Maybe<Airtable>>>;
   date?: Maybe<Scalars['Date']>;
   text_en?: Maybe<Scalars['String']>;
   link?: Maybe<Scalars['String']>;
@@ -190,7 +190,7 @@ export type AirtableDataAttachmentsThumbnailsSmallFilterInput = {
 export type AirtableDataFilterInput = {
   title?: Maybe<StringQueryOperatorInput>;
   attachments?: Maybe<AirtableDataAttachmentsFilterListInput>;
-  tags?: Maybe<StringQueryOperatorInput>;
+  tags?: Maybe<AirtableFilterListInput>;
   date?: Maybe<DateQueryOperatorInput>;
   text_en?: Maybe<StringQueryOperatorInput>;
   link?: Maybe<StringQueryOperatorInput>;
@@ -326,6 +326,55 @@ export type AirtableFieldsEnum =
   | 'data___attachments___size'
   | 'data___attachments___type'
   | 'data___tags'
+  | 'data___tags___id'
+  | 'data___tags___parent___id'
+  | 'data___tags___parent___children'
+  | 'data___tags___children'
+  | 'data___tags___children___id'
+  | 'data___tags___children___children'
+  | 'data___tags___internal___content'
+  | 'data___tags___internal___contentDigest'
+  | 'data___tags___internal___description'
+  | 'data___tags___internal___fieldOwners'
+  | 'data___tags___internal___ignoreType'
+  | 'data___tags___internal___mediaType'
+  | 'data___tags___internal___owner'
+  | 'data___tags___internal___type'
+  | 'data___tags___table'
+  | 'data___tags___recordId'
+  | 'data___tags___queryName'
+  | 'data___tags___data___title'
+  | 'data___tags___data___attachments'
+  | 'data___tags___data___tags'
+  | 'data___tags___data___date'
+  | 'data___tags___data___text_en'
+  | 'data___tags___data___link'
+  | 'data___tags___data___organisation'
+  | 'data___tags___data___role'
+  | 'data___tags___data___featured'
+  | 'data___tags___data___id'
+  | 'data___tags___data___quote'
+  | 'data___tags___data___company'
+  | 'data___tags___data___person'
+  | 'data___tags___data___quotes'
+  | 'data___tags___data___name'
+  | 'data___tags___data___speaking'
+  | 'data___tags___data___mentions'
+  | 'data___tags___data___writing'
+  | 'data___tags___data___photography'
+  | 'data___tags___data___values___principles'
+  | 'data___tags___data___highlights'
+  | 'data___tags___data___work'
+  | 'data___tags___data___about'
+  | 'data___tags___data___volunteering'
+  | 'data___tags___data___education'
+  | 'data___tags___data___notes'
+  | 'data___tags___data___from'
+  | 'data___tags___data___to'
+  | 'data___tags___data___roles'
+  | 'data___tags___data___Link'
+  | 'data___tags___data___location'
+  | 'data___tags___data___text_de'
   | 'data___date'
   | 'data___text_en'
   | 'data___link'
