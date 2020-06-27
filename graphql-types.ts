@@ -2271,7 +2271,7 @@ export type Unnamed_2_QueryVariables = Exact<{ [key: string]: never; }>;
 
 export type Unnamed_2_Query = { allAirtable: { nodes: Array<{ data?: Maybe<(
         Pick<AirtableData, 'quote'>
-        & { person?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>> }
+        & { person?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>>, tags?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'name'>> }>>> }
       )> }> } };
 
 export type Unnamed_3_QueryVariables = Exact<{ [key: string]: never; }>;

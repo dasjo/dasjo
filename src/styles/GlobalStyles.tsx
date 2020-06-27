@@ -1,7 +1,7 @@
-import { Global, css } from '@emotion/core';
-
-import HKGrotesk from '../fonts/HKGrotesk-Regular.woff';
 import React from 'react';
+
+import { Global, css } from '@emotion/core';
+import HKGrotesk from '../fonts/HKGrotesk-Regular.woff';
 import { breakpoints } from './variables';
 
 const GlobalStyles = () => (
@@ -27,8 +27,10 @@ const GlobalStyles = () => (
       }
 
       :root {
-        --font-size-small: 1.6rem;
+        --font-size-small: 1.5rem;
+        --font-size-small-0: 1.3rem;
         --font-size-normal: 1.9rem;
+        --font-size-normal-1: 2.1rem;
         --font-size-medium: 4rem;
         --font-size-medium-1: 5rem;
         --font-size-medium-2: 5.5rem;
@@ -40,9 +42,11 @@ const GlobalStyles = () => (
         --white: #fff;
         --white-0: #fcfdff;
         --off-white: #eee;
+        --off-white-1: #f5f5f5;
         --black: #000;
         --black-0: #112211;
-        --blue: #0087be;
+        --blue: #1877f2;
+        --light-blue: #f4fcff;
         --blue-0: #28aaff;
 
         --grid-max-width: 1160px;
@@ -56,8 +60,10 @@ const GlobalStyles = () => (
         --gutter-medium: 5rem;
         --gutter-small: 3rem;
         --gutter-small-1: 2rem;
+        --gutter-small-2: 1.5rem;
 
         --border-light-1: 1px solid var(--off-white);
+        --border-light-2: 1px solid var(--off-white-1);
       }
 
       html {
@@ -78,9 +84,9 @@ const GlobalStyles = () => (
         font-size: var(--font-size-normal);
         font-family: var(--font-stack-sub);
         font-weight: 400;
-        line-height: 1.6;
+        line-height: 1.65;
         color: var(--black-0);
-        background: var(--white-0);
+        background: var(--white);
       }
 
       /* ---------------------------------------- */
@@ -105,6 +111,10 @@ const GlobalStyles = () => (
 
         @media (max-width: ${breakpoints.medium0}) {
           padding: 0 var(--gutter-small);
+        }
+
+        @media (max-width: ${breakpoints.small}) {
+          padding: 0 var(--gutter-small-2);
         }
       }
 

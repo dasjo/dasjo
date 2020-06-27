@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import Saying, { SayingProps } from './Saying';
 
 const StyledWhatPeopleSay = styled.section`
-  background: var(--white);
+  background: var(--white-0);
   border-top: var(--border-light-1);
 `;
 

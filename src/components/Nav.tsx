@@ -126,7 +126,7 @@ const StyledNav = styled.nav`
       margin-top: var(--gutter-large-1);
       flex-direction: column;
       align-items: center;
-      background: var(--white-0);
+      background: var(--white);
       z-index: 1000;
 
       &.shown {
