@@ -61,6 +61,7 @@ const GlobalStyles = () => (
         --gutter-small: 3rem;
         --gutter-small-1: 2rem;
         --gutter-small-2: 1.5rem;
+        --gutter-small-3: 1rem;
 
         --border-light-1: 1px solid var(--off-white);
         --border-light-2: 1px solid var(--off-white-1);
@@ -166,6 +167,10 @@ const GlobalStyles = () => (
           background: var(--black-0);
           margin: var(--gutter-small-1) 0 var(--gutter-medium);
         } */
+      }
+
+      h3 {
+        margin: var(--gutter-small-3) 0 var(--gutter-small-1);
       }
 
       p + p {

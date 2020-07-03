@@ -8,20 +8,17 @@ const StyledWhatPeopleSay = styled.section`
   border-top: var(--border-light-1);
 `;
 
-const WhatPeopleSay = ({ sayings }: any) => {
-  console.log(sayings);
-  return (
-    <StyledWhatPeopleSay>
-      <div className="row">
-        <h2>What Others Say About Me</h2>
-        <div className="sayings">
-          {sayings.map((saying: SayingProps, i: any) => (
-            <Saying key={i + saying.person} {...saying} />
-          ))}
-        </div>
+const WhatPeopleSay = ({ sayings }: any) => (
+  <StyledWhatPeopleSay>
+    <div className="row">
+      <h2>What Others Say About Me</h2>
+      <div className="sayings">
+        {sayings.map((saying: SayingProps, i: any) => (
+          <Saying key={i + saying.person} {...saying} />
+        ))}
       </div>
-    </StyledWhatPeopleSay>
-  );
-};
+    </div>
+  </StyledWhatPeopleSay>
+);
 
 export default WhatPeopleSay;

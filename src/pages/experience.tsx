@@ -1,12 +1,132 @@
 import React from 'react';
 import IndexLayout from '../layouts';
+import SectionWork from '../components/experience/SectionWork';
+import SectionEducation from '../components/experience/SectionEducation';
+import SectionVolunteering from '../components/experience/SectionVolunteering';
+import { graphql } from 'gatsby';
+import { filterByFeatured } from '../utils/helpers';
 
-const ExperiencePage = () => (
-  <IndexLayout>
-    <div className="row">
-      <h1>ExperiencePage</h1>
-    </div>
-  </IndexLayout>
-);
+export const experiencePageQuery = graphql`
+  query {
+    work: allAirtable(
+      filter: { table: { eq: "Work" } }
+      sort: { fields: [data___from], order: DESC }
+    ) {
+      nodes {
+        data {
+          title
+          featured
+          from
+          to
+          link
+          roles {
+            data {
+              title
+            }
+          }
+          location {
+            data {
+              title
+            }
+          }
+          organisation {
+            data {
+              title
+            }
+          }
+        }
+      }
+    }
+
+    education: allAirtable(filter: { table: { eq: "Education" } }) {
+      nodes {
+        data {
+          title
+          featured
+          from
+          to
+          link
+          organisation {
+            data {
+              title
+            }
+          }
+        }
+      }
+    }
+
+    volunteering: allAirtable(filter: { table: { eq: "Volunteering" } }) {
+      nodes {
+        data {
+          title
+          featured
+          from
+          link
+          organisation {
+            data {
+              title
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+const ExperiencePage = ({ data }: any) => {
+  const enteries = {
+    work: filterByFeatured(
+      data.work.nodes.map((t: any) => ({
+        title: t.data.title,
+        featured: !!t.data.featured,
+        from: t.data.from,
+        to: t.data.to,
+        link: t.data.link,
+        roles: t.data.roles ? t.data.roles.map((r: any) => r.data.title) : [],
+        location: (t.data.location
+          ? t.data.location.map((l: any) => l.data.title)
+          : [])[0],
+        organisation: (t.data.organisation
+          ? t.data.organisation.map((o: any) => o.data.title)
+          : [])[0],
+      }))
+    ),
+    education: filterByFeatured(
+      data.education.nodes.map((t: any) => ({
+        title: t.data.title,
+        featured: !!t.data.featured,
+        from: t.data.from,
+        to: t.data.to,
+        link: t.data.link,
+        organisation: (t.data.organisation
+          ? t.data.organisation.map((o: any) => o.data.title)
+          : [])[0],
+      }))
+    ),
+    volunteering: filterByFeatured(
+      data.volunteering.nodes.map((t: any) => ({
+        title: t.data.title,
+        featured: !!t.data.featured,
+        from: t.data.from,
+        link: t.data.link,
+        organisation: (t.data.organisation
+          ? t.data.organisation.map((o: any) => o.data.title)
+          : [])[0],
+      }))
+    ),
+  };
+  return (
+    <IndexLayout>
+      <div className="row">
+        <section>
+          <h1>Experience</h1>
+          <SectionWork work={enteries.work} />
+          <SectionEducation education={enteries.education} />
+          <SectionVolunteering volunteering={enteries.volunteering} />
+        </section>
+      </div>
+    </IndexLayout>
+  );
+};
 
 export default ExperiencePage;

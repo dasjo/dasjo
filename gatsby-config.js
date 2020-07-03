@@ -18,19 +18,27 @@ module.exports = {
           },
           {
             baseId,
+            tableName: `Organisation`,
+          },
+          {
+            baseId,
             tableName: `Work`,
+            tableLinks: [`roles`, `tags`, `location`, `organisation`],
           },
           {
             baseId,
             tableName: `Education`,
+            tableLinks: [`organisation`],
           },
           {
             baseId,
             tableName: `Volunteering`,
+            tableLinks: [`organisation`],
           },
           {
             baseId,
             tableName: `Photography`,
+            tableLinks: [`tags`],
           },
           {
             baseId,
@@ -43,8 +51,15 @@ module.exports = {
           {
             baseId,
             tableName: `Quotes`,
-            queryName: `quotes`,
             tableLinks: [`person`, `tags`],
+          },
+          {
+            baseId,
+            tableName: `Roles`,
+          },
+          {
+            baseId,
+            tableName: `Location`,
           },
         ],
       },
