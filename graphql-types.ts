@@ -62,13 +62,13 @@ export type AirtableData = {
   attachments?: Maybe<Array<Maybe<AirtableDataAttachments>>>;
   tags?: Maybe<Array<Maybe<Airtable>>>;
   date?: Maybe<Scalars['Date']>;
-  text_en?: Maybe<Scalars['String']>;
   link?: Maybe<Scalars['String']>;
   organisation?: Maybe<Array<Maybe<Airtable>>>;
+  text_en?: Maybe<AirtableField>;
   role?: Maybe<Array<Maybe<Scalars['String']>>>;
   featured?: Maybe<Scalars['Boolean']>;
-  notes?: Maybe<Scalars['String']>;
   slides?: Maybe<Scalars['String']>;
+  notes?: Maybe<AirtableField>;
   recording?: Maybe<Scalars['String']>;
   work?: Maybe<Array<Maybe<Scalars['String']>>>;
   blog?: Maybe<Array<Maybe<Scalars['String']>>>;
@@ -196,13 +196,13 @@ export type AirtableDataFilterInput = {
   attachments?: Maybe<AirtableDataAttachmentsFilterListInput>;
   tags?: Maybe<AirtableFilterListInput>;
   date?: Maybe<DateQueryOperatorInput>;
-  text_en?: Maybe<StringQueryOperatorInput>;
   link?: Maybe<StringQueryOperatorInput>;
   organisation?: Maybe<AirtableFilterListInput>;
+  text_en?: Maybe<AirtableFieldFilterInput>;
   role?: Maybe<StringQueryOperatorInput>;
   featured?: Maybe<BooleanQueryOperatorInput>;
-  notes?: Maybe<StringQueryOperatorInput>;
   slides?: Maybe<StringQueryOperatorInput>;
+  notes?: Maybe<AirtableFieldFilterInput>;
   recording?: Maybe<StringQueryOperatorInput>;
   work?: Maybe<StringQueryOperatorInput>;
   blog?: Maybe<StringQueryOperatorInput>;
@@ -305,6 +305,202 @@ export type AirtableEdge = {
   next?: Maybe<Airtable>;
   node: Airtable;
   previous?: Maybe<Airtable>;
+};
+
+export type AirtableField = Node & {
+  id: Scalars['ID'];
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+  raw?: Maybe<Scalars['String']>;
+  childMarkdownRemark?: Maybe<MarkdownRemark>;
+};
+
+export type AirtableFieldConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<AirtableFieldEdge>;
+  nodes: Array<AirtableField>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  group: Array<AirtableFieldGroupConnection>;
+};
+
+
+export type AirtableFieldConnectionDistinctArgs = {
+  field: AirtableFieldFieldsEnum;
+};
+
+
+export type AirtableFieldConnectionGroupArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  field: AirtableFieldFieldsEnum;
+};
+
+export type AirtableFieldEdge = {
+  next?: Maybe<AirtableField>;
+  node: AirtableField;
+  previous?: Maybe<AirtableField>;
+};
+
+export type AirtableFieldFieldsEnum = 
+  | 'id'
+  | 'parent___id'
+  | 'parent___parent___id'
+  | 'parent___parent___parent___id'
+  | 'parent___parent___parent___children'
+  | 'parent___parent___children'
+  | 'parent___parent___children___id'
+  | 'parent___parent___children___children'
+  | 'parent___parent___internal___content'
+  | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___description'
+  | 'parent___parent___internal___fieldOwners'
+  | 'parent___parent___internal___ignoreType'
+  | 'parent___parent___internal___mediaType'
+  | 'parent___parent___internal___owner'
+  | 'parent___parent___internal___type'
+  | 'parent___children'
+  | 'parent___children___id'
+  | 'parent___children___parent___id'
+  | 'parent___children___parent___children'
+  | 'parent___children___children'
+  | 'parent___children___children___id'
+  | 'parent___children___children___children'
+  | 'parent___children___internal___content'
+  | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___description'
+  | 'parent___children___internal___fieldOwners'
+  | 'parent___children___internal___ignoreType'
+  | 'parent___children___internal___mediaType'
+  | 'parent___children___internal___owner'
+  | 'parent___children___internal___type'
+  | 'parent___internal___content'
+  | 'parent___internal___contentDigest'
+  | 'parent___internal___description'
+  | 'parent___internal___fieldOwners'
+  | 'parent___internal___ignoreType'
+  | 'parent___internal___mediaType'
+  | 'parent___internal___owner'
+  | 'parent___internal___type'
+  | 'children'
+  | 'children___id'
+  | 'children___parent___id'
+  | 'children___parent___parent___id'
+  | 'children___parent___parent___children'
+  | 'children___parent___children'
+  | 'children___parent___children___id'
+  | 'children___parent___children___children'
+  | 'children___parent___internal___content'
+  | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___description'
+  | 'children___parent___internal___fieldOwners'
+  | 'children___parent___internal___ignoreType'
+  | 'children___parent___internal___mediaType'
+  | 'children___parent___internal___owner'
+  | 'children___parent___internal___type'
+  | 'children___children'
+  | 'children___children___id'
+  | 'children___children___parent___id'
+  | 'children___children___parent___children'
+  | 'children___children___children'
+  | 'children___children___children___id'
+  | 'children___children___children___children'
+  | 'children___children___internal___content'
+  | 'children___children___internal___contentDigest'
+  | 'children___children___internal___description'
+  | 'children___children___internal___fieldOwners'
+  | 'children___children___internal___ignoreType'
+  | 'children___children___internal___mediaType'
+  | 'children___children___internal___owner'
+  | 'children___children___internal___type'
+  | 'children___internal___content'
+  | 'children___internal___contentDigest'
+  | 'children___internal___description'
+  | 'children___internal___fieldOwners'
+  | 'children___internal___ignoreType'
+  | 'children___internal___mediaType'
+  | 'children___internal___owner'
+  | 'children___internal___type'
+  | 'internal___content'
+  | 'internal___contentDigest'
+  | 'internal___description'
+  | 'internal___fieldOwners'
+  | 'internal___ignoreType'
+  | 'internal___mediaType'
+  | 'internal___owner'
+  | 'internal___type'
+  | 'raw'
+  | 'childMarkdownRemark___id'
+  | 'childMarkdownRemark___frontmatter___title'
+  | 'childMarkdownRemark___excerpt'
+  | 'childMarkdownRemark___rawMarkdownBody'
+  | 'childMarkdownRemark___html'
+  | 'childMarkdownRemark___htmlAst'
+  | 'childMarkdownRemark___excerptAst'
+  | 'childMarkdownRemark___headings'
+  | 'childMarkdownRemark___headings___id'
+  | 'childMarkdownRemark___headings___value'
+  | 'childMarkdownRemark___headings___depth'
+  | 'childMarkdownRemark___timeToRead'
+  | 'childMarkdownRemark___tableOfContents'
+  | 'childMarkdownRemark___wordCount___paragraphs'
+  | 'childMarkdownRemark___wordCount___sentences'
+  | 'childMarkdownRemark___wordCount___words'
+  | 'childMarkdownRemark___parent___id'
+  | 'childMarkdownRemark___parent___parent___id'
+  | 'childMarkdownRemark___parent___parent___children'
+  | 'childMarkdownRemark___parent___children'
+  | 'childMarkdownRemark___parent___children___id'
+  | 'childMarkdownRemark___parent___children___children'
+  | 'childMarkdownRemark___parent___internal___content'
+  | 'childMarkdownRemark___parent___internal___contentDigest'
+  | 'childMarkdownRemark___parent___internal___description'
+  | 'childMarkdownRemark___parent___internal___fieldOwners'
+  | 'childMarkdownRemark___parent___internal___ignoreType'
+  | 'childMarkdownRemark___parent___internal___mediaType'
+  | 'childMarkdownRemark___parent___internal___owner'
+  | 'childMarkdownRemark___parent___internal___type'
+  | 'childMarkdownRemark___children'
+  | 'childMarkdownRemark___children___id'
+  | 'childMarkdownRemark___children___parent___id'
+  | 'childMarkdownRemark___children___parent___children'
+  | 'childMarkdownRemark___children___children'
+  | 'childMarkdownRemark___children___children___id'
+  | 'childMarkdownRemark___children___children___children'
+  | 'childMarkdownRemark___children___internal___content'
+  | 'childMarkdownRemark___children___internal___contentDigest'
+  | 'childMarkdownRemark___children___internal___description'
+  | 'childMarkdownRemark___children___internal___fieldOwners'
+  | 'childMarkdownRemark___children___internal___ignoreType'
+  | 'childMarkdownRemark___children___internal___mediaType'
+  | 'childMarkdownRemark___children___internal___owner'
+  | 'childMarkdownRemark___children___internal___type'
+  | 'childMarkdownRemark___internal___content'
+  | 'childMarkdownRemark___internal___contentDigest'
+  | 'childMarkdownRemark___internal___description'
+  | 'childMarkdownRemark___internal___fieldOwners'
+  | 'childMarkdownRemark___internal___ignoreType'
+  | 'childMarkdownRemark___internal___mediaType'
+  | 'childMarkdownRemark___internal___owner'
+  | 'childMarkdownRemark___internal___type';
+
+export type AirtableFieldFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  raw?: Maybe<StringQueryOperatorInput>;
+  childMarkdownRemark?: Maybe<MarkdownRemarkFilterInput>;
+};
+
+export type AirtableFieldGroupConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<AirtableFieldEdge>;
+  nodes: Array<AirtableField>;
+  pageInfo: PageInfo;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
 };
 
 export type AirtableFieldsEnum = 
@@ -424,12 +620,10 @@ export type AirtableFieldsEnum =
   | 'data___tags___data___attachments'
   | 'data___tags___data___tags'
   | 'data___tags___data___date'
-  | 'data___tags___data___text_en'
   | 'data___tags___data___link'
   | 'data___tags___data___organisation'
   | 'data___tags___data___role'
   | 'data___tags___data___featured'
-  | 'data___tags___data___notes'
   | 'data___tags___data___slides'
   | 'data___tags___data___recording'
   | 'data___tags___data___work'
@@ -458,7 +652,6 @@ export type AirtableFieldsEnum =
   | 'data___tags___data___image'
   | 'data___tags___data___text_de'
   | 'data___date'
-  | 'data___text_en'
   | 'data___link'
   | 'data___organisation'
   | 'data___organisation___id'
@@ -481,12 +674,10 @@ export type AirtableFieldsEnum =
   | 'data___organisation___data___attachments'
   | 'data___organisation___data___tags'
   | 'data___organisation___data___date'
-  | 'data___organisation___data___text_en'
   | 'data___organisation___data___link'
   | 'data___organisation___data___organisation'
   | 'data___organisation___data___role'
   | 'data___organisation___data___featured'
-  | 'data___organisation___data___notes'
   | 'data___organisation___data___slides'
   | 'data___organisation___data___recording'
   | 'data___organisation___data___work'
@@ -514,10 +705,59 @@ export type AirtableFieldsEnum =
   | 'data___organisation___data___location'
   | 'data___organisation___data___image'
   | 'data___organisation___data___text_de'
+  | 'data___text_en___id'
+  | 'data___text_en___parent___id'
+  | 'data___text_en___parent___children'
+  | 'data___text_en___children'
+  | 'data___text_en___children___id'
+  | 'data___text_en___children___children'
+  | 'data___text_en___internal___content'
+  | 'data___text_en___internal___contentDigest'
+  | 'data___text_en___internal___description'
+  | 'data___text_en___internal___fieldOwners'
+  | 'data___text_en___internal___ignoreType'
+  | 'data___text_en___internal___mediaType'
+  | 'data___text_en___internal___owner'
+  | 'data___text_en___internal___type'
+  | 'data___text_en___raw'
+  | 'data___text_en___childMarkdownRemark___id'
+  | 'data___text_en___childMarkdownRemark___excerpt'
+  | 'data___text_en___childMarkdownRemark___rawMarkdownBody'
+  | 'data___text_en___childMarkdownRemark___html'
+  | 'data___text_en___childMarkdownRemark___htmlAst'
+  | 'data___text_en___childMarkdownRemark___excerptAst'
+  | 'data___text_en___childMarkdownRemark___headings'
+  | 'data___text_en___childMarkdownRemark___timeToRead'
+  | 'data___text_en___childMarkdownRemark___tableOfContents'
+  | 'data___text_en___childMarkdownRemark___children'
   | 'data___role'
   | 'data___featured'
-  | 'data___notes'
   | 'data___slides'
+  | 'data___notes___id'
+  | 'data___notes___parent___id'
+  | 'data___notes___parent___children'
+  | 'data___notes___children'
+  | 'data___notes___children___id'
+  | 'data___notes___children___children'
+  | 'data___notes___internal___content'
+  | 'data___notes___internal___contentDigest'
+  | 'data___notes___internal___description'
+  | 'data___notes___internal___fieldOwners'
+  | 'data___notes___internal___ignoreType'
+  | 'data___notes___internal___mediaType'
+  | 'data___notes___internal___owner'
+  | 'data___notes___internal___type'
+  | 'data___notes___raw'
+  | 'data___notes___childMarkdownRemark___id'
+  | 'data___notes___childMarkdownRemark___excerpt'
+  | 'data___notes___childMarkdownRemark___rawMarkdownBody'
+  | 'data___notes___childMarkdownRemark___html'
+  | 'data___notes___childMarkdownRemark___htmlAst'
+  | 'data___notes___childMarkdownRemark___excerptAst'
+  | 'data___notes___childMarkdownRemark___headings'
+  | 'data___notes___childMarkdownRemark___timeToRead'
+  | 'data___notes___childMarkdownRemark___tableOfContents'
+  | 'data___notes___childMarkdownRemark___children'
   | 'data___recording'
   | 'data___work'
   | 'data___blog'
@@ -548,12 +788,10 @@ export type AirtableFieldsEnum =
   | 'data___person___data___attachments'
   | 'data___person___data___tags'
   | 'data___person___data___date'
-  | 'data___person___data___text_en'
   | 'data___person___data___link'
   | 'data___person___data___organisation'
   | 'data___person___data___role'
   | 'data___person___data___featured'
-  | 'data___person___data___notes'
   | 'data___person___data___slides'
   | 'data___person___data___recording'
   | 'data___person___data___work'
@@ -614,12 +852,10 @@ export type AirtableFieldsEnum =
   | 'data___roles___data___attachments'
   | 'data___roles___data___tags'
   | 'data___roles___data___date'
-  | 'data___roles___data___text_en'
   | 'data___roles___data___link'
   | 'data___roles___data___organisation'
   | 'data___roles___data___role'
   | 'data___roles___data___featured'
-  | 'data___roles___data___notes'
   | 'data___roles___data___slides'
   | 'data___roles___data___recording'
   | 'data___roles___data___work'
@@ -668,12 +904,10 @@ export type AirtableFieldsEnum =
   | 'data___location___data___attachments'
   | 'data___location___data___tags'
   | 'data___location___data___date'
-  | 'data___location___data___text_en'
   | 'data___location___data___link'
   | 'data___location___data___organisation'
   | 'data___location___data___role'
   | 'data___location___data___featured'
-  | 'data___location___data___notes'
   | 'data___location___data___slides'
   | 'data___location___data___recording'
   | 'data___location___data___work'
@@ -708,6 +942,11 @@ export type AirtableFieldsEnum =
   | 'data___image___size'
   | 'data___image___type'
   | 'data___text_de';
+
+export type AirtableFieldSortInput = {
+  fields?: Maybe<Array<Maybe<AirtableFieldFieldsEnum>>>;
+  order?: Maybe<Array<Maybe<SortOrderEnum>>>;
+};
 
 export type AirtableFilterInput = {
   id?: Maybe<StringQueryOperatorInput>;
@@ -1389,6 +1628,268 @@ export type IntQueryOperatorInput = {
 };
 
 
+export type JsonQueryOperatorInput = {
+  eq?: Maybe<Scalars['JSON']>;
+  ne?: Maybe<Scalars['JSON']>;
+  in?: Maybe<Array<Maybe<Scalars['JSON']>>>;
+  nin?: Maybe<Array<Maybe<Scalars['JSON']>>>;
+  regex?: Maybe<Scalars['JSON']>;
+  glob?: Maybe<Scalars['JSON']>;
+};
+
+export type MarkdownExcerptFormats = 
+  | 'PLAIN'
+  | 'HTML'
+  | 'MARKDOWN';
+
+export type MarkdownHeading = {
+  id?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+  depth?: Maybe<Scalars['Int']>;
+};
+
+export type MarkdownHeadingFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>;
+  value?: Maybe<StringQueryOperatorInput>;
+  depth?: Maybe<IntQueryOperatorInput>;
+};
+
+export type MarkdownHeadingFilterListInput = {
+  elemMatch?: Maybe<MarkdownHeadingFilterInput>;
+};
+
+export type MarkdownHeadingLevels = 
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'h5'
+  | 'h6';
+
+export type MarkdownRemark = Node & {
+  id: Scalars['ID'];
+  frontmatter?: Maybe<MarkdownRemarkFrontmatter>;
+  excerpt?: Maybe<Scalars['String']>;
+  rawMarkdownBody?: Maybe<Scalars['String']>;
+  html?: Maybe<Scalars['String']>;
+  htmlAst?: Maybe<Scalars['JSON']>;
+  excerptAst?: Maybe<Scalars['JSON']>;
+  headings?: Maybe<Array<Maybe<MarkdownHeading>>>;
+  timeToRead?: Maybe<Scalars['Int']>;
+  tableOfContents?: Maybe<Scalars['String']>;
+  wordCount?: Maybe<MarkdownWordCount>;
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+};
+
+
+export type MarkdownRemarkExcerptArgs = {
+  pruneLength?: Maybe<Scalars['Int']>;
+  truncate?: Maybe<Scalars['Boolean']>;
+  format?: Maybe<MarkdownExcerptFormats>;
+};
+
+
+export type MarkdownRemarkExcerptAstArgs = {
+  pruneLength?: Maybe<Scalars['Int']>;
+  truncate?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MarkdownRemarkHeadingsArgs = {
+  depth?: Maybe<MarkdownHeadingLevels>;
+};
+
+
+export type MarkdownRemarkTableOfContentsArgs = {
+  absolute?: Maybe<Scalars['Boolean']>;
+  pathToSlugField?: Maybe<Scalars['String']>;
+  maxDepth?: Maybe<Scalars['Int']>;
+  heading?: Maybe<Scalars['String']>;
+};
+
+export type MarkdownRemarkConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<MarkdownRemarkEdge>;
+  nodes: Array<MarkdownRemark>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  group: Array<MarkdownRemarkGroupConnection>;
+};
+
+
+export type MarkdownRemarkConnectionDistinctArgs = {
+  field: MarkdownRemarkFieldsEnum;
+};
+
+
+export type MarkdownRemarkConnectionGroupArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  field: MarkdownRemarkFieldsEnum;
+};
+
+export type MarkdownRemarkEdge = {
+  next?: Maybe<MarkdownRemark>;
+  node: MarkdownRemark;
+  previous?: Maybe<MarkdownRemark>;
+};
+
+export type MarkdownRemarkFieldsEnum = 
+  | 'id'
+  | 'frontmatter___title'
+  | 'excerpt'
+  | 'rawMarkdownBody'
+  | 'html'
+  | 'htmlAst'
+  | 'excerptAst'
+  | 'headings'
+  | 'headings___id'
+  | 'headings___value'
+  | 'headings___depth'
+  | 'timeToRead'
+  | 'tableOfContents'
+  | 'wordCount___paragraphs'
+  | 'wordCount___sentences'
+  | 'wordCount___words'
+  | 'parent___id'
+  | 'parent___parent___id'
+  | 'parent___parent___parent___id'
+  | 'parent___parent___parent___children'
+  | 'parent___parent___children'
+  | 'parent___parent___children___id'
+  | 'parent___parent___children___children'
+  | 'parent___parent___internal___content'
+  | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___description'
+  | 'parent___parent___internal___fieldOwners'
+  | 'parent___parent___internal___ignoreType'
+  | 'parent___parent___internal___mediaType'
+  | 'parent___parent___internal___owner'
+  | 'parent___parent___internal___type'
+  | 'parent___children'
+  | 'parent___children___id'
+  | 'parent___children___parent___id'
+  | 'parent___children___parent___children'
+  | 'parent___children___children'
+  | 'parent___children___children___id'
+  | 'parent___children___children___children'
+  | 'parent___children___internal___content'
+  | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___description'
+  | 'parent___children___internal___fieldOwners'
+  | 'parent___children___internal___ignoreType'
+  | 'parent___children___internal___mediaType'
+  | 'parent___children___internal___owner'
+  | 'parent___children___internal___type'
+  | 'parent___internal___content'
+  | 'parent___internal___contentDigest'
+  | 'parent___internal___description'
+  | 'parent___internal___fieldOwners'
+  | 'parent___internal___ignoreType'
+  | 'parent___internal___mediaType'
+  | 'parent___internal___owner'
+  | 'parent___internal___type'
+  | 'children'
+  | 'children___id'
+  | 'children___parent___id'
+  | 'children___parent___parent___id'
+  | 'children___parent___parent___children'
+  | 'children___parent___children'
+  | 'children___parent___children___id'
+  | 'children___parent___children___children'
+  | 'children___parent___internal___content'
+  | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___description'
+  | 'children___parent___internal___fieldOwners'
+  | 'children___parent___internal___ignoreType'
+  | 'children___parent___internal___mediaType'
+  | 'children___parent___internal___owner'
+  | 'children___parent___internal___type'
+  | 'children___children'
+  | 'children___children___id'
+  | 'children___children___parent___id'
+  | 'children___children___parent___children'
+  | 'children___children___children'
+  | 'children___children___children___id'
+  | 'children___children___children___children'
+  | 'children___children___internal___content'
+  | 'children___children___internal___contentDigest'
+  | 'children___children___internal___description'
+  | 'children___children___internal___fieldOwners'
+  | 'children___children___internal___ignoreType'
+  | 'children___children___internal___mediaType'
+  | 'children___children___internal___owner'
+  | 'children___children___internal___type'
+  | 'children___internal___content'
+  | 'children___internal___contentDigest'
+  | 'children___internal___description'
+  | 'children___internal___fieldOwners'
+  | 'children___internal___ignoreType'
+  | 'children___internal___mediaType'
+  | 'children___internal___owner'
+  | 'children___internal___type'
+  | 'internal___content'
+  | 'internal___contentDigest'
+  | 'internal___description'
+  | 'internal___fieldOwners'
+  | 'internal___ignoreType'
+  | 'internal___mediaType'
+  | 'internal___owner'
+  | 'internal___type';
+
+export type MarkdownRemarkFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>;
+  frontmatter?: Maybe<MarkdownRemarkFrontmatterFilterInput>;
+  excerpt?: Maybe<StringQueryOperatorInput>;
+  rawMarkdownBody?: Maybe<StringQueryOperatorInput>;
+  html?: Maybe<StringQueryOperatorInput>;
+  htmlAst?: Maybe<JsonQueryOperatorInput>;
+  excerptAst?: Maybe<JsonQueryOperatorInput>;
+  headings?: Maybe<MarkdownHeadingFilterListInput>;
+  timeToRead?: Maybe<IntQueryOperatorInput>;
+  tableOfContents?: Maybe<StringQueryOperatorInput>;
+  wordCount?: Maybe<MarkdownWordCountFilterInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+};
+
+export type MarkdownRemarkFrontmatter = {
+  title?: Maybe<Scalars['String']>;
+};
+
+export type MarkdownRemarkFrontmatterFilterInput = {
+  title?: Maybe<StringQueryOperatorInput>;
+};
+
+export type MarkdownRemarkGroupConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<MarkdownRemarkEdge>;
+  nodes: Array<MarkdownRemark>;
+  pageInfo: PageInfo;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+export type MarkdownRemarkSortInput = {
+  fields?: Maybe<Array<Maybe<MarkdownRemarkFieldsEnum>>>;
+  order?: Maybe<Array<Maybe<SortOrderEnum>>>;
+};
+
+export type MarkdownWordCount = {
+  paragraphs?: Maybe<Scalars['Int']>;
+  sentences?: Maybe<Scalars['Int']>;
+  words?: Maybe<Scalars['Int']>;
+};
+
+export type MarkdownWordCountFilterInput = {
+  paragraphs?: Maybe<IntQueryOperatorInput>;
+  sentences?: Maybe<IntQueryOperatorInput>;
+  words?: Maybe<IntQueryOperatorInput>;
+};
+
 /** Node Interface */
 export type Node = {
   id: Scalars['ID'];
@@ -1427,6 +1928,10 @@ export type Query = {
   allSitePage: SitePageConnection;
   site?: Maybe<Site>;
   allSite: SiteConnection;
+  markdownRemark?: Maybe<MarkdownRemark>;
+  allMarkdownRemark: MarkdownRemarkConnection;
+  airtableField?: Maybe<AirtableField>;
+  allAirtableField: AirtableFieldConnection;
   airtable?: Maybe<Airtable>;
   allAirtable: AirtableConnection;
   siteBuildMetadata?: Maybe<SiteBuildMetadata>;
@@ -1572,6 +2077,50 @@ export type QuerySiteArgs = {
 export type QueryAllSiteArgs = {
   filter?: Maybe<SiteFilterInput>;
   sort?: Maybe<SiteSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryMarkdownRemarkArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  frontmatter?: Maybe<MarkdownRemarkFrontmatterFilterInput>;
+  excerpt?: Maybe<StringQueryOperatorInput>;
+  rawMarkdownBody?: Maybe<StringQueryOperatorInput>;
+  html?: Maybe<StringQueryOperatorInput>;
+  htmlAst?: Maybe<JsonQueryOperatorInput>;
+  excerptAst?: Maybe<JsonQueryOperatorInput>;
+  headings?: Maybe<MarkdownHeadingFilterListInput>;
+  timeToRead?: Maybe<IntQueryOperatorInput>;
+  tableOfContents?: Maybe<StringQueryOperatorInput>;
+  wordCount?: Maybe<MarkdownWordCountFilterInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+};
+
+
+export type QueryAllMarkdownRemarkArgs = {
+  filter?: Maybe<MarkdownRemarkFilterInput>;
+  sort?: Maybe<MarkdownRemarkSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryAirtableFieldArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  raw?: Maybe<StringQueryOperatorInput>;
+  childMarkdownRemark?: Maybe<MarkdownRemarkFilterInput>;
+};
+
+
+export type QueryAllAirtableFieldArgs = {
+  filter?: Maybe<AirtableFieldFilterInput>;
+  sort?: Maybe<AirtableFieldSortInput>;
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
 };
@@ -2334,6 +2883,8 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___tables'
   | 'pluginOptions___tables___baseId'
   | 'pluginOptions___tables___tableName'
+  | 'pluginOptions___tables___mapping___text_en'
+  | 'pluginOptions___tables___mapping___notes'
   | 'pluginOptions___tables___tableLinks'
   | 'pluginOptions___path'
   | 'pluginOptions___pathCheck'
@@ -2466,17 +3017,29 @@ export type SitePluginPluginOptionsFilterInput = {
 export type SitePluginPluginOptionsTables = {
   baseId?: Maybe<Scalars['String']>;
   tableName?: Maybe<Scalars['String']>;
+  mapping?: Maybe<SitePluginPluginOptionsTablesMapping>;
   tableLinks?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 export type SitePluginPluginOptionsTablesFilterInput = {
   baseId?: Maybe<StringQueryOperatorInput>;
   tableName?: Maybe<StringQueryOperatorInput>;
+  mapping?: Maybe<SitePluginPluginOptionsTablesMappingFilterInput>;
   tableLinks?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SitePluginPluginOptionsTablesFilterListInput = {
   elemMatch?: Maybe<SitePluginPluginOptionsTablesFilterInput>;
+};
+
+export type SitePluginPluginOptionsTablesMapping = {
+  text_en?: Maybe<Scalars['String']>;
+  notes?: Maybe<Scalars['String']>;
+};
+
+export type SitePluginPluginOptionsTablesMappingFilterInput = {
+  text_en?: Maybe<StringQueryOperatorInput>;
+  notes?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SitePluginSortInput = {
@@ -2549,6 +3112,6 @@ export type Unnamed_5_QueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type Unnamed_5_Query = { allAirtable: { nodes: Array<{ data?: Maybe<(
-        Pick<AirtableData, 'title' | 'date' | 'notes' | 'link' | 'slides'>
-        & { organisation?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>>, tags?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'name'>> }>>> }
+        Pick<AirtableData, 'title' | 'date' | 'link' | 'slides'>
+        & { notes?: Maybe<{ childMarkdownRemark?: Maybe<Pick<MarkdownRemark, 'html'>> }>, organisation?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>>, tags?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'name'>> }>>> }
       )> }> } };

@@ -21,7 +21,11 @@ export const SpeakingPageQuery = graphql`
         data {
           title
           date
-          notes
+          notes {
+            childMarkdownRemark {
+              html
+            }
+          }
           link
           slides
           organisation {
@@ -44,7 +48,7 @@ const SpeakingPage = ({ data }: any) => {
   const speakings = data.allAirtable.nodes.map((t: any) => ({
     title: t.data.title,
     date: t.data.date,
-    notes: t.data.notes,
+    notes: t.data.notes ? t.data.notes.childMarkdownRemark.html : null,
     link: t.data.link,
     slides: t.data.slides,
     organisation: (t.data.organisation
