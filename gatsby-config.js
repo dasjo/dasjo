@@ -61,6 +61,11 @@ module.exports = {
             baseId,
             tableName: `Location`,
           },
+          {
+            baseId,
+            tableName: `Speaking`,
+            tableLinks: [`organisation`, `tags`],
+          },
         ],
       },
     },

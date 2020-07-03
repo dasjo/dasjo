@@ -1,11 +1,10 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-import { Link } from 'gatsby';
 import { breakpoints } from '../../styles/variables';
+import Tag from '../Tag';
 
 const StyledSaying = styled.div`
-  max-width: var(--container-small);
   padding: var(--gutter-small);
   border: var(--border-light-1);
   background: var(--white);
@@ -21,47 +20,6 @@ const StyledSaying = styled.div`
 
     @media (max-width: ${breakpoints.large}) {
       flex-direction: column;
-    }
-  }
-
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-
-    @media (min-width: calc(${breakpoints.large} + 1px)) {
-      max-width: 500px;
-      justify-content: flex-end;
-    }
-
-    @media (max-width: ${breakpoints.large}) {
-      margin-top: var(--gutter-small);
-    }
-
-    @media(max-width: ${breakpoints.small0}) {
-      flex-direction: column;
-    }
-  }
-
-  .tag {
-    display: inline-block;
-    padding: 0.2rem 0.8rem;
-    color: var(--blue);
-    font-size: var(--font-size-small-0);
-    border: var(--border-light-2);
-    background: var(--light-blue);
-    margin-bottom: 1rem;
-
-    @media (min-width: calc(${breakpoints.large} + 1px)) {
-      &:not(:first-child) {
-        margin-left: 1rem;
-      }
-    }
-
-    @media(max-width: ${breakpoints.large}) {
-      &:not(:last-child) {
-        margin-right: 1rem;
-      }
     }
   }
 
@@ -84,9 +42,7 @@ const Saying = ({ quote, person, tags }: SayingProps | any) => (
       <p className="name">&mdash; {person}</p>
       <div className="tags">
         {tags.map((tag: any, i: number) => (
-          <Link to="/tags/" className="tag" key={tag + i}>
-            {tag}
-          </Link>
+          <Tag text={tag} key={tag + i} />
         ))}
       </div>
     </div>

@@ -123,6 +123,29 @@ const GlobalStyles = () => (
         padding: var(--gutter-huge) 0;
       }
 
+      .container-small {
+        max-width: var(--container-small);
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+
+        @media (min-width: calc(${breakpoints.large} + 1px)) {
+          max-width: 500px;
+          justify-content: flex-end;
+        }
+
+        @media (max-width: ${breakpoints.large}) {
+          margin-top: var(--gutter-small);
+        }
+
+        @media(max-width: ${breakpoints.small0}) {
+          flex-direction: column;
+        }
+    }
+
       /* ---------------------------------------- */
       /* ----- Headlines & Paragraphs ----- */
       /* ---------------------------------------- */

@@ -120,9 +120,11 @@ const ExperiencePage = ({ data }: any) => {
       <div className="row">
         <section>
           <h1>Experience</h1>
-          <SectionWork work={enteries.work} />
-          <SectionEducation education={enteries.education} />
-          <SectionVolunteering volunteering={enteries.volunteering} />
+          <div className="container-small">
+            <SectionWork work={enteries.work} />
+            <SectionEducation education={enteries.education} />
+            <SectionVolunteering volunteering={enteries.volunteering} />
+          </div>
         </section>
       </div>
     </IndexLayout>

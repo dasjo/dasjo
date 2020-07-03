@@ -12,7 +12,7 @@ const WhatPeopleSay = ({ sayings }: any) => (
   <StyledWhatPeopleSay>
     <div className="row">
       <h2>What Others Say About Me</h2>
-      <div className="sayings">
+      <div className="sayings container-small">
         {sayings.map((saying: SayingProps, i: any) => (
           <Saying key={i + saying.person} {...saying} />
         ))}

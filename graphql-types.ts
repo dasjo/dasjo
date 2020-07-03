@@ -67,6 +67,9 @@ export type AirtableData = {
   organisation?: Maybe<Array<Maybe<Airtable>>>;
   role?: Maybe<Array<Maybe<Scalars['String']>>>;
   featured?: Maybe<Scalars['Boolean']>;
+  notes?: Maybe<Scalars['String']>;
+  slides?: Maybe<Scalars['String']>;
+  recording?: Maybe<Scalars['String']>;
   work?: Maybe<Array<Maybe<Scalars['String']>>>;
   blog?: Maybe<Array<Maybe<Scalars['String']>>>;
   volunteer?: Maybe<Array<Maybe<Scalars['String']>>>;
@@ -86,7 +89,6 @@ export type AirtableData = {
   highlights?: Maybe<Array<Maybe<Scalars['String']>>>;
   about?: Maybe<Scalars['String']>;
   volunteering?: Maybe<Array<Maybe<Scalars['String']>>>;
-  notes?: Maybe<Scalars['String']>;
   from?: Maybe<Scalars['Date']>;
   to?: Maybe<Scalars['Date']>;
   roles?: Maybe<Array<Maybe<Airtable>>>;
@@ -199,6 +201,9 @@ export type AirtableDataFilterInput = {
   organisation?: Maybe<AirtableFilterListInput>;
   role?: Maybe<StringQueryOperatorInput>;
   featured?: Maybe<BooleanQueryOperatorInput>;
+  notes?: Maybe<StringQueryOperatorInput>;
+  slides?: Maybe<StringQueryOperatorInput>;
+  recording?: Maybe<StringQueryOperatorInput>;
   work?: Maybe<StringQueryOperatorInput>;
   blog?: Maybe<StringQueryOperatorInput>;
   volunteer?: Maybe<StringQueryOperatorInput>;
@@ -218,7 +223,6 @@ export type AirtableDataFilterInput = {
   highlights?: Maybe<StringQueryOperatorInput>;
   about?: Maybe<StringQueryOperatorInput>;
   volunteering?: Maybe<StringQueryOperatorInput>;
-  notes?: Maybe<StringQueryOperatorInput>;
   from?: Maybe<DateQueryOperatorInput>;
   to?: Maybe<DateQueryOperatorInput>;
   roles?: Maybe<AirtableFilterListInput>;
@@ -425,6 +429,9 @@ export type AirtableFieldsEnum =
   | 'data___tags___data___organisation'
   | 'data___tags___data___role'
   | 'data___tags___data___featured'
+  | 'data___tags___data___notes'
+  | 'data___tags___data___slides'
+  | 'data___tags___data___recording'
   | 'data___tags___data___work'
   | 'data___tags___data___blog'
   | 'data___tags___data___volunteer'
@@ -444,7 +451,6 @@ export type AirtableFieldsEnum =
   | 'data___tags___data___highlights'
   | 'data___tags___data___about'
   | 'data___tags___data___volunteering'
-  | 'data___tags___data___notes'
   | 'data___tags___data___from'
   | 'data___tags___data___to'
   | 'data___tags___data___roles'
@@ -480,6 +486,9 @@ export type AirtableFieldsEnum =
   | 'data___organisation___data___organisation'
   | 'data___organisation___data___role'
   | 'data___organisation___data___featured'
+  | 'data___organisation___data___notes'
+  | 'data___organisation___data___slides'
+  | 'data___organisation___data___recording'
   | 'data___organisation___data___work'
   | 'data___organisation___data___blog'
   | 'data___organisation___data___volunteer'
@@ -499,7 +508,6 @@ export type AirtableFieldsEnum =
   | 'data___organisation___data___highlights'
   | 'data___organisation___data___about'
   | 'data___organisation___data___volunteering'
-  | 'data___organisation___data___notes'
   | 'data___organisation___data___from'
   | 'data___organisation___data___to'
   | 'data___organisation___data___roles'
@@ -508,6 +516,9 @@ export type AirtableFieldsEnum =
   | 'data___organisation___data___text_de'
   | 'data___role'
   | 'data___featured'
+  | 'data___notes'
+  | 'data___slides'
+  | 'data___recording'
   | 'data___work'
   | 'data___blog'
   | 'data___volunteer'
@@ -542,6 +553,9 @@ export type AirtableFieldsEnum =
   | 'data___person___data___organisation'
   | 'data___person___data___role'
   | 'data___person___data___featured'
+  | 'data___person___data___notes'
+  | 'data___person___data___slides'
+  | 'data___person___data___recording'
   | 'data___person___data___work'
   | 'data___person___data___blog'
   | 'data___person___data___volunteer'
@@ -561,7 +575,6 @@ export type AirtableFieldsEnum =
   | 'data___person___data___highlights'
   | 'data___person___data___about'
   | 'data___person___data___volunteering'
-  | 'data___person___data___notes'
   | 'data___person___data___from'
   | 'data___person___data___to'
   | 'data___person___data___roles'
@@ -578,7 +591,6 @@ export type AirtableFieldsEnum =
   | 'data___highlights'
   | 'data___about'
   | 'data___volunteering'
-  | 'data___notes'
   | 'data___from'
   | 'data___to'
   | 'data___roles'
@@ -607,6 +619,9 @@ export type AirtableFieldsEnum =
   | 'data___roles___data___organisation'
   | 'data___roles___data___role'
   | 'data___roles___data___featured'
+  | 'data___roles___data___notes'
+  | 'data___roles___data___slides'
+  | 'data___roles___data___recording'
   | 'data___roles___data___work'
   | 'data___roles___data___blog'
   | 'data___roles___data___volunteer'
@@ -626,7 +641,6 @@ export type AirtableFieldsEnum =
   | 'data___roles___data___highlights'
   | 'data___roles___data___about'
   | 'data___roles___data___volunteering'
-  | 'data___roles___data___notes'
   | 'data___roles___data___from'
   | 'data___roles___data___to'
   | 'data___roles___data___roles'
@@ -659,6 +673,9 @@ export type AirtableFieldsEnum =
   | 'data___location___data___organisation'
   | 'data___location___data___role'
   | 'data___location___data___featured'
+  | 'data___location___data___notes'
+  | 'data___location___data___slides'
+  | 'data___location___data___recording'
   | 'data___location___data___work'
   | 'data___location___data___blog'
   | 'data___location___data___volunteer'
@@ -678,7 +695,6 @@ export type AirtableFieldsEnum =
   | 'data___location___data___highlights'
   | 'data___location___data___about'
   | 'data___location___data___volunteering'
-  | 'data___location___data___notes'
   | 'data___location___data___from'
   | 'data___location___data___to'
   | 'data___location___data___roles'
@@ -2527,4 +2543,12 @@ export type Unnamed_4_QueryVariables = Exact<{ [key: string]: never; }>;
 export type Unnamed_4_Query = { allAirtable: { nodes: Array<{ data?: Maybe<(
         Pick<AirtableData, 'title' | 'link' | 'date'>
         & { attachments?: Maybe<Array<Maybe<{ thumbnails?: Maybe<{ full?: Maybe<Pick<AirtableDataAttachmentsThumbnailsFull, 'url'>> }> }>>>, tags?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'name'>> }>>> }
+      )> }> } };
+
+export type Unnamed_5_QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type Unnamed_5_Query = { allAirtable: { nodes: Array<{ data?: Maybe<(
+        Pick<AirtableData, 'title' | 'date' | 'notes' | 'link' | 'slides'>
+        & { organisation?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>>, tags?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'name'>> }>>> }
       )> }> } };

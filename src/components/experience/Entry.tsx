@@ -10,6 +10,10 @@ const StyledWork = styled.div`
   a {
     text-decoration: underline;
   }
+  .roles {
+    margin-top: var(--gutter-small-2);
+    font-size: 1.8rem;
+  }
 `;
 
 const Work = ({ from, to, title, link, roles, organisation }: any) => (
@@ -24,9 +28,16 @@ const Work = ({ from, to, title, link, roles, organisation }: any) => (
         {organisation}
       </a>
     ) : null}
-    <div>
+    <div className="roles">
       {roles
-        ? roles.map((role: string) => <span key={role}>{role}</span>)
+        ? roles.map((role: string, i: number) => (
+            <>
+              <span key={role + i} className="role">
+                {role}
+              </span>
+              {i < roles.length - 1 && ', '}
+            </>
+          ))
         : null}
     </div>
   </StyledWork>
