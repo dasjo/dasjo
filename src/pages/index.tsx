@@ -5,6 +5,7 @@ import IndexLayout from '../layouts';
 import { SayingProps } from '../components/index/Saying';
 import WhatPeopleSay from '../components/index/WhatPeopleSay';
 import { graphql } from 'gatsby';
+import { filterByFeatured } from '../utils/helpers';
 
 export const IndexPageQuery = graphql`
   query {
@@ -12,6 +13,7 @@ export const IndexPageQuery = graphql`
       nodes {
         data {
           quote
+          featured
           person {
             data {
               title
@@ -29,12 +31,14 @@ export const IndexPageQuery = graphql`
 `;
 
 const IndexPage = ({ data }: any) => {
-  const sayings: SayingProps[] = data.allAirtable.nodes.map((saying: any) => ({
-    quote: saying.data.quote,
-    person: saying.data.person[0].data.title,
-    tags: saying.data.tags.map((t: any) => t.data.name),
-  }));
-
+  const sayings: SayingProps[] = filterByFeatured(
+    data.allAirtable.nodes.map((saying: any) => ({
+      quote: saying.data.quote,
+      person: saying.data.person[0].data.title,
+      tags: saying.data.tags.map((t: any) => t.data.name),
+      featured: saying.data.featured,
+    }))
+  );
   return (
     <IndexLayout>
       <>
