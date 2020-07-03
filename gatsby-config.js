@@ -7,6 +7,7 @@ module.exports = {
   plugins: [
     `gatsby-plugin-ts`,
     `gatsby-plugin-react-helmet`,
+    `gatsby-transformer-remark`,
     {
       resolve: `gatsby-source-airtable`,
       options: {
@@ -15,6 +16,7 @@ module.exports = {
           {
             baseId,
             tableName: `Writing`,
+            mapping: { "text_en" : "text/markdown" },
           },
           {
             baseId,
@@ -65,6 +67,7 @@ module.exports = {
             baseId,
             tableName: `Speaking`,
             tableLinks: [`organisation`, `tags`],
+            mapping: { "notes" : "text/markdown" },
           },
         ],
       },
