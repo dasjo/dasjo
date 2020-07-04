@@ -5,8 +5,6 @@ import { breakpoints } from '../../styles/variables';
 import Tag from '../Tag';
 
 const StyledSaying = styled.div`
-  padding: var(--gutter-small);
-  border: var(--border-light-1);
   background: var(--white);
 
   &:not(:last-of-type) {
@@ -36,7 +34,7 @@ export interface SayingProps {
 }
 
 const Saying = ({ quote, person, tags }: SayingProps | any) => (
-  <StyledSaying>
+  <StyledSaying className="card">
     <p>{quote}</p>
     <div className="info">
       <p className="name">&mdash; {person}</p>

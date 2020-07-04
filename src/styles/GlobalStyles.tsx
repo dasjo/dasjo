@@ -27,7 +27,7 @@ const GlobalStyles = () => (
       }
 
       :root {
-        --font-size-small: 1.5rem;
+        --font-size-small: 1.7rem;
         --font-size-small-0: 1.3rem;
         --font-size-normal: 1.9rem;
         --font-size-normal-1: 2.1rem;
@@ -211,10 +211,35 @@ const GlobalStyles = () => (
 
       .btn {
         display: inline-block;
-        padding: 1.2rem 4rem;
+        padding: 1rem 4rem;
         border: 1px solid var(--black-0);
         color: var(--white);
         background: var(--black-0);
+      }
+
+      .card {
+        padding: var(--gutter-small);
+        border: var(--border-light-1);
+
+        & > * {
+          margin-bottom: var(--gutter-small-2);
+        }
+
+        &--off-white {
+          background: var(--white-0);
+        }
+
+        ul {
+          list-style-position: inside;
+          margin: var(--gutter-small-1) 0;
+          font-size: var(--font-size-small);
+        }
+
+        li {
+          &:not(:last-child) {
+            margin-bottom: var(--gutter-small-2);
+          }
+        }
       }
 
       /* ---------------------------------------- */
@@ -224,6 +249,11 @@ const GlobalStyles = () => (
       img {
         object-fit: contain;
       }
+
+      /* ---------------------------------------- */
+      /* ----- Lists ----- */
+      /* ---------------------------------------- */
+
     `}
   />
 );
