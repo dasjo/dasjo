@@ -193,7 +193,7 @@ const GlobalStyles = () => (
       }
 
       h3 {
-        margin: var(--gutter-small-3) 0 var(--gutter-small-1);
+        margin: var(--gutter-small-3) 0 var(--gutter-small-2);
       }
 
       p + p {
