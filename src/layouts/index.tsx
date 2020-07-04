@@ -37,7 +37,7 @@ const IndexLayout = ({ children }: IndexLayoutProps) => (
             <html lang="en" />
             <title>{data.site.siteMetadata.title}</title>
             <link
-              href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400&display=swap"
+              href="https://fonts.googleapis.com/css2?family=Jost:wght@400&display=swap"
               rel="stylesheet"
             />
           </Helmet>

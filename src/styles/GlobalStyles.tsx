@@ -27,7 +27,7 @@ const GlobalStyles = () => (
       }
 
       :root {
-        --font-size-small: 1.5rem;
+        --font-size-small: 1.7rem;
         --font-size-small-0: 1.3rem;
         --font-size-normal: 1.9rem;
         --font-size-normal-1: 2.1rem;
@@ -65,6 +65,8 @@ const GlobalStyles = () => (
 
         --border-light-1: 1px solid var(--off-white);
         --border-light-2: 1px solid var(--off-white-1);
+
+        --shadow-light: 0 .3rem .7rem rgba(0,0,0, .06);
       }
 
       html {
@@ -123,7 +125,7 @@ const GlobalStyles = () => (
         padding: var(--gutter-huge) 0;
       }
 
-      .container-small {
+      .container--small {
         max-width: var(--container-small);
       }
 
@@ -144,7 +146,39 @@ const GlobalStyles = () => (
         @media(max-width: ${breakpoints.small0}) {
           flex-direction: column;
         }
-    }
+      }
+
+      .card {
+        padding: var(--gutter-small-1) var(--gutter-small);
+        border: var(--border-light-1);
+        box-shadow: var(--shadow-light);
+        
+        &:not(:last-of-type) {
+          margin-bottom: var(--gutter-large);
+        }
+
+        & > * {
+          &:not(:last-child) {
+            margin-bottom: var(--gutter-small-2);
+          }
+        }
+
+        &--off-white {
+          background: var(--white-0);
+        }
+
+        ul {
+          list-style-position: inside;
+          margin: var(--gutter-small-1) 0;
+          font-size: var(--font-size-small);
+        }
+
+        li {
+          &:not(:last-child) {
+            margin-bottom: var(--gutter-small-2);
+          }
+        }
+      }
 
       /* ---------------------------------------- */
       /* ----- Headlines & Paragraphs ----- */
@@ -182,22 +216,22 @@ const GlobalStyles = () => (
           font-size: 3.5rem;
         }
 
-        /* &::after {
+        &::after {
           content: '';
           display: block;
           height: 2px;
-          width: 12rem;
+          width: 10rem;
           background: var(--black-0);
           margin: var(--gutter-small-1) 0 var(--gutter-medium);
-        } */
+        }
       }
 
       h3 {
-        margin: var(--gutter-small-3) 0 var(--gutter-small-2);
+        margin: var(--gutter-small-3) 0 var(--gutter-small-3);
       }
 
       p + p {
-        margin-top: var(--gutter-small);
+        margin-top: var(--gutter-small-2);
       }
 
       /* ---------------------------------------- */
@@ -211,10 +245,50 @@ const GlobalStyles = () => (
 
       .btn {
         display: inline-block;
-        padding: 1.2rem 4rem;
+        padding: .8rem 3.5rem;
         border: 1px solid var(--black-0);
         color: var(--white);
         background: var(--black-0);
+        border-radius: 10rem;
+      }
+
+      .btn--text {
+        position: relative;
+        display: inline-block;
+        padding: .5rem;
+        color: var(--black-0);
+        border-bottom: 1px solid var(--black-0);
+        transition: all 0.2s cubic-bezier(1, 0.68, 0.16, 0.9);
+        
+        span {
+          font-family: sans-serif;
+        }
+
+        &:focus {
+          outline: none;
+        }
+
+        &::after {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 100%;
+          background: var(--white);
+          height: 100%;
+          z-index: -1;
+          transition: all 0.2s cubic-bezier(1, 0.68, 0.16, 0.9);
+        }
+
+        &:hover,
+        &:focus {
+          color: var(--white);
+          &::after {
+            right: 0;
+            background: var(--black-0);
+          }
+        }
       }
 
       /* ---------------------------------------- */
@@ -224,6 +298,11 @@ const GlobalStyles = () => (
       img {
         object-fit: contain;
       }
+
+      /* ---------------------------------------- */
+      /* ----- Lists ----- */
+      /* ---------------------------------------- */
+
     `}
   />
 );

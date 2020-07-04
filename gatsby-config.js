@@ -16,7 +16,7 @@ module.exports = {
           {
             baseId,
             tableName: `Writing`,
-            mapping: { "text_en" : "text/markdown" },
+            mapping: { text_en: 'text/markdown' },
           },
           {
             baseId,
@@ -67,7 +67,13 @@ module.exports = {
             baseId,
             tableName: `Speaking`,
             tableLinks: [`organisation`, `tags`],
-            mapping: { "notes" : "text/markdown" },
+            mapping: { notes: 'text/markdown' },
+          },
+          {
+            baseId,
+            tableName: `Writing`,
+            mapping: { text_en: 'text/markdown' },
+            tableLinks: [`organisation`, `tags`],
           },
         ],
       },

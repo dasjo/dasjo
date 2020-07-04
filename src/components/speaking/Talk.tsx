@@ -4,8 +4,8 @@ import styled from '@emotion/styled';
 import Tag from '../Tag';
 
 const StyledTalk = styled.div`
-  &:not(:last-of-type) {
-    margin-bottom: var(--gutter-large);
+  .org {
+    margin-bottom: var(--gutter-small-2);
   }
 `;
 
@@ -28,24 +28,26 @@ const Talk = ({
   organisation,
   tags,
 }: TalkProps) => (
-  <StyledTalk>
-    <p>{date}</p>
-    <h3>
-      <a href={link} target="_blank">
-        {title}
-      </a>
-    </h3>
+  <StyledTalk className="card">
     <div>
-      <span>{organisation}</span>
+      <p>{date}</p>
+      <h3>
+        <a href={link} target="_blank">
+          {title}
+        </a>
+      </h3>
+    </div>
+    <div>
+      <div className="org">{organisation}</div>
       <div>
         {tags.map((tag: string, i) => (
-          <Tag text={tag} key={i + tag} />
+          <Tag text={tag + i} key={i + tag} />
         ))}
       </div>
     </div>
-    <p>{notes}</p>
-    <a href={slides} className="btn" target="_blank">
-      Slides
+    <div className="notes" dangerouslySetInnerHTML={{ __html: notes }}></div>
+    <a href={slides} className="btn--text" target="_blank">
+      Slides <span>&nbsp;&rarr;</span>
     </a>
   </StyledTalk>
 );

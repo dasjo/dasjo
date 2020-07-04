@@ -120,7 +120,7 @@ const ExperiencePage = ({ data }: any) => {
       <div className="row">
         <section>
           <h1>Experience</h1>
-          <div className="container-small">
+          <div className="container--small">
             <SectionWork work={enteries.work} />
             <SectionEducation education={enteries.education} />
             <SectionVolunteering volunteering={enteries.volunteering} />
