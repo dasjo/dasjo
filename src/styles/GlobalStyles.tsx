@@ -291,6 +291,31 @@ const GlobalStyles = () => (
         }
       }
 
+      .card {
+        padding: var(--gutter-small);
+        border: var(--border-light-1);
+
+        & > * {
+          margin-bottom: var(--gutter-small-2);
+        }
+
+        &--off-white {
+          background: var(--white-0);
+        }
+
+        ul {
+          list-style-position: inside;
+          margin: var(--gutter-small-1) 0;
+          font-size: var(--font-size-small);
+        }
+
+        li {
+          &:not(:last-child) {
+            margin-bottom: var(--gutter-small-2);
+          }
+        }
+      }
+
       /* ---------------------------------------- */
       /* ----- Images ----- */
       /* ---------------------------------------- */
