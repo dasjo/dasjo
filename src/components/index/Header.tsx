@@ -17,10 +17,6 @@ const StyledHeader = styled.header`
     flex-direction: column-reverse;
   }
 
-  @media(max-width: ${breakpoints.small}) {
-    text-align: center;
-  }
-
   .text-box {
     @media(min-width: calc(${breakpoints.large0} + 1px)) {
       flex: 0 0 50%;
@@ -46,6 +42,11 @@ const StyledHeader = styled.header`
     @media(max-width: ${breakpoints.large0}) {
       max-width: 40rem;
       margin-bottom: var(--gutter-medium);
+    }
+
+    @media(max-width: ${breakpoints.small}) {
+      max-width: 100%;
+      margin-bottom: var(--gutter-small);
     }
   }
 
