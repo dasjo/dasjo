@@ -239,9 +239,13 @@ const GlobalStyles = () => (
       /* ----- Links & Buttons ----- */
       /* ---------------------------------------- */
 
+      a,
+      button { 
+        cursor: pointer; 
+      }
+      
       a {
         text-decoration: none;
-        cursor: pointer;
       }
 
       .btn {
