@@ -36,7 +36,6 @@ const GlobalStyles = () => (
         --font-size-medium-2: 5.5rem;
         --font-size-large: 6rem;
 
-        --font-stack-main: 'Jost', sans-serif;
         --font-stack-sub: 'HK Grotesk', sans-serif;
 
         --white: #fff;
@@ -129,6 +128,10 @@ const GlobalStyles = () => (
         max-width: var(--container-small);
       }
 
+      /* ---------------------------------------- */
+      /* ----- Re-usable Components ----- */
+      /* ---------------------------------------- */
+
       .tags {
         display: flex;
         flex-wrap: wrap;
@@ -149,7 +152,7 @@ const GlobalStyles = () => (
       }
 
       .card {
-        padding: var(--gutter-small-1) var(--gutter-small);
+        padding: var(--gutter-small-1) var(--gutter-small) var(--gutter-small);
         border: var(--border-light-1);
         box-shadow: var(--shadow-light);
         
@@ -168,14 +171,13 @@ const GlobalStyles = () => (
         }
 
         ul {
-          list-style-position: inside;
           margin: var(--gutter-small-1) 0;
           font-size: var(--font-size-small);
         }
 
         li {
           &:not(:last-child) {
-            margin-bottom: var(--gutter-small-2);
+            margin-bottom: var(--gutter-small-3);
           }
         }
       }
@@ -188,7 +190,6 @@ const GlobalStyles = () => (
       h2,
       h3 {
         line-height: 1.1;
-        font-family: var(--font-stack-main);
       }
 
       h1 {
@@ -291,31 +292,6 @@ const GlobalStyles = () => (
         }
       }
 
-      .card {
-        padding: var(--gutter-small);
-        border: var(--border-light-1);
-
-        & > * {
-          margin-bottom: var(--gutter-small-2);
-        }
-
-        &--off-white {
-          background: var(--white-0);
-        }
-
-        ul {
-          list-style-position: inside;
-          margin: var(--gutter-small-1) 0;
-          font-size: var(--font-size-small);
-        }
-
-        li {
-          &:not(:last-child) {
-            margin-bottom: var(--gutter-small-2);
-          }
-        }
-      }
-
       /* ---------------------------------------- */
       /* ----- Images ----- */
       /* ---------------------------------------- */
@@ -327,6 +303,16 @@ const GlobalStyles = () => (
       /* ---------------------------------------- */
       /* ----- Lists ----- */
       /* ---------------------------------------- */
+
+      ul {
+        list-style-position: inside;
+      }
+
+      li {
+        p {
+          display: inline;
+        }
+      }
 
     `}
   />

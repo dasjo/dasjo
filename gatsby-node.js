@@ -23,7 +23,6 @@ exports.createPages = async ({ graphql, reporter, actions }) => {
   const writings = result.data.allAirtable.nodes;
 
   writings.forEach((writing) => {
-    console.log(writing.data.slug);
     createPage({
       path: `/writing/${writing.data.slug}`,
       component: require.resolve('./src/templates/Post.tsx'),

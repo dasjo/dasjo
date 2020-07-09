@@ -8,10 +8,35 @@ const StyledPostTemplate = styled.article`
   padding: var(--gutter-huge) 0;
 
   h2 {
-    margin-top: var(--gutter-large);
+    margin: var(--gutter-large) 0 var(--gutter-small);
 
     &::after {
+      margin-bottom: var(--gutter-small-1);
+    }
+  }
+
+  h3 {
+    margin-top: var(--gutter-small);
+  }
+
+  p + p {
+    margin-top: var(--gutter-small);
+  }
+
+  ul {
+    margin: var(--gutter-small-1) 0;
+    font-size: var(--font-size-small);
+  }
+
+  li {
+    &:not(:last-child) {
       margin-bottom: var(--gutter-small-3);
+    }
+  }
+
+  & > * {
+    &:not(:last-child) {
+      margin-bottom: var(--gutter-small-2);
     }
   }
 `;
