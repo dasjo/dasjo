@@ -263,6 +263,12 @@ const GlobalStyles = () => (
         color: var(--white);
         background: var(--black-0);
         border-radius: 10rem;
+
+        &:hover,
+        &:focus {
+          text-decoration: none;
+          color: var(--white);
+        }
       }
 
       .btn--text {
@@ -297,6 +303,7 @@ const GlobalStyles = () => (
         &:hover,
         &:focus {
           color: var(--white);
+          text-decoration: none;
           &::after {
             right: 0;
             background: var(--black-0);
