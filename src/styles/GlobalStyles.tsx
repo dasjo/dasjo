@@ -112,11 +112,11 @@ const GlobalStyles = () => (
         }
 
         @media (max-width: ${breakpoints.medium0}) {
-          padding: 0 var(--gutter-small);
+          padding: 0 var(--gutter-medium);
         }
 
-        @media (max-width: ${breakpoints.small}) {
-          padding: 0 var(--gutter-small-2);
+        @media (max-width: ${breakpoints.small1}) {
+          padding: 0 var(--gutter-small);
         }
       }
 
@@ -146,7 +146,7 @@ const GlobalStyles = () => (
           margin-top: var(--gutter-small);
         }
 
-        @media(max-width: ${breakpoints.small0}) {
+        @media(max-width: ${breakpoints.small1}) {
           flex-direction: column;
         }
       }
@@ -243,7 +243,7 @@ const GlobalStyles = () => (
       button { 
         cursor: pointer; 
       }
-      
+
       a {
         text-decoration: none;
       }
