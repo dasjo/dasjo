@@ -52,6 +52,7 @@ const StyledPostBanner = styled.article`
 export interface PostBannerProps {
   date: string;
   title: string;
+  slug: string;
   excerpt: string;
   organisation: string;
   tags?: string[];
@@ -60,6 +61,7 @@ export interface PostBannerProps {
 const PostBanner = ({
   date,
   title,
+  slug,
   excerpt,
   organisation,
   tags,
@@ -78,7 +80,7 @@ const PostBanner = ({
         </div>
       </div>
       <p>{excerpt}</p>
-      <Link to="/writing/" className="btn--text">
+      <Link to={`/writing/${slug}`} className="btn--text">
         Read more <span>&nbsp;&rarr;</span>
       </Link>
     </div>

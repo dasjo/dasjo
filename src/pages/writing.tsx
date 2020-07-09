@@ -20,6 +20,7 @@ export const WritingPageQuery = graphql`
       nodes {
         data {
           title
+          slug
           featured
           date
           text_en {
@@ -47,6 +48,7 @@ const WritingPage = ({ data }: any) => {
   const writings = filterByFeatured(
     data.allAirtable.nodes.map((w: any) => ({
       title: w.data.title,
+      slug: w.data.slug,
       featured: w.data.featured,
       date: w.data.date,
       excerpt: w.data.text_en
