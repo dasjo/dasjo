@@ -157,6 +157,11 @@ const StyledNav = styled.nav`
 
   a {
     color: inherit;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
   }
 
   .link {

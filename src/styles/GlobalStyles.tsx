@@ -246,6 +246,14 @@ const GlobalStyles = () => (
 
       a {
         text-decoration: none;
+        color: var(--blue-0);
+        transition: all .2s;
+
+        &:hover,
+        &:focus {
+          color: var(--blue);
+          text-decoration: underline;
+        }
       }
 
       .btn {

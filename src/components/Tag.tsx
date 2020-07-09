@@ -30,6 +30,7 @@ const StyledTag = styled(Link)`
     &:focus {
       background: var(--blue-0);
       color: var(--white);
+      text-decoration: none;
     }
 `;
 
