@@ -12,6 +12,7 @@ const StyledTag = styled(Link)`
     border: var(--border-light-2);
     background: var(--light-blue);
     margin-bottom: 1rem;
+    transition: all .2s;
 
     @media (min-width: calc(${breakpoints.large} + 1px)) {
       &:not(:first-child) {
@@ -23,6 +24,12 @@ const StyledTag = styled(Link)`
       &:not(:last-child) {
         margin-right: 1rem;
       }
+    }
+
+    &:hover,
+    &:focus {
+      background: var(--blue-0);
+      color: var(--white);
     }
 `;
 

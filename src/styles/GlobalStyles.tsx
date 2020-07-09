@@ -45,8 +45,8 @@ const GlobalStyles = () => (
         --black: #000;
         --black-0: #112211;
         --blue: #1877f2;
-        --light-blue: #f4fcff;
         --blue-0: #28aaff;
+        --light-blue: #f4fcff;
 
         --grid-max-width: 1160px;
         --container-small: 800px;
