@@ -25,6 +25,10 @@ const StyledSaying = styled.div`
     color: var(--black);
     font-family: var(--font-stack-main);
   }
+
+  .quote {
+    font-style: italic;
+  }
 `;
 
 export interface SayingProps {
@@ -35,7 +39,7 @@ export interface SayingProps {
 
 const Saying = ({ quote, person, tags }: SayingProps | any) => (
   <StyledSaying className="card">
-    <p>{quote}</p>
+    <p className="quote">{quote}</p>
     <div className="info">
       <p className="name">&mdash; {person}</p>
       <div className="tags">
