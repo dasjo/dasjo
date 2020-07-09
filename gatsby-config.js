@@ -1,3 +1,4 @@
+const path = require('path');
 const baseId = 'appp5IceUTSkfnLXO';
 
 module.exports = {
@@ -8,6 +9,15 @@ module.exports = {
     `gatsby-plugin-ts`,
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-remark`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `resources`,
+        path: path.join(__dirname, `src`, `resources`),
+      },
+    },
     {
       resolve: `gatsby-source-airtable`,
       options: {

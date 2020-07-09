@@ -27,6 +27,16 @@ export const IndexPageQuery = graphql`
         }
       }
     }
+    file(relativePath: { eq: "josef.jpg" }) {
+      childImageSharp {
+        fluid {
+          sizes
+          src
+          srcSet
+          aspectRatio
+        }
+      }
+    }
   }
 `;
 
@@ -41,10 +51,12 @@ const IndexPage = ({ data }: any) => {
       featured: saying.data.featured,
     }))
   );
+  const josefImg = data.file.childImageSharp.fluid;
+
   return (
     <IndexLayout>
       <>
-        <Header />
+        <Header josefImg={josefImg} />
         <WhatPeopleSay sayings={sayings} />
       </>
     </IndexLayout>

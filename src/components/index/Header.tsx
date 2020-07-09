@@ -1,9 +1,10 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-import Josef from '../../resources/josef.jpg';
+// import Josef from '../../resources/josef.jpg';
 import { Link } from 'gatsby';
 import { breakpoints } from '../../styles/variables';
+import Img from 'gatsby-image';
 
 const StyledHeader = styled.header`
   padding: var(--gutter-huge) 0 var(--gutter-huge-1);
@@ -34,10 +35,6 @@ const StyledHeader = styled.header`
 
   .img-box {
     flex: 1;
-  }
-
-  img {
-    width: 100%;
 
     @media(max-width: ${breakpoints.large0}) {
       max-width: 40rem;
@@ -55,7 +52,7 @@ const StyledHeader = styled.header`
   }
 `;
 
-const Header = () => (
+const Header = ({ josefImg }: any) => (
   <div className="row">
     <StyledHeader role="banner">
       <div className="text-box">
@@ -77,7 +74,7 @@ const Header = () => (
         </Link>
       </div>
       <div className="img-box">
-        <img src={Josef} alt="Josef Dabernig" />
+        <Img fluid={josefImg} />
       </div>
     </StyledHeader>
   </div>
