@@ -10,14 +10,10 @@ const StyledWork = styled.div`
     margin-top: var(--gutter-small-2);
     font-size: 1.8rem;
   }
-
-  &:not(:last-of-type) {
-    margin-bottom: var(--gutter-large-1);
-  }
 `;
 
 const Work = ({ from, to, title, link, roles, organisation }: any) => (
-  <StyledWork>
+  <StyledWork className="card card--off-white">
     <p>
       {new Date(from).getFullYear()}
       {to ? ` - ${new Date(from).getFullYear()}` : to !== undefined && ' - now'}
