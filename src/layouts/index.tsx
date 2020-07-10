@@ -36,6 +36,7 @@ const IndexLayout = ({ children }: IndexLayoutProps) => (
           <Helmet>
             <html lang="en" />
             <title>{data.site.siteMetadata.title}</title>
+            <link rel="stylesheet" href="/font.css" />
           </Helmet>
           <Nav />
           <LayoutMain>{children}</LayoutMain>

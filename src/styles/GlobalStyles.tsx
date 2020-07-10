@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Global, css } from '@emotion/core';
-import HKGrotesk from '../fonts/HKGrotesk-Regular.woff';
 import { breakpoints } from './variables';
 
 const GlobalStyles = () => (
@@ -10,13 +9,6 @@ const GlobalStyles = () => (
       /* ---------------------------------------- */
       /* ----- Basic Setup ----- */
       /* ---------------------------------------- */
-
-      @font-face {
-        font-family: 'Hk Grotesk';
-        font-style: normal;
-        font-weight: 400;
-        src: url(${HKGrotesk}) format('woff');
-      }
 
       *,
       *::before,
