@@ -16,7 +16,7 @@ const Work = ({ from, to, title, link, roles, organisation }: any) => (
   <StyledWork className="card card--off-white">
     <p>
       {new Date(from).getFullYear()}
-      {to ? ` - ${new Date(from).getFullYear()}` : to !== undefined && ' - now'}
+      {to ? ` - ${new Date(to).getFullYear()}` : to !== undefined && ' - now'}
     </p>
     <h3>{title}</h3>
     {organisation ? (
