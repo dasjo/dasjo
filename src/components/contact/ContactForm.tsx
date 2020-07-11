@@ -69,7 +69,9 @@ const ContactForm = () => (
       placeholder="Subject"
     />
     <textarea name="message" id="message" placeholder="Your Message"></textarea>
-    <button className="btn">Send</button>
+    <button className="btn" type="submit">
+      Send
+    </button>
   </StyledContactForm>
 );
 
