@@ -39,6 +39,7 @@ const GlobalStyles = () => (
         --blue: #1877f2;
         --blue-0: #28aaff;
         --light-blue: #f4fcff;
+        --outline: 2px solid var(--blue-0);
 
         --grid-max-width: 1160px;
         --container-small: 800px;
@@ -235,6 +236,10 @@ const GlobalStyles = () => (
       a,
       button { 
         cursor: pointer; 
+
+        &::-moz-focus-inner {
+            border: 0;
+        }
       }
 
       a {
@@ -304,6 +309,28 @@ const GlobalStyles = () => (
         }
       }
 
+
+      /* ---------------------------------------- */
+      /* ----- Accessibility ----- */
+      /* ---------------------------------------- */
+
+
+      button:focus,
+      input:focus,
+      select:focus,
+      textarea:focus,
+      a:focus {
+        outline: 2px solid #9ED3FF;
+      }
+
+      body:not(.user-is-tabbing) button:focus,
+      body:not(.user-is-tabbing) input:focus,
+      body:not(.user-is-tabbing) select:focus,
+      body:not(.user-is-tabbing) textarea:focus,
+      body:not(.user-is-tabbing) a:focus {
+        outline: none;
+      }
+   
       /* ---------------------------------------- */
       /* ----- Images ----- */
       /* ---------------------------------------- */
