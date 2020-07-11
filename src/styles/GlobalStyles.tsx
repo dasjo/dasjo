@@ -49,6 +49,7 @@ const GlobalStyles = () => (
         --gutter-large: 6rem;
         --gutter-large-1: 8rem;
         --gutter-medium: 5rem;
+        --gutter-medium-1: 4rem;
         --gutter-small: 3rem;
         --gutter-small-1: 2rem;
         --gutter-small-2: 1.5rem;
