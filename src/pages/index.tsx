@@ -9,7 +9,10 @@ import { filterByFeatured } from '../utils/helpers';
 
 export const IndexPageQuery = graphql`
   query {
-    allAirtable(filter: { table: { eq: "Quotes" } }) {
+    allAirtable(
+      filter: { table: { eq: "Quotes" } }
+      sort: { fields: [data___id], order: DESC }
+    ) {
       nodes {
         data {
           quote
