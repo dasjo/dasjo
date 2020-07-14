@@ -36,16 +36,19 @@ module.exports = {
             baseId,
             tableName: `Work`,
             tableLinks: [`roles`, `tags`, `location`, `organisation`],
+            mapping: { notes: 'text/markdown' },
           },
           {
             baseId,
             tableName: `Education`,
             tableLinks: [`organisation`],
+            mapping: { notes: 'text/markdown' },
           },
           {
             baseId,
             tableName: `Volunteering`,
             tableLinks: [`organisation`],
+            mapping: { notes: 'text/markdown' },
           },
           {
             baseId,

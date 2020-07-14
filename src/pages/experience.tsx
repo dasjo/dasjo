@@ -19,6 +19,11 @@ export const experiencePageQuery = graphql`
           from
           to
           link
+          notes {
+            childMarkdownRemark {
+              html
+            }
+          }
           roles {
             data {
               title
@@ -46,6 +51,11 @@ export const experiencePageQuery = graphql`
           from
           to
           link
+          notes {
+            childMarkdownRemark {
+              html
+            }
+          }
           organisation {
             data {
               title
@@ -62,6 +72,11 @@ export const experiencePageQuery = graphql`
           featured
           from
           link
+          notes {
+            childMarkdownRemark {
+              html
+            }
+          }
           organisation {
             data {
               title
@@ -82,6 +97,7 @@ const ExperiencePage = ({ data }: any) => {
         from: t.data.from,
         to: t.data.to,
         link: t.data.link,
+        notes: t.data.notes ? t.data.notes.childMarkdownRemark.html : null,
         roles: t.data.roles ? t.data.roles.map((r: any) => r.data.title) : [],
         location: (t.data.location
           ? t.data.location.map((l: any) => l.data.title)
@@ -92,16 +108,19 @@ const ExperiencePage = ({ data }: any) => {
       }))
     ),
     education: filterByFeatured(
-      data.education.nodes.map((t: any) => ({
-        title: t.data.title,
-        featured: !!t.data.featured,
-        from: t.data.from,
-        to: t.data.to,
-        link: t.data.link,
-        organisation: (t.data.organisation
-          ? t.data.organisation.map((o: any) => o.data.title)
-          : [])[0],
-      }))
+      data.education.nodes.map((t: any) => {
+        return {
+          title: t.data.title,
+          featured: !!t.data.featured,
+          from: t.data.from,
+          to: t.data.to,
+          link: t.data.link,
+          notes: t.data.notes ? t.data.notes.childMarkdownRemark.html : null,
+          organisation: (t.data.organisation
+            ? t.data.organisation.map((o: any) => o.data.title)
+            : [])[0],
+        };
+      })
     ),
     volunteering: filterByFeatured(
       data.volunteering.nodes.map((t: any) => ({
@@ -109,6 +128,7 @@ const ExperiencePage = ({ data }: any) => {
         featured: !!t.data.featured,
         from: t.data.from,
         link: t.data.link,
+        notes: t.data.notes ? t.data.notes.childMarkdownRemark.html : null,
         organisation: (t.data.organisation
           ? t.data.organisation.map((o: any) => o.data.title)
           : [])[0],

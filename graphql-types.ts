@@ -3769,13 +3769,13 @@ export type Unnamed_2_QueryVariables = Exact<{ [key: string]: never; }>;
 
 export type Unnamed_2_Query = { work: { nodes: Array<{ data?: Maybe<(
         Pick<AirtableData, 'title' | 'featured' | 'from' | 'to' | 'link'>
-        & { roles?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>>, location?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>>, organisation?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>> }
+        & { notes?: Maybe<{ childMarkdownRemark?: Maybe<Pick<MarkdownRemark, 'html'>> }>, roles?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>>, location?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>>, organisation?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>> }
       )> }> }, education: { nodes: Array<{ data?: Maybe<(
         Pick<AirtableData, 'title' | 'featured' | 'from' | 'to' | 'link'>
-        & { organisation?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>> }
+        & { notes?: Maybe<{ childMarkdownRemark?: Maybe<Pick<MarkdownRemark, 'html'>> }>, organisation?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>> }
       )> }> }, volunteering: { nodes: Array<{ data?: Maybe<(
         Pick<AirtableData, 'title' | 'featured' | 'from' | 'link'>
-        & { organisation?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>> }
+        & { notes?: Maybe<{ childMarkdownRemark?: Maybe<Pick<MarkdownRemark, 'html'>> }>, organisation?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>> }
       )> }> } };
 
 export type Unnamed_3_QueryVariables = Exact<{ [key: string]: never; }>;

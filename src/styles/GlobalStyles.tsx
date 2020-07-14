@@ -173,6 +173,17 @@ const GlobalStyles = () => (
           &:not(:last-child) {
             margin-bottom: var(--gutter-small-3);
           }
+
+          h1, 
+          h2,
+          h3,
+          h4 {
+            display: inline;
+          }
+        }
+
+        h1 {
+          font-size: 130%;
         }
       }
 
