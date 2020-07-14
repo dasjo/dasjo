@@ -1,13 +1,12 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-// import Josef from '../../resources/josef.jpg';
 import { Link } from 'gatsby';
 import { breakpoints } from '../../styles/variables';
 import Img from 'gatsby-image';
 
 const StyledHeader = styled.header`
-  padding: var(--gutter-huge) 0 var(--gutter-huge-1);
+  padding: var(--gutter-huge) 0 var(--gutter-huge);
   display: flex;
   
   @media(min-width: calc(${breakpoints.large0} + 1px)) {
