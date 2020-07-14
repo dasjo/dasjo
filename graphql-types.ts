@@ -3805,17 +3805,22 @@ export type Unnamed_5_Query = { allAirtable: { nodes: Array<{ data?: Maybe<(
 export type Unnamed_6_QueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type Unnamed_6_Query = { allAirtable: { nodes: Array<{ data?: Maybe<(
+export type Unnamed_6_Query = { allAirtable: { nodes: Array<{ data?: Maybe<Pick<AirtableData, 'name'>> }> } };
+
+export type Unnamed_7_QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type Unnamed_7_Query = { allAirtable: { nodes: Array<{ data?: Maybe<(
         Pick<AirtableData, 'title' | 'slug' | 'featured' | 'date'>
         & { text_en?: Maybe<{ childMarkdownRemark?: Maybe<Pick<MarkdownRemark, 'excerpt'>> }>, organisation?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>>, tags?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'name'>> }>>> }
       )> }> } };
 
-export type Unnamed_7_QueryVariables = Exact<{
+export type Unnamed_8_QueryVariables = Exact<{
   slug: Scalars['String'];
 }>;
 
 
-export type Unnamed_7_Query = { airtable?: Maybe<(
+export type Unnamed_8_Query = { airtable?: Maybe<(
     Pick<Airtable, 'table'>
     & { data?: Maybe<(
       Pick<AirtableData, 'slug' | 'title'>

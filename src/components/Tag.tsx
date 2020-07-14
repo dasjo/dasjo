@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
@@ -36,8 +36,13 @@ const StyledTag = styled(Link)`
 
 export interface TagProps {
   text: string;
+  styles?: CSSProperties;
 }
 
-const Tag = ({ text }: TagProps) => <StyledTag to="/tags/">{text}</StyledTag>;
+const Tag = ({ text, styles }: TagProps) => (
+  <StyledTag to="/tags/" style={{ ...styles }}>
+    {text}
+  </StyledTag>
+);
 
 export default Tag;
