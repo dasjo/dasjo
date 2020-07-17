@@ -57,8 +57,6 @@ const SpeakingPage = ({ data }: any) => {
     tags: t.data.tags ? t.data.tags.map((t: any) => t.data.name) : null,
   }));
 
-  console.log(speakings);
-
   return (
     <IndexLayout>
       <StyledSpeakingPage>

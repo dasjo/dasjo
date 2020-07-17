@@ -60,7 +60,14 @@ const IndexPage = ({ data }: any) => {
     <IndexLayout>
       <>
         <Header josefImg={josefImg} />
-        <WhatPeopleSay sayings={sayings} />
+        <WhatPeopleSay
+          sayings={sayings}
+          styles={{
+            background: 'var(--white-0)',
+            borderTop: 'var(--border-light-1)',
+          }}
+          rowClass="true"
+        />
       </>
     </IndexLayout>
   );
