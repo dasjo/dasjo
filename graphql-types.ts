@@ -69,9 +69,9 @@ export type AirtableData = {
   role?: Maybe<Array<Maybe<Scalars['String']>>>;
   featured?: Maybe<Scalars['Boolean']>;
   highlights?: Maybe<Array<Maybe<Scalars['String']>>>;
-  notes?: Maybe<AirtableField>;
   text_de?: Maybe<Scalars['String']>;
   slides?: Maybe<Scalars['String']>;
+  notes?: Maybe<AirtableField>;
   recording?: Maybe<Scalars['String']>;
   work?: Maybe<Array<Maybe<Scalars['String']>>>;
   blog?: Maybe<Array<Maybe<Scalars['String']>>>;
@@ -92,8 +92,8 @@ export type AirtableData = {
   about?: Maybe<Scalars['String']>;
   volunteering?: Maybe<Array<Maybe<Scalars['String']>>>;
   from?: Maybe<Scalars['Date']>;
-  to?: Maybe<Scalars['Date']>;
   roles?: Maybe<Array<Maybe<Airtable>>>;
+  to?: Maybe<Scalars['Date']>;
   location?: Maybe<Array<Maybe<Airtable>>>;
   image?: Maybe<Array<Maybe<AirtableDataImage>>>;
 };
@@ -204,9 +204,9 @@ export type AirtableDataFilterInput = {
   role?: Maybe<StringQueryOperatorInput>;
   featured?: Maybe<BooleanQueryOperatorInput>;
   highlights?: Maybe<StringQueryOperatorInput>;
-  notes?: Maybe<AirtableFieldFilterInput>;
   text_de?: Maybe<StringQueryOperatorInput>;
   slides?: Maybe<StringQueryOperatorInput>;
+  notes?: Maybe<AirtableFieldFilterInput>;
   recording?: Maybe<StringQueryOperatorInput>;
   work?: Maybe<StringQueryOperatorInput>;
   blog?: Maybe<StringQueryOperatorInput>;
@@ -227,8 +227,8 @@ export type AirtableDataFilterInput = {
   about?: Maybe<StringQueryOperatorInput>;
   volunteering?: Maybe<StringQueryOperatorInput>;
   from?: Maybe<DateQueryOperatorInput>;
-  to?: Maybe<DateQueryOperatorInput>;
   roles?: Maybe<AirtableFilterListInput>;
+  to?: Maybe<DateQueryOperatorInput>;
   location?: Maybe<AirtableFilterListInput>;
   image?: Maybe<AirtableDataImageFilterListInput>;
 };
@@ -650,8 +650,8 @@ export type AirtableFieldsEnum =
   | 'data___tags___data___about'
   | 'data___tags___data___volunteering'
   | 'data___tags___data___from'
-  | 'data___tags___data___to'
   | 'data___tags___data___roles'
+  | 'data___tags___data___to'
   | 'data___tags___data___location'
   | 'data___tags___data___image'
   | 'data___date'
@@ -705,8 +705,8 @@ export type AirtableFieldsEnum =
   | 'data___organisation___data___about'
   | 'data___organisation___data___volunteering'
   | 'data___organisation___data___from'
-  | 'data___organisation___data___to'
   | 'data___organisation___data___roles'
+  | 'data___organisation___data___to'
   | 'data___organisation___data___location'
   | 'data___organisation___data___image'
   | 'data___slug'
@@ -738,6 +738,8 @@ export type AirtableFieldsEnum =
   | 'data___role'
   | 'data___featured'
   | 'data___highlights'
+  | 'data___text_de'
+  | 'data___slides'
   | 'data___notes___id'
   | 'data___notes___parent___id'
   | 'data___notes___parent___children'
@@ -763,8 +765,6 @@ export type AirtableFieldsEnum =
   | 'data___notes___childMarkdownRemark___timeToRead'
   | 'data___notes___childMarkdownRemark___tableOfContents'
   | 'data___notes___childMarkdownRemark___children'
-  | 'data___text_de'
-  | 'data___slides'
   | 'data___recording'
   | 'data___work'
   | 'data___blog'
@@ -823,8 +823,8 @@ export type AirtableFieldsEnum =
   | 'data___person___data___about'
   | 'data___person___data___volunteering'
   | 'data___person___data___from'
-  | 'data___person___data___to'
   | 'data___person___data___roles'
+  | 'data___person___data___to'
   | 'data___person___data___location'
   | 'data___person___data___image'
   | 'data___quotes'
@@ -837,7 +837,6 @@ export type AirtableFieldsEnum =
   | 'data___about'
   | 'data___volunteering'
   | 'data___from'
-  | 'data___to'
   | 'data___roles'
   | 'data___roles___id'
   | 'data___roles___parent___id'
@@ -887,10 +886,11 @@ export type AirtableFieldsEnum =
   | 'data___roles___data___about'
   | 'data___roles___data___volunteering'
   | 'data___roles___data___from'
-  | 'data___roles___data___to'
   | 'data___roles___data___roles'
+  | 'data___roles___data___to'
   | 'data___roles___data___location'
   | 'data___roles___data___image'
+  | 'data___to'
   | 'data___location'
   | 'data___location___id'
   | 'data___location___parent___id'
@@ -940,8 +940,8 @@ export type AirtableFieldsEnum =
   | 'data___location___data___about'
   | 'data___location___data___volunteering'
   | 'data___location___data___from'
-  | 'data___location___data___to'
   | 'data___location___data___roles'
+  | 'data___location___data___to'
   | 'data___location___data___location'
   | 'data___location___data___image'
   | 'data___image'
@@ -3222,10 +3222,12 @@ export type SitePageConnectionGroupArgs = {
 
 export type SitePageContext = {
   slug?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
 };
 
 export type SitePageContextFilterInput = {
   slug?: Maybe<StringQueryOperatorInput>;
+  name?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SitePageEdge = {
@@ -3328,6 +3330,7 @@ export type SitePageFieldsEnum =
   | 'internal___type'
   | 'isCreatedByStatefulCreatePages'
   | 'context___slug'
+  | 'context___name'
   | 'pluginCreator___id'
   | 'pluginCreator___parent___id'
   | 'pluginCreator___parent___parent___id'

@@ -3,6 +3,7 @@ import React, { CSSProperties } from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 import { breakpoints } from '../styles/variables';
+import { hyphenate } from '../utils/helpers';
 
 const StyledTag = styled(Link)`
     display: inline-block;
@@ -40,7 +41,7 @@ export interface TagProps {
 }
 
 const Tag = ({ text, styles }: TagProps) => (
-  <StyledTag to="/tags/" style={{ ...styles }}>
+  <StyledTag to={`/tags/${hyphenate(text)}`} style={{ ...styles }}>
     {text}
   </StyledTag>
 );
