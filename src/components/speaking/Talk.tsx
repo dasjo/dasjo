@@ -23,7 +23,6 @@ const Talk = ({
   date,
   title,
   notes,
-  link,
   slides,
   organisation,
   tags,
@@ -31,17 +30,13 @@ const Talk = ({
   <StyledTalk className="card">
     <div>
       <p>{date}</p>
-      <h3>
-        <a href={link} target="_blank">
-          {title}
-        </a>
-      </h3>
+      <h3>{title}</h3>
     </div>
     <div>
       <div className="org">{organisation}</div>
       <div>
         {tags.map((tag: string, i) => (
-          <Tag text={tag + i} key={i + tag} />
+          <Tag text={tag} key={i + tag} />
         ))}
       </div>
     </div>
