@@ -7,13 +7,17 @@ import { breakpoints } from '../../styles/variables';
 import { Link } from 'gatsby';
 
 const StyledPostBanner = styled.article`
-  display: flex;
-  box-shadow: var(--shadow-light);
+  .wrapper-link {
+    display: flex;
+    box-shadow: var(--shadow-light);
+    text-decoration: none;
+    color: inherit;
 
-  @media (max-width: ${breakpoints.medium}) {
-    flex-direction: column;
-    max-width: 40rem;
-    margin: 0 auto;
+    @media (max-width: ${breakpoints.medium}) {
+      flex-direction: column;
+      max-width: 40rem;
+      margin: 0 auto;
+    }
   }
 
   .img {
@@ -67,23 +71,25 @@ const PostBanner = ({
   tags,
 }: PostBannerProps) => (
   <StyledPostBanner>
-    <div className="img"></div>
-    <div className="text">
-      <h3>{title}</h3>
-      <p>{date}</p>
-      <div>
-        <div className="org">{organisation}</div>
-        <div className="tags-container">
-          {tags
-            ? tags.map((tag: string, i) => <Tag text={tag + i} key={i + tag} />)
-            : null}
+    <Link to={`/writing/${slug}`} className="wrapper-link">
+      <div className="img"></div>
+      <div className="text">
+        <h3>{title}</h3>
+        <p>{date}</p>
+        <div>
+          <div className="org">{organisation}</div>
+          <div className="tags-container">
+            {tags
+              ? tags.map((tag: string, i) => <Tag text={tag} key={i + tag} />)
+              : null}
+          </div>
         </div>
+        <p>{excerpt}</p>
+        <Link to={`/writing/${slug}`} className="btn--text">
+          Read more <span>&nbsp;&rarr;</span>
+        </Link>
       </div>
-      <p>{excerpt}</p>
-      <Link to={`/writing/${slug}`} className="btn--text">
-        Read more <span>&nbsp;&rarr;</span>
-      </Link>
-    </div>
+    </Link>
   </StyledPostBanner>
 );
 
