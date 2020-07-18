@@ -43,7 +43,10 @@ export const experiencePageQuery = graphql`
       }
     }
 
-    education: allAirtable(filter: { table: { eq: "Education" } }) {
+    education: allAirtable(
+      filter: { table: { eq: "Education" } }
+      sort: { fields: [data___from], order: DESC }
+    ) {
       nodes {
         data {
           title
@@ -65,7 +68,10 @@ export const experiencePageQuery = graphql`
       }
     }
 
-    volunteering: allAirtable(filter: { table: { eq: "Volunteering" } }) {
+    volunteering: allAirtable(
+      filter: { table: { eq: "Volunteering" } }
+      sort: { fields: [data___from], order: DESC }
+    ) {
       nodes {
         data {
           title
