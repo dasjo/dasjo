@@ -12,13 +12,15 @@ export const photographyPageQuery = graphql`
           link
           date
           featured
-          # attachments {
-          #   thumbnails {
-          #     full {
-          #       url
-          #     }
-          #   }
-          # }
+          attachments {
+            localFiles {
+              childImageSharp {     
+                fluid(maxWidth: 200, maxHeight: 200) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -30,8 +32,8 @@ const PhotographyPage = ({ data }: any) => {
     date: p.data.date,
     title: p.data.title,
     link: p.data.link,
-    attachments: p.data.attachments.map((a: any) => {
-      return a.thumbnails.full.url;
+    attachments: p.data.attachments.localFiles.map((a: any) => {
+      return a.childImageSharp.fluid.src;
     }),
   }));
 
