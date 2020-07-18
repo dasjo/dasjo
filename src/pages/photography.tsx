@@ -12,13 +12,13 @@ export const photographyPageQuery = graphql`
           link
           date
           featured
-          attachments {
-            thumbnails {
-              full {
-                url
-              }
-            }
-          }
+          # attachments {
+          #   thumbnails {
+          #     full {
+          #       url
+          #     }
+          #   }
+          # }
         }
       }
     }
