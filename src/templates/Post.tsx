@@ -1,6 +1,7 @@
 import React from 'react';
 import IndexLayout from '../layouts';
 import { graphql } from 'gatsby';
+import { Link } from 'gatsby';
 
 import styled from '@emotion/styled';
 
@@ -73,6 +74,9 @@ const PostTemplate = ({ data: { airtable: writing } }: any) => {
               }}
             />
           ) : null}
+          <Link to="/writing/" className="btn--text">
+            Back to Writings <span>&nbsp;&rarr;</span>
+          </Link>
         </StyledPostTemplate>
       </div>
     </IndexLayout>
