@@ -3,7 +3,7 @@ import React from 'react';
 import { Global, css } from '@emotion/core';
 import { breakpoints } from './variables';
 
-const GlobalStyles = () => (
+const BaseStyles = () => (
   <Global
     styles={css`
       /* ---------------------------------------- */
@@ -379,4 +379,4 @@ const GlobalStyles = () => (
   />
 );
 
-export default GlobalStyles;
+export default BaseStyles;

@@ -1,6 +1,6 @@
-import React from "react";
-import GlobalStyles from "../styles/GlobalStyles";
-import styled from "@emotion/styled";
+import React from 'react';
+import BaseStyles from '../styles/BaseStyles';
+import styled from '@emotion/styled';
 
 const StyledRootLayout = styled.div`
   display: flex;
@@ -14,7 +14,7 @@ interface LayoutRootProps {
 
 const LayoutRoot = ({ children }: LayoutRootProps) => (
   <StyledRootLayout>
-    <GlobalStyles />
+    <BaseStyles />
     {children}
   </StyledRootLayout>
 );
