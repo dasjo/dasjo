@@ -4043,9 +4043,6 @@ export type Unnamed_9_Query = { photography: { nodes: Array<{ data?: Maybe<(
       )> }> }, writing: { nodes: Array<{ data?: Maybe<(
         Pick<AirtableData, 'title' | 'slug' | 'featured' | 'date'>
         & { text_en?: Maybe<{ childMarkdownRemark?: Maybe<Pick<MarkdownRemark, 'excerpt'>> }>, organisation?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>>, tags?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'name'>> }>>> }
-      )> }> }, quotes: { nodes: Array<{ data?: Maybe<(
-        Pick<AirtableData, 'quote' | 'featured'>
-        & { person?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>>, tags?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'name'>> }>>> }
       )> }> } };
 
 export type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;

@@ -4,7 +4,6 @@ import IndexLayout from '../layouts';
 import { graphql } from 'gatsby';
 import { deHyphenate, filterByFeatured } from '../utils/helpers';
 import Talk, { TalkProps } from '../components/speaking/Talk';
-import WhatPeopleSay from '../components/index/WhatPeopleSay';
 import Photos, { PhotosProps } from '../components/photography/Photos';
 import PostBanner, { PostBannerProps } from '../components/writing/PostBanner';
 
@@ -96,48 +95,10 @@ export const query = graphql`
         }
       }
     }
-    quotes: allAirtable(
-      filter: {
-        table: { eq: "Quotes" }
-        data: { tags: { elemMatch: { data: { name: { eq: $name } } } } }
-      }
-      sort: { fields: [data___id], order: DESC }
-    ) {
-      nodes {
-        data {
-          quote
-          featured
-          person {
-            data {
-              title
-            }
-          }
-          tags {
-            data {
-              name
-            }
-          }
-        }
-      }
-    }
   }
 `;
 
 const TagTemplate = ({ location, data }: any) => {
-  console.log(data);
-  let sayings;
-  if (data.quotes.nodes.length) {
-    sayings = filterByFeatured(
-      data.quotes.nodes.map((saying: any) => ({
-        quote: saying.data.quote,
-        person: saying.data.person[0].data.title,
-        tags: saying.data.tags
-          ? saying.data.tags.map((t: any) => t.data.name)
-          : null,
-        featured: saying.data.featured,
-      }))
-    );
-  }
   let speakings;
   if (data.speaking.nodes.length) {
     speakings = data.speaking.nodes.map((t: any) => ({
@@ -186,7 +147,7 @@ const TagTemplate = ({ location, data }: any) => {
     );
   }
 
-  console.log(writings, photos, sayings, speakings);
+  console.log(writings, photos, speakings);
 
   return (
     <IndexLayout>
@@ -195,7 +156,6 @@ const TagTemplate = ({ location, data }: any) => {
           <h1>Tag: {deHyphenate(location.pathname.split('/')[2])}</h1>
           <div className="container--small">
             <section>
-              {sayings ? <WhatPeopleSay sayings={sayings} /> : null}
               {speakings ? <h2>Speaking</h2> : null}
               {speakings
                 ? speakings.map((talk: TalkProps, i: number) => (
