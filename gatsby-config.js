@@ -54,6 +54,7 @@ module.exports = {
             baseId,
             tableName: `Photography`,
             tableLinks: [`tags`],
+            mapping: { attachments: `fileNode` },
           },
           {
             baseId,

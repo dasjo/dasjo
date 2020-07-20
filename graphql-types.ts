@@ -59,7 +59,7 @@ export type AirtableConnectionGroupArgs = {
 
 export type AirtableData = {
   title?: Maybe<Scalars['String']>;
-  attachments?: Maybe<Array<Maybe<AirtableDataAttachments>>>;
+  attachments?: Maybe<AirtableField>;
   tags?: Maybe<Array<Maybe<Airtable>>>;
   date?: Maybe<Scalars['Date']>;
   link?: Maybe<Scalars['String']>;
@@ -91,8 +91,8 @@ export type AirtableData = {
   about?: Maybe<Scalars['String']>;
   volunteering?: Maybe<Array<Maybe<Scalars['String']>>>;
   from?: Maybe<Scalars['Date']>;
-  roles?: Maybe<Array<Maybe<Airtable>>>;
   to?: Maybe<Scalars['Date']>;
+  roles?: Maybe<Array<Maybe<Airtable>>>;
   location?: Maybe<Array<Maybe<Airtable>>>;
   image?: Maybe<Array<Maybe<AirtableDataImage>>>;
 };
@@ -121,79 +121,9 @@ export type AirtableDataToArgs = {
   locale?: Maybe<Scalars['String']>;
 };
 
-export type AirtableDataAttachments = {
-  id?: Maybe<Scalars['String']>;
-  url?: Maybe<Scalars['String']>;
-  filename?: Maybe<Scalars['String']>;
-  size?: Maybe<Scalars['Int']>;
-  type?: Maybe<Scalars['String']>;
-  thumbnails?: Maybe<AirtableDataAttachmentsThumbnails>;
-};
-
-export type AirtableDataAttachmentsFilterInput = {
-  id?: Maybe<StringQueryOperatorInput>;
-  url?: Maybe<StringQueryOperatorInput>;
-  filename?: Maybe<StringQueryOperatorInput>;
-  size?: Maybe<IntQueryOperatorInput>;
-  type?: Maybe<StringQueryOperatorInput>;
-  thumbnails?: Maybe<AirtableDataAttachmentsThumbnailsFilterInput>;
-};
-
-export type AirtableDataAttachmentsFilterListInput = {
-  elemMatch?: Maybe<AirtableDataAttachmentsFilterInput>;
-};
-
-export type AirtableDataAttachmentsThumbnails = {
-  small?: Maybe<AirtableDataAttachmentsThumbnailsSmall>;
-  large?: Maybe<AirtableDataAttachmentsThumbnailsLarge>;
-  full?: Maybe<AirtableDataAttachmentsThumbnailsFull>;
-};
-
-export type AirtableDataAttachmentsThumbnailsFilterInput = {
-  small?: Maybe<AirtableDataAttachmentsThumbnailsSmallFilterInput>;
-  large?: Maybe<AirtableDataAttachmentsThumbnailsLargeFilterInput>;
-  full?: Maybe<AirtableDataAttachmentsThumbnailsFullFilterInput>;
-};
-
-export type AirtableDataAttachmentsThumbnailsFull = {
-  url?: Maybe<Scalars['String']>;
-  width?: Maybe<Scalars['Int']>;
-  height?: Maybe<Scalars['Int']>;
-};
-
-export type AirtableDataAttachmentsThumbnailsFullFilterInput = {
-  url?: Maybe<StringQueryOperatorInput>;
-  width?: Maybe<IntQueryOperatorInput>;
-  height?: Maybe<IntQueryOperatorInput>;
-};
-
-export type AirtableDataAttachmentsThumbnailsLarge = {
-  url?: Maybe<Scalars['String']>;
-  width?: Maybe<Scalars['Int']>;
-  height?: Maybe<Scalars['Int']>;
-};
-
-export type AirtableDataAttachmentsThumbnailsLargeFilterInput = {
-  url?: Maybe<StringQueryOperatorInput>;
-  width?: Maybe<IntQueryOperatorInput>;
-  height?: Maybe<IntQueryOperatorInput>;
-};
-
-export type AirtableDataAttachmentsThumbnailsSmall = {
-  url?: Maybe<Scalars['String']>;
-  width?: Maybe<Scalars['Int']>;
-  height?: Maybe<Scalars['Int']>;
-};
-
-export type AirtableDataAttachmentsThumbnailsSmallFilterInput = {
-  url?: Maybe<StringQueryOperatorInput>;
-  width?: Maybe<IntQueryOperatorInput>;
-  height?: Maybe<IntQueryOperatorInput>;
-};
-
 export type AirtableDataFilterInput = {
   title?: Maybe<StringQueryOperatorInput>;
-  attachments?: Maybe<AirtableDataAttachmentsFilterListInput>;
+  attachments?: Maybe<AirtableFieldFilterInput>;
   tags?: Maybe<AirtableFilterListInput>;
   date?: Maybe<DateQueryOperatorInput>;
   link?: Maybe<StringQueryOperatorInput>;
@@ -225,8 +155,8 @@ export type AirtableDataFilterInput = {
   about?: Maybe<StringQueryOperatorInput>;
   volunteering?: Maybe<StringQueryOperatorInput>;
   from?: Maybe<DateQueryOperatorInput>;
-  roles?: Maybe<AirtableFilterListInput>;
   to?: Maybe<DateQueryOperatorInput>;
+  roles?: Maybe<AirtableFilterListInput>;
   location?: Maybe<AirtableFilterListInput>;
   image?: Maybe<AirtableDataImageFilterListInput>;
 };
@@ -312,7 +242,6 @@ export type AirtableField = Node & {
   parent?: Maybe<Node>;
   children: Array<Node>;
   internal: Internal;
-  raw?: Maybe<Scalars['String']>;
   childMarkdownRemark?: Maybe<MarkdownRemark>;
 };
 
@@ -430,7 +359,6 @@ export type AirtableFieldFieldsEnum =
   | 'internal___mediaType'
   | 'internal___owner'
   | 'internal___type'
-  | 'raw'
   | 'childMarkdownRemark___id'
   | 'childMarkdownRemark___frontmatter___title'
   | 'childMarkdownRemark___excerpt'
@@ -490,7 +418,6 @@ export type AirtableFieldFilterInput = {
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
-  raw?: Maybe<StringQueryOperatorInput>;
   childMarkdownRemark?: Maybe<MarkdownRemarkFilterInput>;
 };
 
@@ -593,12 +520,30 @@ export type AirtableFieldsEnum =
   | 'table'
   | 'recordId'
   | 'data___title'
-  | 'data___attachments'
   | 'data___attachments___id'
-  | 'data___attachments___url'
-  | 'data___attachments___filename'
-  | 'data___attachments___size'
-  | 'data___attachments___type'
+  | 'data___attachments___parent___id'
+  | 'data___attachments___parent___children'
+  | 'data___attachments___children'
+  | 'data___attachments___children___id'
+  | 'data___attachments___children___children'
+  | 'data___attachments___internal___content'
+  | 'data___attachments___internal___contentDigest'
+  | 'data___attachments___internal___description'
+  | 'data___attachments___internal___fieldOwners'
+  | 'data___attachments___internal___ignoreType'
+  | 'data___attachments___internal___mediaType'
+  | 'data___attachments___internal___owner'
+  | 'data___attachments___internal___type'
+  | 'data___attachments___childMarkdownRemark___id'
+  | 'data___attachments___childMarkdownRemark___excerpt'
+  | 'data___attachments___childMarkdownRemark___rawMarkdownBody'
+  | 'data___attachments___childMarkdownRemark___html'
+  | 'data___attachments___childMarkdownRemark___htmlAst'
+  | 'data___attachments___childMarkdownRemark___excerptAst'
+  | 'data___attachments___childMarkdownRemark___headings'
+  | 'data___attachments___childMarkdownRemark___timeToRead'
+  | 'data___attachments___childMarkdownRemark___tableOfContents'
+  | 'data___attachments___childMarkdownRemark___children'
   | 'data___tags'
   | 'data___tags___id'
   | 'data___tags___parent___id'
@@ -617,7 +562,6 @@ export type AirtableFieldsEnum =
   | 'data___tags___table'
   | 'data___tags___recordId'
   | 'data___tags___data___title'
-  | 'data___tags___data___attachments'
   | 'data___tags___data___tags'
   | 'data___tags___data___date'
   | 'data___tags___data___link'
@@ -647,8 +591,8 @@ export type AirtableFieldsEnum =
   | 'data___tags___data___about'
   | 'data___tags___data___volunteering'
   | 'data___tags___data___from'
-  | 'data___tags___data___roles'
   | 'data___tags___data___to'
+  | 'data___tags___data___roles'
   | 'data___tags___data___location'
   | 'data___tags___data___image'
   | 'data___date'
@@ -671,7 +615,6 @@ export type AirtableFieldsEnum =
   | 'data___organisation___table'
   | 'data___organisation___recordId'
   | 'data___organisation___data___title'
-  | 'data___organisation___data___attachments'
   | 'data___organisation___data___tags'
   | 'data___organisation___data___date'
   | 'data___organisation___data___link'
@@ -701,8 +644,8 @@ export type AirtableFieldsEnum =
   | 'data___organisation___data___about'
   | 'data___organisation___data___volunteering'
   | 'data___organisation___data___from'
-  | 'data___organisation___data___roles'
   | 'data___organisation___data___to'
+  | 'data___organisation___data___roles'
   | 'data___organisation___data___location'
   | 'data___organisation___data___image'
   | 'data___slug'
@@ -720,7 +663,6 @@ export type AirtableFieldsEnum =
   | 'data___text_en___internal___mediaType'
   | 'data___text_en___internal___owner'
   | 'data___text_en___internal___type'
-  | 'data___text_en___raw'
   | 'data___text_en___childMarkdownRemark___id'
   | 'data___text_en___childMarkdownRemark___excerpt'
   | 'data___text_en___childMarkdownRemark___rawMarkdownBody'
@@ -750,7 +692,6 @@ export type AirtableFieldsEnum =
   | 'data___notes___internal___mediaType'
   | 'data___notes___internal___owner'
   | 'data___notes___internal___type'
-  | 'data___notes___raw'
   | 'data___notes___childMarkdownRemark___id'
   | 'data___notes___childMarkdownRemark___excerpt'
   | 'data___notes___childMarkdownRemark___rawMarkdownBody'
@@ -787,7 +728,6 @@ export type AirtableFieldsEnum =
   | 'data___person___table'
   | 'data___person___recordId'
   | 'data___person___data___title'
-  | 'data___person___data___attachments'
   | 'data___person___data___tags'
   | 'data___person___data___date'
   | 'data___person___data___link'
@@ -817,8 +757,8 @@ export type AirtableFieldsEnum =
   | 'data___person___data___about'
   | 'data___person___data___volunteering'
   | 'data___person___data___from'
-  | 'data___person___data___roles'
   | 'data___person___data___to'
+  | 'data___person___data___roles'
   | 'data___person___data___location'
   | 'data___person___data___image'
   | 'data___quotes'
@@ -831,6 +771,7 @@ export type AirtableFieldsEnum =
   | 'data___about'
   | 'data___volunteering'
   | 'data___from'
+  | 'data___to'
   | 'data___roles'
   | 'data___roles___id'
   | 'data___roles___parent___id'
@@ -849,7 +790,6 @@ export type AirtableFieldsEnum =
   | 'data___roles___table'
   | 'data___roles___recordId'
   | 'data___roles___data___title'
-  | 'data___roles___data___attachments'
   | 'data___roles___data___tags'
   | 'data___roles___data___date'
   | 'data___roles___data___link'
@@ -879,11 +819,10 @@ export type AirtableFieldsEnum =
   | 'data___roles___data___about'
   | 'data___roles___data___volunteering'
   | 'data___roles___data___from'
-  | 'data___roles___data___roles'
   | 'data___roles___data___to'
+  | 'data___roles___data___roles'
   | 'data___roles___data___location'
   | 'data___roles___data___image'
-  | 'data___to'
   | 'data___location'
   | 'data___location___id'
   | 'data___location___parent___id'
@@ -902,7 +841,6 @@ export type AirtableFieldsEnum =
   | 'data___location___table'
   | 'data___location___recordId'
   | 'data___location___data___title'
-  | 'data___location___data___attachments'
   | 'data___location___data___tags'
   | 'data___location___data___date'
   | 'data___location___data___link'
@@ -932,8 +870,8 @@ export type AirtableFieldsEnum =
   | 'data___location___data___about'
   | 'data___location___data___volunteering'
   | 'data___location___data___from'
-  | 'data___location___data___roles'
   | 'data___location___data___to'
+  | 'data___location___data___roles'
   | 'data___location___data___location'
   | 'data___location___data___image'
   | 'data___image'
@@ -1337,6 +1275,7 @@ export type File = Node & {
   birthtimeMs?: Maybe<Scalars['Float']>;
   blksize?: Maybe<Scalars['Int']>;
   blocks?: Maybe<Scalars['Int']>;
+  url?: Maybe<Scalars['String']>;
   /** Copy file to static directory and return public url to it */
   publicURL?: Maybe<Scalars['String']>;
   childImageSharp?: Maybe<ImageSharp>;
@@ -1463,6 +1402,7 @@ export type FileFieldsEnum =
   | 'birthtimeMs'
   | 'blksize'
   | 'blocks'
+  | 'url'
   | 'publicURL'
   | 'childImageSharp___fixed___base64'
   | 'childImageSharp___fixed___tracedSVG'
@@ -1676,6 +1616,7 @@ export type FileFilterInput = {
   birthtimeMs?: Maybe<FloatQueryOperatorInput>;
   blksize?: Maybe<IntQueryOperatorInput>;
   blocks?: Maybe<IntQueryOperatorInput>;
+  url?: Maybe<StringQueryOperatorInput>;
   publicURL?: Maybe<StringQueryOperatorInput>;
   childImageSharp?: Maybe<ImageSharpFilterInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -2609,6 +2550,7 @@ export type QueryFileArgs = {
   birthtimeMs?: Maybe<FloatQueryOperatorInput>;
   blksize?: Maybe<IntQueryOperatorInput>;
   blocks?: Maybe<IntQueryOperatorInput>;
+  url?: Maybe<StringQueryOperatorInput>;
   publicURL?: Maybe<StringQueryOperatorInput>;
   childImageSharp?: Maybe<ImageSharpFilterInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -2776,7 +2718,6 @@ export type QueryAirtableFieldArgs = {
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
-  raw?: Maybe<StringQueryOperatorInput>;
   childMarkdownRemark?: Maybe<MarkdownRemarkFilterInput>;
 };
 
@@ -3565,6 +3506,7 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___tables___tableName'
   | 'pluginOptions___tables___mapping___text_en'
   | 'pluginOptions___tables___mapping___notes'
+  | 'pluginOptions___tables___mapping___attachments'
   | 'pluginOptions___tables___tableLinks'
   | 'pluginOptions___pathCheck'
   | 'nodeAPIs'
@@ -3716,11 +3658,13 @@ export type SitePluginPluginOptionsTablesFilterListInput = {
 export type SitePluginPluginOptionsTablesMapping = {
   text_en?: Maybe<Scalars['String']>;
   notes?: Maybe<Scalars['String']>;
+  attachments?: Maybe<Scalars['String']>;
 };
 
 export type SitePluginPluginOptionsTablesMappingFilterInput = {
   text_en?: Maybe<StringQueryOperatorInput>;
   notes?: Maybe<StringQueryOperatorInput>;
+  attachments?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SitePluginSortInput = {
@@ -3784,10 +3728,7 @@ export type Unnamed_3_Query = { allAirtable: { nodes: Array<{ data?: Maybe<(
 export type Unnamed_4_QueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type Unnamed_4_Query = { allAirtable: { nodes: Array<{ data?: Maybe<(
-        Pick<AirtableData, 'title' | 'link' | 'date' | 'featured'>
-        & { attachments?: Maybe<Array<Maybe<{ thumbnails?: Maybe<{ full?: Maybe<Pick<AirtableDataAttachmentsThumbnailsFull, 'url'>> }> }>>> }
-      )> }> } };
+export type Unnamed_4_Query = { allAirtable: { nodes: Array<{ data?: Maybe<Pick<AirtableData, 'title' | 'link' | 'date' | 'featured'>> }> } };
 
 export type Unnamed_5_QueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -3828,10 +3769,7 @@ export type Unnamed_9_QueryVariables = Exact<{
 }>;
 
 
-export type Unnamed_9_Query = { photography: { nodes: Array<{ data?: Maybe<(
-        Pick<AirtableData, 'title' | 'link' | 'date' | 'featured'>
-        & { attachments?: Maybe<Array<Maybe<{ thumbnails?: Maybe<{ full?: Maybe<Pick<AirtableDataAttachmentsThumbnailsFull, 'url'>> }> }>>> }
-      )> }> }, speaking: { nodes: Array<{ data?: Maybe<(
+export type Unnamed_9_Query = { photography: { nodes: Array<{ data?: Maybe<Pick<AirtableData, 'title' | 'link' | 'date' | 'featured'>> }> }, speaking: { nodes: Array<{ data?: Maybe<(
         Pick<AirtableData, 'title' | 'date' | 'link' | 'slides'>
         & { notes?: Maybe<{ childMarkdownRemark?: Maybe<Pick<MarkdownRemark, 'html'>> }>, organisation?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>>, tags?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'name'>> }>>> }
       )> }> }, writing: { nodes: Array<{ data?: Maybe<(
