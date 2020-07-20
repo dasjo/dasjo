@@ -45,8 +45,8 @@ const BaseStyles = () => (
         --container-small: 800px;
         --container-small-0: 650px;
 
-        --gutter-huge: 12rem;
-        --gutter-huge-1: 20rem;
+        --gutter-huge: 9rem;
+        --gutter-huge-1: 16rem;
         --gutter-large: 6rem;
         --gutter-large-1: 8rem;
         --gutter-medium: 5rem;
