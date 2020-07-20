@@ -80,7 +80,7 @@ const BaseStyles = () => (
         font-size: var(--font-size-normal);
         font-family: var(--font-stack-sub);
         font-weight: 400;
-        line-height: 1.65;
+        line-height: 1.5;
         color: var(--black-0);
         background: var(--white);
       }
