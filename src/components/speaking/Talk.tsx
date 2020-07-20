@@ -2,10 +2,20 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 import Tag from '../Tag';
+import { breakpoints } from '../../styles/variables';
 
 const StyledTalk = styled.div`
-  .org {
-    margin-bottom: var(--gutter-small-2);
+  .name-tags {
+    display: flex;
+    justify-content: space-between;
+
+    @media (max-width: ${breakpoints.large}) {
+      flex-direction: column;
+
+      .org {
+        margin-bottom: var(--gutter-small-2);
+      }
+    }
   }
 `;
 
@@ -32,7 +42,7 @@ const Talk = ({
       <p>{date}</p>
       <h3>{title}</h3>
     </div>
-    <div>
+    <div className="name-tags">
       <div className="org">{organisation}</div>
       <div>
         {tags.map((tag: string, i) => (
