@@ -68,7 +68,7 @@ module.exports = {
           {
             baseId,
             tableName: `Quotes`,
-            tableLinks: [`person`, `tags`],
+            tableLinks: [`person`, `tags`, `organisation`],
           },
           {
             baseId,

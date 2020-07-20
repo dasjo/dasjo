@@ -24,6 +24,7 @@ const StyledSaying = styled.div`
   .name {
     color: var(--black);
     font-family: var(--font-stack-main);
+    font-size: var(--font-size-small);
   }
 
   .quote {
@@ -35,6 +36,7 @@ export interface SayingProps {
   quote: string;
   person: string;
   tags: string[];
+  organisation: string[];
 }
 
 const Saying = ({ quote, person, tags, organisation }: SayingProps | any) => (

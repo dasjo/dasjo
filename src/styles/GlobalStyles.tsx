@@ -132,7 +132,7 @@ const GlobalStyles = () => (
         align-items: baseline;
 
         @media (min-width: calc(${breakpoints.large} + 1px)) {
-          max-width: 500px;
+          max-width: 450px;
           justify-content: flex-end;
         }
 

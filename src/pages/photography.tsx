@@ -14,8 +14,8 @@ export const photographyPageQuery = graphql`
           featured
           attachments {
             localFiles {
-              childImageSharp {     
-                fluid(maxWidth: 200, maxHeight: 200) {
+              childImageSharp {
+                fluid {
                   ...GatsbyImageSharpFluid
                 }
               }
