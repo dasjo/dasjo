@@ -3767,8 +3767,8 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___tables___baseId'
   | 'pluginOptions___tables___tableName'
   | 'pluginOptions___tables___mapping___text_en'
-  | 'pluginOptions___tables___mapping___notes'
   | 'pluginOptions___tables___mapping___attachments'
+  | 'pluginOptions___tables___mapping___notes'
   | 'pluginOptions___tables___tableLinks'
   | 'pluginOptions___pathCheck'
   | 'nodeAPIs'
@@ -3919,14 +3919,14 @@ export type SitePluginPluginOptionsTablesFilterListInput = {
 
 export type SitePluginPluginOptionsTablesMapping = {
   text_en?: Maybe<Scalars['String']>;
-  notes?: Maybe<Scalars['String']>;
   attachments?: Maybe<Scalars['String']>;
+  notes?: Maybe<Scalars['String']>;
 };
 
 export type SitePluginPluginOptionsTablesMappingFilterInput = {
   text_en?: Maybe<StringQueryOperatorInput>;
-  notes?: Maybe<StringQueryOperatorInput>;
   attachments?: Maybe<StringQueryOperatorInput>;
+  notes?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SitePluginSortInput = {
@@ -4013,7 +4013,7 @@ export type Unnamed_7_QueryVariables = Exact<{ [key: string]: never; }>;
 
 export type Unnamed_7_Query = { allAirtable: { nodes: Array<{ data?: Maybe<(
         Pick<AirtableData, 'title' | 'slug' | 'featured' | 'date'>
-        & { text_en?: Maybe<{ childMarkdownRemark?: Maybe<Pick<MarkdownRemark, 'excerpt'>> }>, organisation?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>>, tags?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'name'>> }>>> }
+        & { attachments?: Maybe<{ localFiles?: Maybe<Array<Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<Pick<ImageSharpFluid, 'sizes' | 'src' | 'srcSet' | 'aspectRatio'>> }> }>>> }>, text_en?: Maybe<{ childMarkdownRemark?: Maybe<Pick<MarkdownRemark, 'excerpt'>> }>, organisation?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>>, tags?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'name'>> }>>> }
       )> }> } };
 
 export type Unnamed_8_QueryVariables = Exact<{

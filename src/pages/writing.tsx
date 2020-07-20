@@ -23,6 +23,18 @@ export const WritingPageQuery = graphql`
           slug
           featured
           date
+          attachments {
+            localFiles {
+              childImageSharp {
+                fluid {
+                  sizes
+                  src
+                  srcSet
+                  aspectRatio
+                }
+              }
+            }
+          }
           text_en {
             childMarkdownRemark {
               excerpt
@@ -46,19 +58,23 @@ export const WritingPageQuery = graphql`
 
 const WritingPage = ({ data }: any) => {
   const writings = filterByFeatured(
-    data.allAirtable.nodes.map((w: any) => ({
-      title: w.data.title,
-      slug: w.data.slug,
-      featured: w.data.featured,
-      date: w.data.date,
-      excerpt: w.data.text_en
-        ? w.data.text_en.childMarkdownRemark.excerpt
-        : null,
-      organisation: (w.data.organisation
-        ? w.data.organisation.map((o: any) => o.data.title)
-        : [])[0],
-      tags: w.data.tags ? w.data.tags.map((t: any) => t.data.name) : null,
-    }))
+    data.allAirtable.nodes.map((w: any) => {
+      console.log(w.data.attachments);
+      return {
+        title: w.data.title,
+        slug: w.data.slug,
+        featured: w.data.featured,
+        date: w.data.date,
+        attachments: w.data.attachments ? w.data.attacments.localFiles : null,
+        excerpt: w.data.text_en
+          ? w.data.text_en.childMarkdownRemark.excerpt
+          : null,
+        organisation: (w.data.organisation
+          ? w.data.organisation.map((o: any) => o.data.title)
+          : [])[0],
+        tags: w.data.tags ? w.data.tags.map((t: any) => t.data.name) : null,
+      };
+    })
   );
 
   console.log(writings);
