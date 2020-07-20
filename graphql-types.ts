@@ -80,7 +80,6 @@ export type AirtableData = {
   contribution?: Maybe<Array<Maybe<Scalars['String']>>>;
   id?: Maybe<Scalars['Int']>;
   quote?: Maybe<Scalars['String']>;
-  company?: Maybe<Array<Maybe<Scalars['String']>>>;
   person?: Maybe<Array<Maybe<Airtable>>>;
   quotes?: Maybe<Array<Maybe<Scalars['String']>>>;
   name?: Maybe<Scalars['String']>;
@@ -215,7 +214,6 @@ export type AirtableDataFilterInput = {
   contribution?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<IntQueryOperatorInput>;
   quote?: Maybe<StringQueryOperatorInput>;
-  company?: Maybe<StringQueryOperatorInput>;
   person?: Maybe<AirtableFilterListInput>;
   quotes?: Maybe<StringQueryOperatorInput>;
   name?: Maybe<StringQueryOperatorInput>;
@@ -638,7 +636,6 @@ export type AirtableFieldsEnum =
   | 'data___tags___data___contribution'
   | 'data___tags___data___id'
   | 'data___tags___data___quote'
-  | 'data___tags___data___company'
   | 'data___tags___data___person'
   | 'data___tags___data___quotes'
   | 'data___tags___data___name'
@@ -693,7 +690,6 @@ export type AirtableFieldsEnum =
   | 'data___organisation___data___contribution'
   | 'data___organisation___data___id'
   | 'data___organisation___data___quote'
-  | 'data___organisation___data___company'
   | 'data___organisation___data___person'
   | 'data___organisation___data___quotes'
   | 'data___organisation___data___name'
@@ -773,7 +769,6 @@ export type AirtableFieldsEnum =
   | 'data___contribution'
   | 'data___id'
   | 'data___quote'
-  | 'data___company'
   | 'data___person'
   | 'data___person___id'
   | 'data___person___parent___id'
@@ -811,7 +806,6 @@ export type AirtableFieldsEnum =
   | 'data___person___data___contribution'
   | 'data___person___data___id'
   | 'data___person___data___quote'
-  | 'data___person___data___company'
   | 'data___person___data___person'
   | 'data___person___data___quotes'
   | 'data___person___data___name'
@@ -874,7 +868,6 @@ export type AirtableFieldsEnum =
   | 'data___roles___data___contribution'
   | 'data___roles___data___id'
   | 'data___roles___data___quote'
-  | 'data___roles___data___company'
   | 'data___roles___data___person'
   | 'data___roles___data___quotes'
   | 'data___roles___data___name'
@@ -928,7 +921,6 @@ export type AirtableFieldsEnum =
   | 'data___location___data___contribution'
   | 'data___location___data___id'
   | 'data___location___data___quote'
-  | 'data___location___data___company'
   | 'data___location___data___person'
   | 'data___location___data___quotes'
   | 'data___location___data___name'
@@ -3786,7 +3778,7 @@ export type Unnamed_3_QueryVariables = Exact<{ [key: string]: never; }>;
 
 export type Unnamed_3_Query = { allAirtable: { nodes: Array<{ data?: Maybe<(
         Pick<AirtableData, 'quote' | 'featured'>
-        & { person?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>>, tags?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'name'>> }>>> }
+        & { person?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>>, organisation?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>>, tags?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'name'>> }>>> }
       )> }> }, file?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<Pick<ImageSharpFluid, 'sizes' | 'src' | 'srcSet' | 'aspectRatio'>> }> }> };
 
 export type Unnamed_4_QueryVariables = Exact<{ [key: string]: never; }>;

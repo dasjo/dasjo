@@ -22,6 +22,11 @@ export const IndexPageQuery = graphql`
               title
             }
           }
+          organisation {
+            data {
+              title
+            }
+          }
           tags {
             data {
               name
@@ -48,6 +53,9 @@ const IndexPage = ({ data }: any) => {
     data.allAirtable.nodes.map((saying: any) => ({
       quote: saying.data.quote,
       person: saying.data.person[0].data.title,
+      organisation: (saying.data.organisation
+        ? saying.data.organisation.map((o: any) => o.data.title)
+        : [])[0],
       tags: saying.data.tags
         ? saying.data.tags.map((t: any) => t.data.name)
         : null,

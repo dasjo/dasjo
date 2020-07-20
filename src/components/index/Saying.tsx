@@ -37,11 +37,13 @@ export interface SayingProps {
   tags: string[];
 }
 
-const Saying = ({ quote, person, tags }: SayingProps | any) => (
+const Saying = ({ quote, person, tags, organisation }: SayingProps | any) => (
   <StyledSaying className="card">
     <p className="quote">{quote}</p>
     <div className="info">
-      <p className="name">&mdash; {person}</p>
+      <p className="name">
+        &mdash; {person}, {organisation}{' '}
+      </p>
       <div className="tags">
         {tags.map((tag: any, i: number) => (
           <Tag text={tag} key={tag + i} />

@@ -58,6 +58,7 @@ module.exports = {
           {
             baseId,
             tableName: `Tags`,
+            tableLinks: [`organisation`],
           },
           {
             baseId,
