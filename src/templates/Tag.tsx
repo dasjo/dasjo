@@ -6,7 +6,7 @@ import { deHyphenate, filterByFeatured } from '../utils/helpers';
 import Talk, { TalkProps } from '../components/speaking/Talk';
 import Photos, { PhotosProps } from '../components/photography/Photos';
 import PostBanner, { PostBannerProps } from '../components/writing/PostBanner';
-// import Img from 'gatsby-image'
+import Img from 'gatsby-image'
 
 export const query = graphql`
   query($name: String) {
@@ -115,10 +115,10 @@ export const query = graphql`
 
 const TagTemplate = ({ location, data }: any) => {
     const about = data.tag.data ? data.tag.data.about : null
-    // const tagImage = data.tag.data ? data.tag.data.attachments.localFiles.map((a: any) => {
-    //     return a.childImageSharp.fluid;
-    // })[0] : null
-    console.log(data.tag)
+    const tagImage = data.tag.data ? data.tag.data.image.localFiles.map((a: any) => {
+        return a.childImageSharp.fluid;
+    })[0] : null
+    console.log(tagImage)
     let speakings;
     if (data.speaking.nodes.length) {
         speakings = data.speaking.nodes.map((t: any) => ({
@@ -175,7 +175,7 @@ const TagTemplate = ({ location, data }: any) => {
                 <section>
                     <h1>{deHyphenate(location.pathname.split('/')[1])}</h1>
                     <div className="container--small">
-                        {/* { tagImage ? <Img fluid={tagImage} /> : null } */}
+                        { tagImage ? <Img fluid={tagImage} style={{maxWidth: '300px'}} /> : null }
                         {about ? <p>{about}</p> : null}
                         <section>
                             {speakings ? <h2>Speaking</h2> : null}

@@ -92,8 +92,8 @@ export type AirtableData = {
   about?: Maybe<Scalars['String']>;
   image?: Maybe<AirtableField>;
   from?: Maybe<Scalars['Date']>;
-  roles?: Maybe<Array<Maybe<Airtable>>>;
   to?: Maybe<Scalars['Date']>;
+  roles?: Maybe<Array<Maybe<Airtable>>>;
   location?: Maybe<Array<Maybe<Airtable>>>;
 };
 
@@ -156,8 +156,8 @@ export type AirtableDataFilterInput = {
   about?: Maybe<StringQueryOperatorInput>;
   image?: Maybe<AirtableFieldFilterInput>;
   from?: Maybe<DateQueryOperatorInput>;
-  roles?: Maybe<AirtableFilterListInput>;
   to?: Maybe<DateQueryOperatorInput>;
+  roles?: Maybe<AirtableFilterListInput>;
   location?: Maybe<AirtableFilterListInput>;
 };
 
@@ -702,8 +702,8 @@ export type AirtableFieldsEnum =
   | 'data___tags___data___volunteering'
   | 'data___tags___data___about'
   | 'data___tags___data___from'
-  | 'data___tags___data___roles'
   | 'data___tags___data___to'
+  | 'data___tags___data___roles'
   | 'data___tags___data___location'
   | 'data___date'
   | 'data___link'
@@ -754,8 +754,8 @@ export type AirtableFieldsEnum =
   | 'data___organisation___data___volunteering'
   | 'data___organisation___data___about'
   | 'data___organisation___data___from'
-  | 'data___organisation___data___roles'
   | 'data___organisation___data___to'
+  | 'data___organisation___data___roles'
   | 'data___organisation___data___location'
   | 'data___slug'
   | 'data___text_en___id'
@@ -942,8 +942,8 @@ export type AirtableFieldsEnum =
   | 'data___person___data___volunteering'
   | 'data___person___data___about'
   | 'data___person___data___from'
-  | 'data___person___data___roles'
   | 'data___person___data___to'
+  | 'data___person___data___roles'
   | 'data___person___data___location'
   | 'data___quotes'
   | 'data___name'
@@ -1017,6 +1017,7 @@ export type AirtableFieldsEnum =
   | 'data___image___childMarkdownRemark___tableOfContents'
   | 'data___image___childMarkdownRemark___children'
   | 'data___from'
+  | 'data___to'
   | 'data___roles'
   | 'data___roles___id'
   | 'data___roles___parent___id'
@@ -1064,10 +1065,9 @@ export type AirtableFieldsEnum =
   | 'data___roles___data___volunteering'
   | 'data___roles___data___about'
   | 'data___roles___data___from'
-  | 'data___roles___data___roles'
   | 'data___roles___data___to'
+  | 'data___roles___data___roles'
   | 'data___roles___data___location'
-  | 'data___to'
   | 'data___location'
   | 'data___location___id'
   | 'data___location___parent___id'
@@ -1115,8 +1115,8 @@ export type AirtableFieldsEnum =
   | 'data___location___data___volunteering'
   | 'data___location___data___about'
   | 'data___location___data___from'
-  | 'data___location___data___roles'
   | 'data___location___data___to'
+  | 'data___location___data___roles'
   | 'data___location___data___location';
 
 export type AirtableFieldSortInput = {
