@@ -153,7 +153,7 @@ const TagTemplate = ({ location, data }: any) => {
     <IndexLayout>
       <div className="row">
         <section>
-          <h1>{deHyphenate(location.pathname.split('/')[2])}</h1>
+          <h1>{deHyphenate(location.pathname.split('/')[1])}</h1>
           <div className="container--small">
             <section>
               {speakings ? <h2>Speaking</h2> : null}

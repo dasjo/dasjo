@@ -45,7 +45,7 @@ exports.createPages = async ({ graphql, reporter, actions }) => {
 
   tags.forEach((tag) => {
     createPage({
-      path: `/tags/${hyphenate(tag.data.name)}`,
+      path: `/${hyphenate(tag.data.name)}`,
       component: require.resolve('./src/templates/Tag.tsx'),
       context: {
         name: tag.data.name,

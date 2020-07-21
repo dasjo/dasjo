@@ -42,7 +42,7 @@ export interface TagProps {
 
 const Tag = ({ text, styles }: TagProps) => (
   <StyledTag
-    to={`/tags/${hyphenate(text)}`}
+    to={`/${hyphenate(text)}`}
     state={{ name: 'text' }}
     style={{ ...styles }}
   >
