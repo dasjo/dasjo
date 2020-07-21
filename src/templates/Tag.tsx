@@ -6,9 +6,24 @@ import { deHyphenate, filterByFeatured } from '../utils/helpers';
 import Talk, { TalkProps } from '../components/speaking/Talk';
 import Photos, { PhotosProps } from '../components/photography/Photos';
 import PostBanner, { PostBannerProps } from '../components/writing/PostBanner';
+// import Img from 'gatsby-image'
 
 export const query = graphql`
   query($name: String) {
+    tag: airtable(data: { name: {eq: $name}}) {
+    	data {
+            about
+            image {
+                localFiles {
+                    childImageSharp {
+                        fluid {
+                            ...GatsbyImageSharpFluid
+                        }
+                    } 
+                }
+            }
+        }
+  	}
     photography: allAirtable(
       filter: {
         table: { eq: "Photography" }
@@ -99,85 +114,92 @@ export const query = graphql`
 `;
 
 const TagTemplate = ({ location, data }: any) => {
-  let speakings;
-  if (data.speaking.nodes.length) {
-    speakings = data.speaking.nodes.map((t: any) => ({
-      title: t.data.title,
-      date: t.data.date,
-      notes: t.data.notes ? t.data.notes.childMarkdownRemark.html : null,
-      link: t.data.link,
-      slides: t.data.slides,
-      organisation: (t.data.organisation
-        ? t.data.organisation.map((o: any) => o.data.title)
-        : [])[0],
-      tags: t.data.tags ? t.data.tags.map((t: any) => t.data.name) : null,
-    }));
-  }
+    const about = data.tag.data ? data.tag.data.about : null
+    // const tagImage = data.tag.data ? data.tag.data.attachments.localFiles.map((a: any) => {
+    //     return a.childImageSharp.fluid;
+    // })[0] : null
+    console.log(data.tag)
+    let speakings;
+    if (data.speaking.nodes.length) {
+        speakings = data.speaking.nodes.map((t: any) => ({
+            title: t.data.title,
+            date: t.data.date,
+            notes: t.data.notes ? t.data.notes.childMarkdownRemark.html : null,
+            link: t.data.link,
+            slides: t.data.slides,
+            organisation: (t.data.organisation
+                ? t.data.organisation.map((o: any) => o.data.title)
+                : [])[0],
+            tags: t.data.tags ? t.data.tags.map((t: any) => t.data.name) : null,
+        }));
+    }
 
-  let photos;
+    let photos;
 
-  if (data.photography.nodes.length) {
-    photos = data.photography.nodes.map((p: any) => ({
-      date: p.data.date,
-      title: p.data.title,
-      link: p.data.link,
-      attachments: p.data.attachments.localFiles.map((a: any) => {
-        return a.childImageSharp.fluid.src;
-      }),
-    }));
-  }
+    if (data.photography.nodes.length) {
+        photos = data.photography.nodes.map((p: any) => ({
+            date: p.data.date,
+            title: p.data.title,
+            link: p.data.link,
+            attachments: p.data.attachments.localFiles.map((a: any) => {
+                return a.childImageSharp.fluid.src;
+            }),
+        }));
+    }
 
-  let writings;
+    let writings;
 
-  if (data.writing.nodes.length) {
-    writings = filterByFeatured(
-      data.writing.nodes.map((w: any) => ({
-        title: w.data.title,
-        slug: w.data.slug,
-        featured: w.data.featured,
-        date: w.data.date,
-        excerpt: w.data.text_en
-          ? w.data.text_en.childMarkdownRemark.excerpt
-          : null,
-        organisation: (w.data.organisation
-          ? w.data.organisation.map((o: any) => o.data.title)
-          : [])[0],
-        tags: w.data.tags ? w.data.tags.map((t: any) => t.data.name) : null,
-      }))
+    if (data.writing.nodes.length) {
+        writings = filterByFeatured(
+            data.writing.nodes.map((w: any) => ({
+                title: w.data.title,
+                slug: w.data.slug,
+                featured: w.data.featured,
+                date: w.data.date,
+                excerpt: w.data.text_en
+                    ? w.data.text_en.childMarkdownRemark.excerpt
+                    : null,
+                organisation: (w.data.organisation
+                    ? w.data.organisation.map((o: any) => o.data.title)
+                    : [])[0],
+                tags: w.data.tags ? w.data.tags.map((t: any) => t.data.name) : null,
+            }))
+        );
+    }
+
+    console.log(writings, photos, speakings);
+
+    return (
+        <IndexLayout>
+            <div className="row">
+                <section>
+                    <h1>{deHyphenate(location.pathname.split('/')[1])}</h1>
+                    <div className="container--small">
+                        {/* { tagImage ? <Img fluid={tagImage} /> : null } */}
+                        {about ? <p>{about}</p> : null}
+                        <section>
+                            {speakings ? <h2>Speaking</h2> : null}
+                            {speakings
+                                ? speakings.map((talk: TalkProps, i: number) => (
+                                    <Talk key={i + talk.title} {...talk} />
+                                ))
+                                : null}
+                            {photos ? <h2>Photography</h2> : null}
+                            {photos
+                                ? photos.map((p: PhotosProps) => <Photos {...p} />)
+                                : null}
+                            {writings ? <h2>Writings</h2> : null}
+                            {writings
+                                ? writings.map((w: PostBannerProps, i) => (
+                                    <PostBanner key={i + w.title} {...w} />
+                                ))
+                                : null}
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </IndexLayout>
     );
-  }
-
-  console.log(writings, photos, speakings);
-
-  return (
-    <IndexLayout>
-      <div className="row">
-        <section>
-          <h1>{deHyphenate(location.pathname.split('/')[1])}</h1>
-          <div className="container--small">
-            <section>
-              {speakings ? <h2>Speaking</h2> : null}
-              {speakings
-                ? speakings.map((talk: TalkProps, i: number) => (
-                    <Talk key={i + talk.title} {...talk} />
-                  ))
-                : null}
-              {photos ? <h2>Photography</h2> : null}
-              {photos
-                ? photos.map((p: PhotosProps) => <Photos {...p} />)
-                : null}
-              {writings ? <h2>Writings</h2> : null}
-              {writings
-                ? writings.map((w: PostBannerProps, i) => (
-                    <PostBanner key={i + w.title} {...w} />
-                  ))
-                : null}
-            </section>
-          </div>
-        </section>
-      </div>
-    </IndexLayout>
-  );
 };
 
 export default TagTemplate;

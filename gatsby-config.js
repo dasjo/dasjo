@@ -60,6 +60,7 @@ module.exports = {
             baseId,
             tableName: `Tags`,
             tableLinks: [`organisation`],
+            mapping: { image: `fileNode` },
           },
           {
             baseId,
