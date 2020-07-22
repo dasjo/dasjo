@@ -1,7 +1,7 @@
 import React from 'react';
 import IndexLayout from '../layouts';
 import { graphql } from 'gatsby';
-import Photos, { PhotosProps } from '../components/photography/Photos';
+import Photos from '../components/photography/Photos';
 
 export const photographyPageQuery = graphql`
   query {
@@ -33,7 +33,7 @@ const PhotographyPage = ({ data }: any) => {
     title: p.data.title,
     link: p.data.link,
     attachments: p.data.attachments.localFiles.map((a: any) => {
-      return a.childImageSharp.fluid.src;
+      return a.childImageSharp.fluid;
     }),
   }));
 
@@ -49,7 +49,7 @@ const PhotographyPage = ({ data }: any) => {
         <section>
           <h1>Photography</h1>
           <div>
-            {photos.map((p: PhotosProps) => (
+            {photos.map((p: any) => (
               <Photos {...p} />
             ))}
           </div>

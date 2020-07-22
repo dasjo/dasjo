@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-
+import Img from 'gatsby-image'
 const StyledPhotos = styled.section`
   .photos {
     display: flex;
@@ -11,21 +11,14 @@ const StyledPhotos = styled.section`
   }
 `;
 
-export interface PhotosProps {
-  date: string;
-  title: string;
-  link: string;
-  attachments: string[];
-  years: string[];
-}
 
-const Photos = ({ date, title, link, attachments }: PhotosProps) => (
+const Photos = ({ date, title, link, attachments }: any) => (
   <>
     <StyledPhotos>
       <p>{new Date(date).getFullYear()}</p>
       <div className="photos">
-        {attachments.map((img: string) => (
-          <img src={img} loading="lazy" />
+        {attachments.map((img: any) => (
+          <Img fluid={img} />
         ))}
       </div>
       <h3>{title}</h3>
