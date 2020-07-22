@@ -2,11 +2,56 @@ import React from 'react';
 
 import IndexLayout from '../layouts';
 import { graphql } from 'gatsby';
-import { deHyphenate, filterByFeatured } from '../utils/helpers';
-import Talk, { TalkProps } from '../components/speaking/Talk';
-import Photos, { PhotosProps } from '../components/photography/Photos';
-import PostBanner, { PostBannerProps } from '../components/writing/PostBanner';
+import { deHyphenate } from '../utils/helpers';
 import Img from 'gatsby-image'
+
+import styled from '@emotion/styled'
+
+const StyledTag = styled.div`
+    section {
+        padding: var(--gutter-large) 0;
+    }
+
+    .banner {
+        .img {
+            max-width: 350px;
+            margin: var(--gutter-large) 0 var(--gutter-small); 
+        }
+    }
+
+    .link-set {
+        &:not(:last-of-type) {
+            margin-bottom: var(--gutter-large);
+        }
+    }
+
+    .link-container {
+        a {
+            display: block;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        &:not(:last-child) {
+            margin-bottom: var(--gutter-small-2);
+        }
+    }
+
+    .images-container {
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 2rem;
+
+        & > * {
+            max-height: 30rem;
+        }
+
+        &:not(:last-of-type) {
+            margin-bottom: 2rem;
+        }
+    }
+`
 
 export const query = graphql`
   query($name: String) {
@@ -23,7 +68,40 @@ export const query = graphql`
                 }
             }
         }
-  	}
+      }
+      speaking: allAirtable(
+        filter: {
+            table: { eq: "Speaking" }
+            data: { tags: { elemMatch: { data: { name: { eq: $name } } } } }
+        }
+        sort: { fields: [data___date], order: DESC }
+      ) {
+        nodes {
+            table
+            data {
+                title
+                date
+                link
+            }
+        }
+      }
+    writing: allAirtable(
+      filter: {
+        table: { eq: "Writing" }
+        data: { tags: { elemMatch: { data: { name: { eq: $name } } } } }
+      }
+      sort: { fields: [data___date], order: DESC }
+    ) {
+      nodes {
+        table
+        data {
+          title
+          slug
+          date
+        }
+      }
+    }
+
     photography: allAirtable(
       filter: {
         table: { eq: "Photography" }
@@ -31,11 +109,10 @@ export const query = graphql`
       }
     ) {
       nodes {
+        table
         data {
-          title
           link
           date
-          featured
           attachments {
             localFiles {
               childImageSharp {
@@ -48,156 +125,129 @@ export const query = graphql`
         }
       }
     }
-    speaking: allAirtable(
-      filter: {
-        table: { eq: "Speaking" }
-        data: { tags: { elemMatch: { data: { name: { eq: $name } } } } }
-      }
-      sort: { fields: [data___date], order: DESC }
-    ) {
-      nodes {
-        data {
-          title
-          date
-          notes {
-            childMarkdownRemark {
-              html
-            }
-          }
-          link
-          slides
-          organisation {
-            data {
-              title
-            }
-          }
-          tags {
-            data {
-              name
-            }
-          }
-        }
-      }
-    }
-    writing: allAirtable(
-      filter: {
-        table: { eq: "Writing" }
-        data: { tags: { elemMatch: { data: { name: { eq: $name } } } } }
-      }
-      sort: { fields: [data___date], order: DESC }
-    ) {
-      nodes {
-        data {
-          title
-          slug
-          featured
-          date
-          text_en {
-            childMarkdownRemark {
-              excerpt
-            }
-          }
-          organisation {
-            data {
-              title
-            }
-          }
-          tags {
-            data {
-              name
-            }
-          }
-        }
-      }
-    }
   }
 `;
 
 const TagTemplate = ({ location, data }: any) => {
-    const about = data.tag.data ? data.tag.data.about : null
-    const tagImage = data.tag.data ? data.tag.data.image.localFiles.map((a: any) => {
+
+    const about = data.tag && data.tag.data ? data.tag.data.about : null
+    const tagImage = ( data.tag && data.tag.data && data.tag.data.image ) ? data.tag.data.image.localFiles.map((a: any) => {
         return a.childImageSharp.fluid;
     })[0] : null
-    console.log(tagImage)
-    let speakings;
+    let speakings: any[] = [];
     if (data.speaking.nodes.length) {
         speakings = data.speaking.nodes.map((t: any) => ({
+            table: t.table,
             title: t.data.title,
             date: t.data.date,
-            notes: t.data.notes ? t.data.notes.childMarkdownRemark.html : null,
             link: t.data.link,
-            slides: t.data.slides,
-            organisation: (t.data.organisation
-                ? t.data.organisation.map((o: any) => o.data.title)
-                : [])[0],
-            tags: t.data.tags ? t.data.tags.map((t: any) => t.data.name) : null,
         }));
     }
 
-    let photos;
+    let writings = [];
+    if (data.writing.nodes.length) {
+        writings = data.writing.nodes.map((w: any) => ({
+            table: w.table,
+            title: w.data.title,
+            slug: w.data.slug,
+            date: w.data.date,
+        }))
+    }
 
+    let photos = [];
     if (data.photography.nodes.length) {
         photos = data.photography.nodes.map((p: any) => ({
+            table: p.table,
             date: p.data.date,
-            title: p.data.title,
             link: p.data.link,
             attachments: p.data.attachments.localFiles.map((a: any) => {
-                return a.childImageSharp.fluid.src;
-            }),
+                return a.childImageSharp.fluid;
+            }).slice(0, 3),
         }));
     }
 
-    let writings;
+    console.log("Writings:", writings)
 
-    if (data.writing.nodes.length) {
-        writings = filterByFeatured(
-            data.writing.nodes.map((w: any) => ({
-                title: w.data.title,
-                slug: w.data.slug,
-                featured: w.data.featured,
-                date: w.data.date,
-                excerpt: w.data.text_en
-                    ? w.data.text_en.childMarkdownRemark.excerpt
-                    : null,
-                organisation: (w.data.organisation
-                    ? w.data.organisation.map((o: any) => o.data.title)
-                    : [])[0],
-                tags: w.data.tags ? w.data.tags.map((t: any) => t.data.name) : null,
-            }))
-        );
+    const items = [...writings, ...photos, ...speakings]
+
+    const years = [...new Set( // remove duplicate items
+        items
+            .map((i: any) => (new Date(i.date)).getFullYear())
+            .sort((a, b) => b - a) // sort the dates in descending order.
+    )]
+
+    const structuredItemsToRender: Entry[] = []
+
+    interface Entry {
+        date: any;
+        entries: any[];
     }
 
-    console.log(writings, photos, speakings);
+    years.map((year: any) => {
+        const entry: Entry = {
+            date: year,
+            entries: []
+        }
+        items.map((i: any) => {
+            if ((new Date(i.date)).getFullYear() == year) {
+                entry.entries.push(i)
+            }
+        })
+        structuredItemsToRender.push(entry)
+    })
+
+    console.log(structuredItemsToRender)
 
     return (
         <IndexLayout>
-            <div className="row">
-                <section>
-                    <h1>{deHyphenate(location.pathname.split('/')[1])}</h1>
-                    <div className="container--small">
-                        { tagImage ? <Img fluid={tagImage} style={{maxWidth: '300px'}} /> : null }
-                        {about ? <p>{about}</p> : null}
-                        <section>
-                            {speakings ? <h2>Speaking</h2> : null}
-                            {speakings
-                                ? speakings.map((talk: TalkProps, i: number) => (
-                                    <Talk key={i + talk.title} {...talk} />
-                                ))
-                                : null}
-                            {photos ? <h2>Photography</h2> : null}
-                            {photos
-                                ? photos.map((p: PhotosProps) => <Photos {...p} />)
-                                : null}
-                            {writings ? <h2>Writings</h2> : null}
-                            {writings
-                                ? writings.map((w: PostBannerProps, i) => (
-                                    <PostBanner key={i + w.title} {...w} />
-                                ))
-                                : null}
-                        </section>
-                    </div>
-                </section>
-            </div>
+            <StyledTag>
+                <div className="row">
+                    <section>
+                        <h1>{deHyphenate(location.pathname.split('/')[1])}</h1>
+                        <div className="container--small">
+                            <div className="banner">
+                                {tagImage ? <Img fluid={tagImage} className="img" /> : null}
+                                {about ? <p>{about}</p> : null}
+                            </div>
+                            {
+                                structuredItemsToRender.map((i: any) => <section>
+                                    <h2>{i.date}</h2>
+                                    <div className="link-set">
+                                        {
+                                            i.entries.map((entry: any) => {
+                                                return entry.table === 'Speaking' ? <div className="link-container">
+                                                    <a href={entry.link} target="_blank">Speaking: {entry.title}</a>
+                                                </div> : null
+                                            })
+                                        }
+                                    </div>
+                                    <div className="link-set">
+                                        {
+                                            i.entries.map((entry: any) => {
+                                                return entry.table === 'Writing' ? <div className="link-container">
+                                                    <a href={entry.link} target="_blank">Writing: {entry.title}</a>
+                                                </div> : null
+                                            })
+                                        }
+                                    </div>
+                                    <div className="link-set">
+                                        {
+                                            i.entries.map((entry: any) => {
+                                                return entry.table === 'Photography' ? <div className="images-container">
+                                                    {
+                                                        entry.attachments.map((e: any, i: any) => 
+                                                            <Img key={i} fluid={e} />)
+                                                    }
+                                                </div> : null
+                                            })
+                                        }
+                                    </div>
+                                </section>)
+                            }
+                        </div>
+                    </section>
+                </div>
+            </StyledTag>
         </IndexLayout>
     );
 };
