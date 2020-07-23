@@ -41,56 +41,49 @@ const StyledPostBanner = styled.article`
     }
   }
 
-  .org {
-    /* margin: var(--gutter-small-3) 0; */
-  }
-
-  .tags-container {
-  }
-
   &:not(:last-of-type) {
     margin-bottom: var(--gutter-large-1);
   }
 `;
 
 export interface PostBannerProps {
-  date: string;
-  title: string;
-  slug: string;
-  excerpt: string;
-  organisation: string;
-  tags?: string[];
+    date: string;
+    title: string;
+    slug: string;
+    excerpt: string;
+    organisation: string;
+    tags: string[];
 }
 
 const PostBanner = ({
-  date,
-  title,
-  slug,
-  excerpt,
-  organisation,
-  tags,
+    date,
+    title,
+    slug,
+    excerpt,
+    organisation,
+    tags,
 }: PostBannerProps) => (
-  <StyledPostBanner>
-    <Link to={`/writing/${slug}`} className="wrapper-link">
-      <div className="img"></div>
-      <div className="text">
-        <h3>{title}</h3>
-        <p>{date}</p>
-        <div>
-          <div className="org">{organisation}</div>
-          <div className="tags-container">
-            {tags
-              ? tags.map((tag: string, i) => <Tag text={tag} key={i + tag} />)
-              : null}
-          </div>
-        </div>
-        <p>{excerpt}</p>
-        <Link to={`/writing/${slug}`} className="btn--text">
-          Read more <span>&nbsp;&rarr;</span>
-        </Link>
-      </div>
-    </Link>
-  </StyledPostBanner>
-);
+        <StyledPostBanner>
+            <Link to={`/writing/${slug}`} className="wrapper-link">
+                <div className="img"></div>
+                <div className="text">
+                    <h3>{title}</h3>
+                    <p>{date}</p>
+                    <div className="name-tags">
+                        <div className="org">{organisation}</div>
+                        <div>
+                            {tags.map((tag: string, i) => (
+                                <Tag text={tag} key={i + tag} />
+                            ))}
+                        </div>
+                    </div>
+                    <p>{excerpt}</p>
+                    <Link to={`/writing/${slug}`} className="btn--text">
+                        Read more <span>&nbsp;&rarr;</span>
+                    </Link>
+                </div>
+            </Link>
+        </StyledPostBanner>
+    );
 
 export default PostBanner;

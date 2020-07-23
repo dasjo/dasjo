@@ -198,6 +198,18 @@ const BaseStyles = () => (
         }
       }
 
+      .name-tags {
+            display: flex;
+            justify-content: space-between;
+
+            @media(max-width: ${breakpoints.large}) {
+                flex-direction: column;
+                .org {
+                    margin-bottom: var(--gutter-small-2);
+                }
+            }
+        }
+
       /* ---------------------------------------- */
       /* ----- Headlines & Paragraphs ----- */
       /* ---------------------------------------- */

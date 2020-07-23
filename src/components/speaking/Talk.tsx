@@ -1,23 +1,6 @@
 import React from 'react';
 
-import styled from '@emotion/styled';
 import Tag from '../Tag';
-import { breakpoints } from '../../styles/variables';
-
-const StyledTalk = styled.div`
-  .name-tags {
-    display: flex;
-    justify-content: space-between;
-
-    @media (max-width: ${breakpoints.large}) {
-      flex-direction: column;
-
-      .org {
-        margin-bottom: var(--gutter-small-2);
-      }
-    }
-  }
-`;
 
 export interface TalkProps {
   date: string;
@@ -37,7 +20,7 @@ const Talk = ({
   organisation,
   tags,
 }: TalkProps) => (
-  <StyledTalk className="card">
+  <div className="card">
     <div>
       <p>{date}</p>
       <h3>{title}</h3>
@@ -54,7 +37,7 @@ const Talk = ({
     <a href={slides} className="btn--text" target="_blank">
       Slides <span>&nbsp;&rarr;</span>
     </a>
-  </StyledTalk>
+  </div>
 );
 
 export default Talk;
