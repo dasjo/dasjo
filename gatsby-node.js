@@ -23,6 +23,14 @@ exports.createPages = async ({ graphql, reporter, actions }) => {
           }
         }
       }
+
+      albums: allAirtable(filter: {table: {eq: "Photography"}}) {
+        nodes {
+            data {
+                slug
+            }
+        }
+      }
     }
   `);
 
@@ -32,6 +40,7 @@ exports.createPages = async ({ graphql, reporter, actions }) => {
 
   const writings = result.data.writings.nodes;
   const tags = result.data.tags.nodes;
+  const albums = result.data.albums.nodes;
 
   writings.forEach((writing) => {
     createPage({
@@ -52,4 +61,14 @@ exports.createPages = async ({ graphql, reporter, actions }) => {
       },
     });
   });
+
+  albums.forEach((album) => {
+    createPage({
+      path: `/photography/${album.data.slug}`,
+      component: require.resolve('./src/templates/Album.tsx'),
+      context: {
+        slug: album.data.slug,
+      },
+    });
+  });  
 };

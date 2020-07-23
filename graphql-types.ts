@@ -4005,7 +4005,17 @@ export type Unnamed_8_QueryVariables = Exact<{
 }>;
 
 
-export type Unnamed_8_Query = { airtable?: Maybe<(
+export type Unnamed_8_Query = { airtable?: Maybe<{ data?: Maybe<(
+      Pick<AirtableData, 'title' | 'link' | 'date'>
+      & { attachments?: Maybe<{ localFiles?: Maybe<Array<Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluidFragment> }> }>>> }> }
+    )> }> };
+
+export type Unnamed_9_QueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type Unnamed_9_Query = { airtable?: Maybe<(
     Pick<Airtable, 'table'>
     & { data?: Maybe<(
       Pick<AirtableData, 'slug' | 'title'>
@@ -4013,12 +4023,12 @@ export type Unnamed_8_Query = { airtable?: Maybe<(
     )> }
   )> };
 
-export type Unnamed_9_QueryVariables = Exact<{
+export type Unnamed_10_QueryVariables = Exact<{
   name?: Maybe<Scalars['String']>;
 }>;
 
 
-export type Unnamed_9_Query = { tag?: Maybe<{ data?: Maybe<(
+export type Unnamed_10_Query = { tag?: Maybe<{ data?: Maybe<(
       Pick<AirtableData, 'about'>
       & { image?: Maybe<{ localFiles?: Maybe<Array<Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluidFragment> }> }>>> }> }
     )> }>, speaking: { nodes: Array<(
@@ -4030,7 +4040,7 @@ export type Unnamed_9_Query = { tag?: Maybe<{ data?: Maybe<(
     )> }, photography: { nodes: Array<(
       Pick<Airtable, 'table'>
       & { data?: Maybe<(
-        Pick<AirtableData, 'link' | 'date'>
+        Pick<AirtableData, 'link' | 'date' | 'slug'>
         & { attachments?: Maybe<{ localFiles?: Maybe<Array<Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluidFragment> }> }>>> }> }
       )> }
     )> } };

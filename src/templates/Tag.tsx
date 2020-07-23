@@ -1,7 +1,7 @@
 import React from 'react';
 
 import IndexLayout from '../layouts';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import { deHyphenate } from '../utils/helpers';
 import Img from 'gatsby-image'
 
@@ -113,6 +113,7 @@ export const query = graphql`
         data {
           link
           date
+          slug
           attachments {
             localFiles {
               childImageSharp {
@@ -160,6 +161,7 @@ const TagTemplate = ({ location, data }: any) => {
             table: p.table,
             date: p.data.date,
             link: p.data.link,
+            slug: p.data.slug,
             attachments: p.data.attachments.localFiles.map((a: any) => {
                 return a.childImageSharp.fluid;
             }).slice(0, 3),
@@ -233,12 +235,12 @@ const TagTemplate = ({ location, data }: any) => {
                                     <div className="link-set">
                                         {
                                             i.entries.map((entry: any) => {
-                                                return entry.table === 'Photography' ? <div className="images-container">
+                                                return entry.table === 'Photography' ? <Link to={`/photography/${entry.slug}`} className="images-container">
                                                     {
                                                         entry.attachments.map((e: any, i: any) => 
                                                             <Img key={i} fluid={e} />)
                                                     }
-                                                </div> : null
+                                                </Link> : null
                                             })
                                         }
                                     </div>
