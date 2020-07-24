@@ -66,14 +66,15 @@ const WritingPage = ({ data }: any) => {
       organisation: (w.data.organisation
         ? w.data.organisation.map((o: any) => o.data.title)
         : [])[0],
-    //   attachments: w.data.attachments && w.data.attachments.localFiles.map((a: any) => {
-    //   return a.childImageSharp.fluid;
-    // }).slice(0, 3),
+      teaser:
+        w.data.attachments &&
+        w.data.attachments.localFiles &&
+        w.data.attachments.localFiles.map((a: any) => {
+          return a.childImageSharp.fluid;
+        })[0],
       tags: w.data.tags ? w.data.tags.map((t: any) => t.data.name) : null,
     }))
   );
-
-  console.log(writings);
   return (
     <IndexLayout>
       <StyledWritingPage>

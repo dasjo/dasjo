@@ -71,8 +71,8 @@ export type AirtableData = {
   featured?: Maybe<Scalars['Boolean']>;
   slug?: Maybe<Scalars['String']>;
   text_en?: Maybe<AirtableField>;
-  attachments?: Maybe<AirtableField>;
   files?: Maybe<Array<Maybe<AirtableDataFiles>>>;
+  attachments?: Maybe<AirtableField>;
   text_de?: Maybe<Scalars['String']>;
   highlights?: Maybe<Array<Maybe<Scalars['String']>>>;
   slides?: Maybe<Scalars['String']>;
@@ -89,8 +89,8 @@ export type AirtableData = {
   mentions?: Maybe<Array<Maybe<Scalars['String']>>>;
   writing?: Maybe<Array<Maybe<Scalars['String']>>>;
   values___principles?: Maybe<Array<Maybe<Scalars['String']>>>;
-  volunteering?: Maybe<Array<Maybe<Scalars['String']>>>;
   about?: Maybe<Scalars['String']>;
+  volunteering?: Maybe<Array<Maybe<Scalars['String']>>>;
   image?: Maybe<AirtableField>;
   from?: Maybe<Scalars['Date']>;
   to?: Maybe<Scalars['Date']>;
@@ -192,8 +192,8 @@ export type AirtableDataFilterInput = {
   featured?: Maybe<BooleanQueryOperatorInput>;
   slug?: Maybe<StringQueryOperatorInput>;
   text_en?: Maybe<AirtableFieldFilterInput>;
-  attachments?: Maybe<AirtableFieldFilterInput>;
   files?: Maybe<AirtableDataFilesFilterListInput>;
+  attachments?: Maybe<AirtableFieldFilterInput>;
   text_de?: Maybe<StringQueryOperatorInput>;
   highlights?: Maybe<StringQueryOperatorInput>;
   slides?: Maybe<StringQueryOperatorInput>;
@@ -210,8 +210,8 @@ export type AirtableDataFilterInput = {
   mentions?: Maybe<StringQueryOperatorInput>;
   writing?: Maybe<StringQueryOperatorInput>;
   values___principles?: Maybe<StringQueryOperatorInput>;
-  volunteering?: Maybe<StringQueryOperatorInput>;
   about?: Maybe<StringQueryOperatorInput>;
+  volunteering?: Maybe<StringQueryOperatorInput>;
   image?: Maybe<AirtableFieldFilterInput>;
   from?: Maybe<DateQueryOperatorInput>;
   to?: Maybe<DateQueryOperatorInput>;
@@ -700,8 +700,8 @@ export type AirtableFieldsEnum =
   | 'data___tags___data___mentions'
   | 'data___tags___data___writing'
   | 'data___tags___data___values___principles'
-  | 'data___tags___data___volunteering'
   | 'data___tags___data___about'
+  | 'data___tags___data___volunteering'
   | 'data___tags___data___from'
   | 'data___tags___data___to'
   | 'data___tags___data___roles'
@@ -753,8 +753,8 @@ export type AirtableFieldsEnum =
   | 'data___organisation___data___mentions'
   | 'data___organisation___data___writing'
   | 'data___organisation___data___values___principles'
-  | 'data___organisation___data___volunteering'
   | 'data___organisation___data___about'
+  | 'data___organisation___data___volunteering'
   | 'data___organisation___data___from'
   | 'data___organisation___data___to'
   | 'data___organisation___data___roles'
@@ -824,6 +824,12 @@ export type AirtableFieldsEnum =
   | 'data___text_en___childMarkdownRemark___timeToRead'
   | 'data___text_en___childMarkdownRemark___tableOfContents'
   | 'data___text_en___childMarkdownRemark___children'
+  | 'data___files'
+  | 'data___files___id'
+  | 'data___files___url'
+  | 'data___files___filename'
+  | 'data___files___size'
+  | 'data___files___type'
   | 'data___attachments___id'
   | 'data___attachments___parent___id'
   | 'data___attachments___parent___children'
@@ -886,12 +892,6 @@ export type AirtableFieldsEnum =
   | 'data___attachments___childMarkdownRemark___timeToRead'
   | 'data___attachments___childMarkdownRemark___tableOfContents'
   | 'data___attachments___childMarkdownRemark___children'
-  | 'data___files'
-  | 'data___files___id'
-  | 'data___files___url'
-  | 'data___files___filename'
-  | 'data___files___size'
-  | 'data___files___type'
   | 'data___text_de'
   | 'data___highlights'
   | 'data___slides'
@@ -1008,8 +1008,8 @@ export type AirtableFieldsEnum =
   | 'data___person___data___mentions'
   | 'data___person___data___writing'
   | 'data___person___data___values___principles'
-  | 'data___person___data___volunteering'
   | 'data___person___data___about'
+  | 'data___person___data___volunteering'
   | 'data___person___data___from'
   | 'data___person___data___to'
   | 'data___person___data___roles'
@@ -1019,8 +1019,8 @@ export type AirtableFieldsEnum =
   | 'data___mentions'
   | 'data___writing'
   | 'data___values___principles'
-  | 'data___volunteering'
   | 'data___about'
+  | 'data___volunteering'
   | 'data___image___id'
   | 'data___image___parent___id'
   | 'data___image___parent___children'
@@ -1130,8 +1130,8 @@ export type AirtableFieldsEnum =
   | 'data___roles___data___mentions'
   | 'data___roles___data___writing'
   | 'data___roles___data___values___principles'
-  | 'data___roles___data___volunteering'
   | 'data___roles___data___about'
+  | 'data___roles___data___volunteering'
   | 'data___roles___data___from'
   | 'data___roles___data___to'
   | 'data___roles___data___roles'
@@ -1181,8 +1181,8 @@ export type AirtableFieldsEnum =
   | 'data___location___data___mentions'
   | 'data___location___data___writing'
   | 'data___location___data___values___principles'
-  | 'data___location___data___volunteering'
   | 'data___location___data___about'
+  | 'data___location___data___volunteering'
   | 'data___location___data___from'
   | 'data___location___data___to'
   | 'data___location___data___roles'

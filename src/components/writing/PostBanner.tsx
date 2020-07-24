@@ -5,6 +5,7 @@ import styled from '@emotion/styled';
 import PostBannerImage from '../../resources/post-banner.jpg';
 import { breakpoints } from '../../styles/variables';
 import { Link } from 'gatsby';
+import Img from 'gatsby-image';
 
 const StyledPostBanner = styled.article`
   .wrapper-link {
@@ -28,6 +29,16 @@ const StyledPostBanner = styled.article`
     background-position: center;
   }
 
+  .g-image {
+    min-height: 22rem;
+    min-width: 22rem;
+
+    .gatsby-image-wrapper {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
   .text {
     flex: 1;
     padding: var(--gutter-small-1) var(--gutter-small);
@@ -47,43 +58,50 @@ const StyledPostBanner = styled.article`
 `;
 
 export interface PostBannerProps {
-    date: string;
-    title: string;
-    slug: string;
-    excerpt: string;
-    organisation: string;
-    tags: string[];
+  date: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  organisation: string;
+  tags: string[];
+  teaser?: any;
 }
 
 const PostBanner = ({
-    date,
-    title,
-    slug,
-    excerpt,
-    organisation,
-    tags,
+  date,
+  title,
+  slug,
+  excerpt,
+  organisation,
+  tags,
+  teaser,
 }: PostBannerProps) => (
-        <StyledPostBanner>
-            <Link to={`/writing/${slug}`} className="wrapper-link">
-                <div className="img"></div>
-                <div className="text">
-                    <h3>{title}</h3>
-                    <p>{date}</p>
-                    <div className="name-tags">
-                        <div className="org">{organisation}</div>
-                        <div>
-                            {tags.map((tag: string, i) => (
-                                <Tag text={tag} key={i + tag} />
-                            ))}
-                        </div>
-                    </div>
-                    <p>{excerpt}</p>
-                    <Link to={`/writing/${slug}`} className="btn--text">
-                        Read more <span>&nbsp;&rarr;</span>
-                    </Link>
-                </div>
-            </Link>
-        </StyledPostBanner>
-    );
-
+  <StyledPostBanner>
+    <Link to={`/writing/${slug}`} className="wrapper-link">
+      {teaser ? (
+        <div className="g-image">
+          <Img fluid={teaser} />
+        </div>
+      ) : (
+        <div className="img"></div>
+      )}
+      <div className="text">
+        <h3>{title}</h3>
+        <p>{date}</p>
+        <div className="name-tags">
+          <div className="org">{organisation}</div>
+          <div>
+            {tags.map((tag: string, i) => (
+              <Tag text={tag} key={i + tag} />
+            ))}
+          </div>
+        </div>
+        <p>{excerpt}</p>
+        <Link to={`/writing/${slug}`} className="btn--text">
+          Read more <span>&nbsp;&rarr;</span>
+        </Link>
+      </div>
+    </Link>
+  </StyledPostBanner>
+);
 export default PostBanner;
