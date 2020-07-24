@@ -87,7 +87,14 @@ const PostBanner = ({
       )}
       <div className="text">
         <h3>{title}</h3>
-        <p>{date}</p>
+        <p>
+          {new Date(date).toLocaleDateString('en-GB', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })}
+        </p>
         <div className="name-tags">
           <div className="org">{organisation}</div>
           <div>

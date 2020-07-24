@@ -22,7 +22,14 @@ const Talk = ({
 }: TalkProps) => (
   <div className="card">
     <div>
-      <p>{date}</p>
+      <p style={{ marginBottom: '-1rem' }}>
+        {new Date(date).toLocaleDateString('en-GB', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })}
+      </p>
       <h3>{title}</h3>
     </div>
     <div className="name-tags">
