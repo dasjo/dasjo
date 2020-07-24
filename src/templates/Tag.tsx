@@ -9,7 +9,11 @@ import styled from '@emotion/styled';
 
 const StyledTag = styled.div`
   section {
-    padding: var(--gutter-large) 0;
+    padding: var(--gutter-large) 0 0;
+
+    &:last-of-type {
+      padding-bottom: var(--gutter-large);
+    }
   }
 
   .banner {
@@ -19,11 +23,11 @@ const StyledTag = styled.div`
     }
   }
 
-  .link-set {
+  /* .link-set {
     &:not(:last-of-type) {
       margin-bottom: var(--gutter-large);
     }
-  }
+  } */
 
   .link-container {
     a {
@@ -42,6 +46,7 @@ const StyledTag = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
+    margin-top: var(--gutter-large);
 
     .g-image {
       max-height: 136px;
@@ -235,8 +240,6 @@ const TagTemplate = ({ location, data }: any) => {
                         </div>
                       ) : null;
                     })}
-                  </div>
-                  <div className="link-set">
                     {i.entries.map((entry: any) => {
                       return entry.table === 'Writing' ? (
                         <div className="link-container">
@@ -247,7 +250,7 @@ const TagTemplate = ({ location, data }: any) => {
                       ) : null;
                     })}
                   </div>
-                  <div className="link-set images-container">
+                  <div className="images-container">
                     {i.entries.map((entry: any) => {
                       return entry.table === 'Photography' ? (
                         <Link to={`/photography/${entry.slug}`}>
