@@ -31,12 +31,15 @@ const StyledPhotos = styled.section`
       width: 100%;
     }
   }
+
+  .btn--text {
+    margin-top: var(--gutter-small-3);
+  }
 `;
 
-const Photos = ({ date, title, link, attachments }: any) => (
+const Photos = ({ title, link, attachments }: any) => (
   <>
     <StyledPhotos>
-      <p>{new Date(date).getFullYear()}</p>
       <div className="photos">
         {attachments.map((img: any) => (
           <div className="g-image">
@@ -45,7 +48,9 @@ const Photos = ({ date, title, link, attachments }: any) => (
         ))}
       </div>
       <h3>{title}</h3>
-      {link}
+      <a href={link} target="_blank" className="btn--text">
+        View Full Album<span>&nbsp;&rarr;</span>
+      </a>
     </StyledPhotos>
   </>
 );

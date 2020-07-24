@@ -2,6 +2,19 @@ import React from 'react';
 import IndexLayout from '../layouts';
 import { graphql } from 'gatsby';
 import Photos from '../components/photography/Photos';
+import styled from '@emotion/styled';
+
+const StyledPhotoGraphyPage = styled.div`
+  .sections {
+    section {
+      padding: 0 0 var(--gutter-huge);
+
+      &:last-of-type {
+        padding-bottom: 0;
+      }
+    }
+  }
+`;
 
 export const photographyPageQuery = graphql`
   query {
@@ -37,24 +50,54 @@ const PhotographyPage = ({ data }: any) => {
     }),
   }));
 
-  let years = data.allAirtable.nodes.map((p: any) =>
-    new Date(p.data.date).getFullYear()
-  );
+  const items = [...photos];
 
-  years = [...new Set(years)]; // Remove Duplicate items
+  const years = [
+    ...new Set( // remove duplicate items
+      items
+        .map((i: any) => new Date(i.date).getFullYear())
+        .sort((a, b) => b - a) // sort the dates in descending order.
+    ),
+  ];
+  const structuredItemsToRender: Entry[] = [];
+
+  interface Entry {
+    date: any;
+    entries: any[];
+  }
+
+  years.map((year: any) => {
+    const entry: Entry = {
+      date: year,
+      entries: [],
+    };
+    items.map((i: any) => {
+      if (new Date(i.date).getFullYear() == year) {
+        entry.entries.push(i);
+      }
+    });
+    structuredItemsToRender.push(entry);
+  });
+
+  console.log(structuredItemsToRender);
 
   return (
     <IndexLayout>
-      <div className="row">
-        <section>
-          <h1>Photography</h1>
-          <div>
-            {photos.map((p: any) => (
-              <Photos {...p} />
+      <StyledPhotoGraphyPage>
+        <div className="row">
+          <section>
+            <h1>Photography</h1>
+            {structuredItemsToRender.map((i: any) => (
+              <section className="sections">
+                <h2>{i.date}</h2>
+                {i.entries.map((entry: any, i: any) => {
+                  return <Photos {...entry} key={i} />;
+                })}
+              </section>
             ))}
-          </div>
-        </section>
-      </div>
+          </section>
+        </div>
+      </StyledPhotoGraphyPage>
     </IndexLayout>
   );
 };
