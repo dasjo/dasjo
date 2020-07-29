@@ -6,7 +6,7 @@ import { breakpoints } from '../../styles/variables';
 import Img from 'gatsby-image';
 
 const StyledHeader = styled.header`
-  padding: var(--gutter-huge) 0 var(--gutter-huge);
+  padding: var(--gutter-large-1) 0 var(--gutter-large-1);
   display: flex;
   
   @media(min-width: calc(${breakpoints.large0} + 1px)) {
@@ -26,6 +26,10 @@ const StyledHeader = styled.header`
     @media(max-width: ${breakpoints.large0}) {
       max-width: var(--container-small-0);
     }
+  }
+
+  h1 {
+    margin-bottom: var(--gutter-small);
   }
 
   h1 span {

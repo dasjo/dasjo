@@ -123,7 +123,7 @@ const StyledNav = styled.nav`
       top: 100%;
       height: calc(100vh - 100%);
       width: 100vw;
-      margin-top: var(--gutter-large-1);
+      padding-top: var(--gutter-large-1);
       flex-direction: column;
       align-items: center;
       background: var(--white);

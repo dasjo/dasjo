@@ -5,6 +5,10 @@ import Tag from '../components/Tag';
 import styled from '@emotion/styled';
 
 const StyledTagsPage = styled.div`
+  h1 {
+      margin-bottom: var(--gutter-small);
+  }
+
   .container--small {
     display: flex;
     flex-wrap: wrap;

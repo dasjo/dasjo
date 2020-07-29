@@ -8,7 +8,11 @@ import styled from '@emotion/styled';
 import Tag from '../components/Tag';
 
 const StyledAlbumTemplate = styled.article`
-    padding: var(--gutter-huge) 0;
+    padding: var(--gutter-large-1) 0;
+
+    h1 {
+        margin-bottom: var(--gutter-small);
+    }
 
     .date {
         margin-bottom: var(--gutter-small-3);

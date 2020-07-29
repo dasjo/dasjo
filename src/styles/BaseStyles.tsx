@@ -45,11 +45,9 @@ const BaseStyles = () => (
         --container-small: 800px;
         --container-small-0: 650px;
 
-        --gutter-huge: 9rem;
-        --gutter-huge-1: 16rem;
-        --gutter-large: 6rem;
-        --gutter-large-1: 8rem;
-        --gutter-medium: 5rem;
+        --gutter-large: 5rem;
+        --gutter-large-1: 6rem;
+        --gutter-medium: 4.5rem;
         --gutter-medium-1: 4rem;
         --gutter-small: 3rem;
         --gutter-small-1: 2rem;
@@ -115,7 +113,11 @@ const BaseStyles = () => (
       }
 
       section {
-        padding: var(--gutter-huge) 0;
+        padding: var(--gutter-large-1) 0;
+
+        @media(max-width: ${breakpoints.large}) {
+            padding: var(--gutter-medium) 0;
+        }
       }
 
       .container--small {
@@ -221,7 +223,6 @@ const BaseStyles = () => (
       }
 
       h1 {
-        margin-bottom: var(--gutter-small);
         font-size: var(--font-size-large);
 
         @media (max-width: ${breakpoints.large}) {

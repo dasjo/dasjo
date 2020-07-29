@@ -7,7 +7,7 @@ import styled from '@emotion/styled';
 const StyledPhotoGraphyPage = styled.div`
   .sections {
     section {
-      padding: 0 0 var(--gutter-huge);
+      padding: 0 0 var(--gutter-large-1);
 
       &:last-of-type {
         padding-bottom: 0;

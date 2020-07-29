@@ -8,7 +8,7 @@ import styled from '@emotion/styled';
 import { breakpoints } from '../styles/variables';
 
 const StyledPostTemplate = styled.article`
-  padding: var(--gutter-huge) 0;
+  padding: var(--gutter-large-1) 0;
 
   h1 {
     font-size: var(--font-size-medium-2);
