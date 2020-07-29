@@ -8,7 +8,7 @@ import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 
 const StyledPostBanner = styled.article`
-  .wrapper-link {
+  .wrapper {
     display: flex;
     box-shadow: var(--shadow-light);
     text-decoration: none;
@@ -77,16 +77,16 @@ const PostBanner = ({
   teaser,
 }: PostBannerProps) => (
   <StyledPostBanner>
-    <Link to={`/writing/${slug}`} className="wrapper-link">
+    <div className="wrapper">
       {teaser ? (
-        <div className="g-image">
+        <Link to={`/writing/${slug}`} className="g-image">
           <Img fluid={teaser} />
-        </div>
+        </Link>
       ) : (
         <div className="img"></div>
       )}
       <div className="text">
-        <h3>{title}</h3>
+        <Link to={`/writing/${slug}`}><h3>{title}</h3></Link>
         <p>
           {new Date(date).toLocaleDateString('en-GB', {
             weekday: 'long',
@@ -108,7 +108,7 @@ const PostBanner = ({
           Read more <span>&nbsp;&rarr;</span>
         </Link>
       </div>
-    </Link>
+    </div>
   </StyledPostBanner>
 );
 export default PostBanner;
