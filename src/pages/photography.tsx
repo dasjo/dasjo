@@ -25,6 +25,7 @@ export const photographyPageQuery = graphql`
           link
           date
           featured
+          slug
           attachments {
             localFiles {
               childImageSharp {
@@ -44,10 +45,10 @@ const PhotographyPage = ({ data }: any) => {
   const photos = data.allAirtable.nodes.map((p: any) => ({
     date: p.data.date,
     title: p.data.title,
-    link: p.data.link,
-    attachments: p.data.attachments.localFiles.map((a: any) => {
+    slug: p.data.slug,
+    image: p.data.attachments.localFiles.map((a: any) => {
       return a.childImageSharp.fluid;
-    }),
+    })[0],
   }));
 
   const items = [...photos];

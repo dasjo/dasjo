@@ -23,12 +23,6 @@ const StyledTag = styled.div`
     }
   }
 
-  /* .link-set {
-    &:not(:last-of-type) {
-      margin-bottom: var(--gutter-large);
-    }
-  } */
-
   .link-container {
     a {
       display: block;

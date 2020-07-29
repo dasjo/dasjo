@@ -5,6 +5,7 @@ import { graphql } from 'gatsby';
 import Img from 'gatsby-image'
 
 import styled from '@emotion/styled';
+import Tag from '../components/Tag';
 
 const StyledAlbumTemplate = styled.article`
     padding: var(--gutter-huge) 0;
@@ -14,13 +15,17 @@ const StyledAlbumTemplate = styled.article`
     }
 
     .btn--text {
-        margin-bottom: var(--gutter-small);
+        margin: var(--gutter-small) 0;
     }
   
     .photos {
         display: grid;
         gap: 1rem;
         grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    }
+
+    .container--small {
+        margin-bottom: var(--gutter-small);
     }
 `;
 
@@ -31,6 +36,16 @@ export const query = graphql`
         title
           link
           date
+          organisation {
+            data {
+              title
+            }
+          }
+          tags {
+            data {
+              name
+            }
+          }
           attachments {
             localFiles {
               childImageSharp {
@@ -47,6 +62,12 @@ export const query = graphql`
 
 const AlbumTemplate = ({ data: { airtable: album } }: any) => {
   const attachments = album.data.attachments.localFiles.map((a: any) =>  a.childImageSharp.fluid)
+  const organisation = (album.data.organisation
+      ? album.data.organisation.map((o: any) => o.data.title)
+      : [])[0]
+const tags = album.data.tags ? album.data.tags.map((t: any) => t.data.name) : null
+
+console.log(organisation)
 
   return (
     <IndexLayout>
@@ -54,12 +75,20 @@ const AlbumTemplate = ({ data: { airtable: album } }: any) => {
         <StyledAlbumTemplate>
         <h1>{album.data.title}</h1>
         <p className="date">{(new Date(album.data.date)).toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
-        <a href={album.data.link} className="btn--text" target="_blank">View Full Album <span>&nbsp;&rarr;</span></a>
+        <div className="name-tags container--small">
+            <div className="org">{organisation}</div>
+            <div>
+                {tags.map((tag: string, i: any) => (
+                <Tag text={tag} key={i + tag} />
+                ))}
+            </div>
+        </div>
         <div className="photos">
             {
                 attachments.map((a: any, i: number) => <Img fluid={a} key={i}/>)
             }
         </div>
+        <a href={album.data.link} className="btn--text" target="_blank">View Full Album <span>&nbsp;&rarr;</span></a>
         </StyledAlbumTemplate>
       </div>
     </IndexLayout>
