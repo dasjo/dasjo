@@ -17,6 +17,9 @@ const StyledPostBanner = styled.article`
     @media (max-width: ${breakpoints.medium}) {
       flex-direction: column;
       max-width: 40rem;
+    }
+
+    @media(max-width: ${breakpoints.small}) {
       margin: 0 auto;
     }
   }

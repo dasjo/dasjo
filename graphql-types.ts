@@ -3466,11 +3466,25 @@ export type SitePageConnectionGroupArgs = {
 };
 
 export type SitePageContext = {
+  pageNumber?: Maybe<Scalars['Int']>;
+  humanPageNumber?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  numberOfPages?: Maybe<Scalars['Int']>;
+  previousPagePath?: Maybe<Scalars['String']>;
+  nextPagePath?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
 };
 
 export type SitePageContextFilterInput = {
+  pageNumber?: Maybe<IntQueryOperatorInput>;
+  humanPageNumber?: Maybe<IntQueryOperatorInput>;
+  skip?: Maybe<IntQueryOperatorInput>;
+  limit?: Maybe<IntQueryOperatorInput>;
+  numberOfPages?: Maybe<IntQueryOperatorInput>;
+  previousPagePath?: Maybe<StringQueryOperatorInput>;
+  nextPagePath?: Maybe<StringQueryOperatorInput>;
   slug?: Maybe<StringQueryOperatorInput>;
   name?: Maybe<StringQueryOperatorInput>;
 };
@@ -3574,6 +3588,13 @@ export type SitePageFieldsEnum =
   | 'internal___owner'
   | 'internal___type'
   | 'isCreatedByStatefulCreatePages'
+  | 'context___pageNumber'
+  | 'context___humanPageNumber'
+  | 'context___skip'
+  | 'context___limit'
+  | 'context___numberOfPages'
+  | 'context___previousPagePath'
+  | 'context___nextPagePath'
   | 'context___slug'
   | 'context___name'
   | 'pluginCreator___id'
@@ -4061,30 +4082,22 @@ export type Unnamed_6_QueryVariables = Exact<{ [key: string]: never; }>;
 
 export type Unnamed_6_Query = { allAirtable: { nodes: Array<{ data?: Maybe<Pick<AirtableData, 'name'>> }> } };
 
-export type Unnamed_7_QueryVariables = Exact<{ [key: string]: never; }>;
+export type Unnamed_7_QueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
 
 
-export type Unnamed_7_Query = { allAirtable: { nodes: Array<{ data?: Maybe<(
-        Pick<AirtableData, 'title' | 'slug' | 'featured' | 'date'>
-        & { text_en?: Maybe<{ childMarkdownRemark?: Maybe<Pick<MarkdownRemark, 'excerpt'>> }>, organisation?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>>, tags?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'name'>> }>>>, attachments?: Maybe<{ localFiles?: Maybe<Array<Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluidFragment> }> }>>> }> }
-      )> }> } };
+export type Unnamed_7_Query = { airtable?: Maybe<{ data?: Maybe<(
+      Pick<AirtableData, 'title' | 'link' | 'date'>
+      & { organisation?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>>, tags?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'name'>> }>>>, attachments?: Maybe<{ localFiles?: Maybe<Array<Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluidFragment> }> }>>> }> }
+    )> }> };
 
 export type Unnamed_8_QueryVariables = Exact<{
   slug: Scalars['String'];
 }>;
 
 
-export type Unnamed_8_Query = { airtable?: Maybe<{ data?: Maybe<(
-      Pick<AirtableData, 'title' | 'link' | 'date'>
-      & { organisation?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>>, tags?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'name'>> }>>>, attachments?: Maybe<{ localFiles?: Maybe<Array<Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluidFragment> }> }>>> }> }
-    )> }> };
-
-export type Unnamed_9_QueryVariables = Exact<{
-  slug: Scalars['String'];
-}>;
-
-
-export type Unnamed_9_Query = { airtable?: Maybe<(
+export type Unnamed_8_Query = { airtable?: Maybe<(
     Pick<Airtable, 'table'>
     & { data?: Maybe<(
       Pick<AirtableData, 'slug' | 'title' | 'link' | 'date'>
@@ -4092,12 +4105,12 @@ export type Unnamed_9_Query = { airtable?: Maybe<(
     )> }
   )> };
 
-export type Unnamed_10_QueryVariables = Exact<{
+export type Unnamed_9_QueryVariables = Exact<{
   name?: Maybe<Scalars['String']>;
 }>;
 
 
-export type Unnamed_10_Query = { tag?: Maybe<{ data?: Maybe<(
+export type Unnamed_9_Query = { tag?: Maybe<{ data?: Maybe<(
       Pick<AirtableData, 'about'>
       & { image?: Maybe<{ localFiles?: Maybe<Array<Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluidFragment> }> }>>> }> }
     )> }>, speaking: { nodes: Array<(
@@ -4114,15 +4127,26 @@ export type Unnamed_10_Query = { tag?: Maybe<{ data?: Maybe<(
       )> }
     )> } };
 
-export type Unnamed_11_QueryVariables = Exact<{
+export type Unnamed_10_QueryVariables = Exact<{
   slug: Scalars['String'];
 }>;
 
 
-export type Unnamed_11_Query = { airtable?: Maybe<{ data?: Maybe<(
+export type Unnamed_10_Query = { airtable?: Maybe<{ data?: Maybe<(
       Pick<AirtableData, 'title' | 'date' | 'link' | 'recording' | 'slides'>
       & { notes?: Maybe<{ childMarkdownRemark?: Maybe<Pick<MarkdownRemark, 'html'>> }>, organisation?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>>, tags?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'name'>> }>>> }
     )> }> };
+
+export type Unnamed_11_QueryVariables = Exact<{
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+}>;
+
+
+export type Unnamed_11_Query = { allAirtable: { nodes: Array<{ data?: Maybe<(
+        Pick<AirtableData, 'slug' | 'title' | 'link' | 'date'>
+        & { text_en?: Maybe<{ childMarkdownRemark?: Maybe<Pick<MarkdownRemark, 'html'>> }>, organisation?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'title'>> }>>>, tags?: Maybe<Array<Maybe<{ data?: Maybe<Pick<AirtableData, 'name'>> }>>>, attachments?: Maybe<{ localFiles?: Maybe<Array<Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluidFragment> }> }>>> }> }
+      )> }> } };
 
 export type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 

@@ -1,4 +1,5 @@
 const hyphenate = (str) => str.split(' ').join('-').toLowerCase();
+const { paginate } = require('gatsby-awesome-pagination') 
 
 exports.createPages = async ({ graphql, reporter, actions }) => {
   const { createPage } = actions;
@@ -50,6 +51,14 @@ exports.createPages = async ({ graphql, reporter, actions }) => {
   const tags = result.data.tags.nodes;
   const albums = result.data.albums.nodes;
   const speakings = result.data.speakings.nodes;
+
+  paginate({
+      createPage,
+      items: writings,
+      itemsPerPage: 10,
+      pathPrefix: '/writing',
+      component: require.resolve('./src/templates/Writing.tsx'),
+  })
 
   writings.forEach((writing) => {
     createPage({
