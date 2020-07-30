@@ -1,13 +1,14 @@
 import React from 'react';
 
 import Tag from '../Tag';
+import { Link } from 'gatsby';
 
 export interface TalkProps {
   date: string;
   title: string;
   notes: string;
   link: string;
-  slides: string;
+  slug: string;
   organisation: string;
   tags: string[];
 }
@@ -16,7 +17,7 @@ const Talk = ({
   date,
   title,
   notes,
-  slides,
+  slug,
   organisation,
   tags,
 }: TalkProps) => (
@@ -30,7 +31,9 @@ const Talk = ({
           day: 'numeric',
         })}
       </p>
-      <h3>{title}</h3>
+      <Link to={`/speaking/${slug}`}>
+        <h3>{title}</h3>
+      </Link>
     </div>
     <div className="name-tags">
       <div className="org">{organisation}</div>
@@ -41,9 +44,9 @@ const Talk = ({
       </div>
     </div>
     <div className="notes" dangerouslySetInnerHTML={{ __html: notes }}></div>
-    <a href={slides} className="btn--text" target="_blank">
-      Slides <span>&nbsp;&rarr;</span>
-    </a>
+    <Link to={`/speaking/${slug}`} className="btn--text" target="_blank">
+        More Info <span>&nbsp;&rarr;</span>
+    </Link>
   </div>
 );
 

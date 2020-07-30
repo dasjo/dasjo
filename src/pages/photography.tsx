@@ -80,8 +80,6 @@ const PhotographyPage = ({ data }: any) => {
     structuredItemsToRender.push(entry);
   });
 
-  console.log(structuredItemsToRender);
-
   return (
     <IndexLayout>
       <StyledPhotoGraphyPage>

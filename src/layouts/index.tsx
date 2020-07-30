@@ -28,7 +28,6 @@ const IndexLayout = ({ children }: IndexLayoutProps) => {
 
   const handleFirstTab = (e: KeyboardEvent): void => {
     if (e.code === 'Tab') {
-      console.log('User is tabbing.');
       document.body.classList.add('user-is-tabbing');
       window.removeEventListener('keydown', handleFirstTab);
       window.addEventListener('mousedown', handleMouseDownOnce);

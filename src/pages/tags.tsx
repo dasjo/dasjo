@@ -38,7 +38,6 @@ export const TagsPageQuery = graphql`
 
 const TagsPage = ({ data }: any) => {
   const tags = data.allAirtable.nodes.map((t: any) => t.data.name);
-  console.log(tags);
   return (
     <IndexLayout>
       <StyledTagsPage>

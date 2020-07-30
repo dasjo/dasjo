@@ -87,7 +87,7 @@ export const query = graphql`
         data {
           title
           date
-          link
+          slug
         }
       }
     }
@@ -149,7 +149,7 @@ const TagTemplate = ({ location, data }: any) => {
       table: t.table,
       title: t.data.title,
       date: t.data.date,
-      link: t.data.link,
+      slug: t.data.slug,
     }));
   }
 
@@ -175,8 +175,6 @@ const TagTemplate = ({ location, data }: any) => {
       })[0],
     }));
   }
-
-  console.log('Writings:', writings);
 
   const items = [...writings, ...photos, ...speakings];
 
@@ -228,9 +226,9 @@ const TagTemplate = ({ location, data }: any) => {
                     {i.entries.map((entry: any) => {
                       return entry.table === 'Speaking' ? (
                         <div className="link-container">
-                          <a href={entry.link} target="_blank">
+                          <Link to={`/speaking/${entry.slug}`} target="_blank">
                             Speaking: {entry.title}
-                          </a>
+                          </Link>
                         </div>
                       ) : null;
                     })}

@@ -26,7 +26,7 @@ export const SpeakingPageQuery = graphql`
               excerpt
             }
           }
-          link
+          slug
           slides
           organisation {
             data {
@@ -49,7 +49,7 @@ const SpeakingPage = ({ data }: any) => {
     title: t.data.title,
     date: t.data.date,
     notes: t.data.notes ? t.data.notes.childMarkdownRemark.excerpt : null,
-    link: t.data.link,
+    slug: t.data.slug,
     slides: t.data.slides,
     organisation: (t.data.organisation
       ? t.data.organisation.map((o: any) => o.data.title)

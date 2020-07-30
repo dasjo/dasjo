@@ -71,8 +71,6 @@ const AlbumTemplate = ({ data: { airtable: album } }: any) => {
       : [])[0]
 const tags = album.data.tags ? album.data.tags.map((t: any) => t.data.name) : null
 
-console.log(organisation)
-
   return (
     <IndexLayout>
       <div className="row">

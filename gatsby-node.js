@@ -31,6 +31,14 @@ exports.createPages = async ({ graphql, reporter, actions }) => {
             }
         }
       }
+
+      speakings: allAirtable(filter: {table: {eq: "Speaking"}}) {
+        nodes {
+            data {
+                slug
+            }
+        }
+      }
     }
   `);
 
@@ -41,6 +49,7 @@ exports.createPages = async ({ graphql, reporter, actions }) => {
   const writings = result.data.writings.nodes;
   const tags = result.data.tags.nodes;
   const albums = result.data.albums.nodes;
+  const speakings = result.data.speakings.nodes;
 
   writings.forEach((writing) => {
     createPage({
@@ -71,4 +80,14 @@ exports.createPages = async ({ graphql, reporter, actions }) => {
       },
     });
   });  
+
+  speakings.forEach((speaking) => {
+    createPage({
+      path: `/speaking/${speaking.data.slug}`,
+      component: require.resolve('./src/templates/Talk.tsx'),
+      context: {
+        slug: speaking.data.slug,
+      },
+    });
+  });
 };

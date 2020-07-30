@@ -16,18 +16,17 @@ const StyledPhotos = styled.section`
   }
 `;
 
-const Photos = ({ title, slug,  image }: any) => {
-    console.log(image)
+const Photos = ({ title, slug, image }: any) => {
     return (
-  <>
-    <StyledPhotos>
-      <Link to={`/photography/${slug}`} target="_blank">
-      <Img fluid={image} />
-      <h3>{title}</h3>
-      </Link>
-    </StyledPhotos>
-  </>
-);
+        <>
+            <StyledPhotos>
+                <Link to={`/photography/${slug}`} target="_blank">
+                    <Img fluid={image} />
+                    <h3>{title}</h3>
+                </Link>
+            </StyledPhotos>
+        </>
+    );
 }
 
 export default Photos;

@@ -201,16 +201,79 @@ const BaseStyles = () => (
       }
 
       .name-tags {
-            display: flex;
-            justify-content: space-between;
+        display: flex;
+        justify-content: space-between;
 
-            @media(max-width: ${breakpoints.large}) {
-                flex-direction: column;
-                .org {
-                    margin-bottom: var(--gutter-small-2);
-                }
+        @media(max-width: ${breakpoints.large}) {
+            flex-direction: column;
+            .org {
+                margin-bottom: var(--gutter-small-2);
             }
         }
+      }
+
+      .template {
+        h1 {
+            font-size: var(--font-size-medium-2);
+
+            @media (max-width: ${breakpoints.medium0}) {
+               font-size: var(--font-size-medium-1);
+            }
+        }
+
+        h2 {
+            font-size: var(--font-size-medium);
+
+            @media (max-width: ${breakpoints.medium0}) {
+                font-size: 3.2rem;
+            }
+        }
+
+        h3 {
+            margin: var(--gutter-small-3) 0 var(--gutter-small-3);
+        }
+        h2 {
+            margin: var(--gutter-large) 0 var(--gutter-small);
+
+            &::after {
+            margin-bottom: var(--gutter-small-1);
+            }
+        }
+
+        h3 {
+            margin-top: var(--gutter-small);
+        }
+
+        p + p {
+            margin-top: var(--gutter-small);
+        }
+
+        ul {
+            margin: var(--gutter-small-1) 0;
+            font-size: var(--font-size-small);
+        }
+
+        li {
+            &:not(:last-child) {
+            margin-bottom: var(--gutter-small-3);
+            }
+        }
+
+        & > * {
+            &:not(:last-child) {
+            margin-bottom: var(--gutter-small-2);
+            }
+        }
+
+        .links {
+            margin-top: var(--gutter-medium);
+
+            br {
+                display: block;
+                margin: var(--gutter-small-3) 0;
+            }
+        }
+      }
 
       /* ---------------------------------------- */
       /* ----- Headlines & Paragraphs ----- */
