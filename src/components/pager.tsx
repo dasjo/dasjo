@@ -1,58 +1,51 @@
-import { Link } from 'gatsby';
+// import { Link } from 'gatsby';
 
 import React from 'react'
 
 import styled from '@emotion/styled'
+import { Link } from 'gatsby'
 
 const StyledPager = styled.div`
+    display: flex;
+    flex-wrap: wrap;
     max-width: var(--container-small-0);
     margin-top: var(--gutter-large);
 
-    .btn--text {
-        &:not(:only-child) { 
-            &:first-of-type {
-                margin-right: var(--gutter-large);
-
-                &::after {
-                    left: 100%;
-                    right: 0;
-                }
-
-                &:hover {
-                    &::after {
-                        left: 0;
-                    }
-                }
-            }
+    a {
+        display: block;
+        &:not(:last-of-type) {
+            margin-right: var(--gutter-small);
+            margin-bottom: var(--gutter-small-3);
         }
     }
 
-    .is-the-only {
-        &::after {
-            left: 100%;
-            right: 0;
-        }
-
-        &:hover {
-            &::after {
-                left: 0;
-            }
-        }
-    }
+   .active {
+       text-decoration: underline;
+   } 
 `
 
 const Pager = ({ pageContext }: any) => {
-    const { previousPagePath, nextPagePath } = pageContext;
+    const pages = []
 
+    for (let i = 1; i < pageContext.numberOfPages - 1; i++) {
+        pages.push({
+            number: i + 1,
+        })
+    }
     return (
         <StyledPager>
-            {
-                previousPagePath ? (<Link className={`btn--text ${!nextPagePath ? 'is-the-only' : null}`} to={previousPagePath}><span>&larr;&nbsp;</span> Previous</Link>) : null
-            }
-
-            {
-                nextPagePath ? (<Link className="btn--text" to={nextPagePath}>Next <span>&nbsp;&rarr;</span></Link>) : null
-            }
+            Page:&nbsp;&nbsp;<Link activeClassName="active" title={'First Page'} to="/writing">First</Link>
+            {pages.map(
+                (p: any, i: number) => ( 
+                <Link activeClassName="active" 
+                    key={i}
+                    title={`Page ${p.number}`}
+                    to={`/writing/${p.number}`}
+                >
+                    {p.number}
+                </Link> )
+            )}
+            <Link activeClassName="active" title={'Last Page'} to={`/writing/${pageContext.numberOfPages}`}>Last</Link>
         </StyledPager>
     )
 }
