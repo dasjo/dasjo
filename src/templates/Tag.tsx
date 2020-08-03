@@ -235,9 +235,9 @@ const TagTemplate = ({ location, data }: any) => {
                     {i.entries.map((entry: any) => {
                       return entry.table === 'Writing' ? (
                         <div className="link-container">
-                          <a href={entry.link} target="_blank">
+                          <Link to={`/writing/${entry.slug}`} target="_blank">
                             Writing: {entry.title}
-                          </a>
+                          </Link>
                         </div>
                       ) : null;
                     })}
