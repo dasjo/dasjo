@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-import Tag from '../Tag';
+import CompanyAndTags from '../CompanyAndTags';
 
 const StyledWork = styled.div`
   h3 {
@@ -42,14 +42,10 @@ const Work = ({ from, to, title, notes, tags, organisation }: any) => (
         <h3>
             {title}
         </h3>
-        <div className="name-tags">
-            <div className="org">{organisation}</div>
-            <div>
-                {tags.map((tag: string, i: number) => (
-                    <Tag text={tag} key={i + tag} />
-                ))}
-            </div>
-        </div>
+        <CompanyAndTags 
+            organisation={organisation}
+            tags={tags}
+        />
         <div dangerouslySetInnerHTML={{ __html: notes }} />
     </StyledWork>
 );

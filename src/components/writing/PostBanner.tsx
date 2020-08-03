@@ -1,11 +1,11 @@
 import React from 'react';
 
-import Tag from '../Tag';
 import styled from '@emotion/styled';
 import PostBannerImage from '../../resources/post-banner.jpg';
 import { breakpoints } from '../../styles/variables';
 import { Link } from 'gatsby';
 import Img from 'gatsby-image';
+import CompanyAndTags from '../CompanyAndTags';
 
 const StyledPostBanner = styled.article`
   .wrapper {
@@ -61,57 +61,53 @@ const StyledPostBanner = styled.article`
 `;
 
 export interface PostBannerProps {
-  date: string;
-  title: string;
-  slug: string;
-  excerpt: string;
-  organisation: string;
-  tags: string[];
-  teaser?: any;
+    date: string;
+    title: string;
+    slug: string;
+    excerpt: string;
+    organisation: string;
+    tags: string[];
+    teaser?: any;
 }
 
 const PostBanner = ({
-  date,
-  title,
-  slug,
-  excerpt,
-  organisation,
-  tags,
-  teaser,
+    date,
+    title,
+    slug,
+    excerpt,
+    organisation,
+    tags,
+    teaser,
 }: PostBannerProps) => (
-  <StyledPostBanner>
-    <div className="wrapper">
-      {teaser ? (
-        <Link to={`/writing/${slug}`} className="g-image">
-          <Img fluid={teaser} />
-        </Link>
-      ) : (
-        <div className="img"></div>
-      )}
-      <div className="text">
-        <Link to={`/writing/${slug}`}><h3>{title}</h3></Link>
-        <p>
-          {new Date(date).toLocaleDateString('en-GB', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          })}
-        </p>
-        <div className="name-tags">
-          <div className="org">{organisation}</div>
-          <div>
-            {tags.map((tag: string, i) => (
-              <Tag text={tag} key={i + tag} />
-            ))}
-          </div>
-        </div>
-        <p>{excerpt}</p>
-        <Link to={`/writing/${slug}`} className="btn--text">
-          Read more <span>&nbsp;&rarr;</span>
-        </Link>
-      </div>
-    </div>
-  </StyledPostBanner>
-);
+        <StyledPostBanner>
+            <div className="wrapper">
+                {teaser ? (
+                    <Link to={`/writing/${slug}`} className="g-image">
+                        <Img fluid={teaser} />
+                    </Link>
+                ) : (
+                        <div className="img"></div>
+                    )}
+                <div className="text">
+                    <Link to={`/writing/${slug}`}><h3>{title}</h3></Link>
+                    <p>
+                        {new Date(date).toLocaleDateString('en-GB', {
+                            weekday: 'long',
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                        })}
+                    </p>
+                    <CompanyAndTags
+                        organisation={organisation}
+                        tags={tags}
+                    />
+                    <p>{excerpt}</p>
+                    <Link to={`/writing/${slug}`} className="btn--text">
+                        Read more <span>&nbsp;&rarr;</span>
+                    </Link>
+                </div>
+            </div>
+        </StyledPostBanner>
+    );
 export default PostBanner;

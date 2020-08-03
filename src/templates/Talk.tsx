@@ -3,6 +3,7 @@ import IndexLayout from '../layouts'
 import { graphql, Link } from 'gatsby'
 import styled from '@emotion/styled'
 import Tag from '../components/Tag'
+import CompanyAndTags from '../components/CompanyAndTags'
 
 const StyledTalk = styled.div`
     h1 {
@@ -70,6 +71,10 @@ const Talk = ({ data: { airtable: speaking } }: any) => {
                                     day: 'numeric',
                                 })}
                             </p>
+                            <CompanyAndTags 
+                                organisation={organisationData}
+                                tags={tagsData}
+                            />
                             <div className="name-tags">
                                 <div className="org">{organisationData}</div>
                                 <div>

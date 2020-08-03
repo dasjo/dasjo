@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Tag from '../Tag';
 import { Link } from 'gatsby';
+import CompanyAndTags from '../CompanyAndTags';
 
 export interface TalkProps {
   date: string;
@@ -35,14 +35,10 @@ const Talk = ({
         <h3>{title}</h3>
       </Link>
     </div>
-    <div className="name-tags">
-      <div className="org">{organisation}</div>
-      <div>
-        {tags.map((tag: string, i) => (
-          <Tag text={tag} key={i + tag} />
-        ))}
-      </div>
-    </div>
+    <CompanyAndTags 
+        organisation={organisation}
+        tags={tags}
+    />
     <div className="notes" dangerouslySetInnerHTML={{ __html: notes }}></div>
     <Link to={`/speaking/${slug}`} className="btn--text" target="_blank">
         More Info <span>&nbsp;&rarr;</span>
