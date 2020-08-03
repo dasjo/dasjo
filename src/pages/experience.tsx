@@ -39,6 +39,11 @@ export const experiencePageQuery = graphql`
               title
             }
           }
+          tags {
+            data {
+                name
+            }
+          }
         }
       }
     }
@@ -62,6 +67,11 @@ export const experiencePageQuery = graphql`
           organisation {
             data {
               title
+            }
+          }
+          tags {
+            data {
+                name
             }
           }
         }
@@ -88,6 +98,11 @@ export const experiencePageQuery = graphql`
               title
             }
           }
+          tags {
+            data {
+                name
+            }
+          }
         }
       }
     }
@@ -111,6 +126,7 @@ const ExperiencePage = ({ data }: any) => {
         organisation: (t.data.organisation
           ? t.data.organisation.map((o: any) => o.data.title)
           : [])[0],
+        tags: t.data.tags ? t.data.tags.map((t: any) => t.data.name) : null,
       }))
     ),
     education: filterByFeatured(
@@ -125,6 +141,7 @@ const ExperiencePage = ({ data }: any) => {
           organisation: (t.data.organisation
             ? t.data.organisation.map((o: any) => o.data.title)
             : [])[0],
+          tags: t.data.tags ? t.data.tags.map((t: any) => t.data.name) : null,
         };
       })
     ),
@@ -138,6 +155,7 @@ const ExperiencePage = ({ data }: any) => {
         organisation: (t.data.organisation
           ? t.data.organisation.map((o: any) => o.data.title)
           : [])[0],
+        tags: t.data.tags ? t.data.tags.map((t: any) => t.data.name) : null,
       }))
     ),
   };
