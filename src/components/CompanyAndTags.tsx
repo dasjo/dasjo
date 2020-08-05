@@ -21,8 +21,11 @@ const StyledCompanyAndTags = styled.div`
 
     .tags-container {
         display: flex;
-        justify-content: flex-end;
         flex-wrap: wrap;
+
+        @media(min-width: calc(${breakpoints.large} + 1px)) {
+            justify-content: flex-end;
+        }
     }
 `
 
