@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import styled from '@emotion/styled';
-import Logo from '../resources/logo.svg';
-import { Global, css } from '@emotion/core';
-import { breakpoints } from '../styles/variables';
-import { Link } from 'gatsby';
+import styled from "@emotion/styled";
+import Logo from "../resources/logo.svg";
+import { Global, css } from "@emotion/core";
+import { breakpoints } from "../styles/variables";
+import { Link } from "gatsby";
 
 const StyledNav = styled.nav`
   position: relative;
@@ -206,8 +206,8 @@ const Nav = () => {
   const [isShown, setIsShown] = useState<boolean>(false);
 
   useEffect(() => {
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && isShown) {
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && isShown) {
         setIsShown(false);
       }
     });
@@ -223,7 +223,7 @@ const Nav = () => {
         <Global
           styles={css`
             html {
-              overflow-y: ${isShown ? 'hidden' : ''};
+              overflow-y: ${isShown ? "hidden" : ""};
             }
           `}
         />
@@ -233,42 +233,38 @@ const Nav = () => {
           </Link>
           <button
             onClick={toggleIsShown}
-            className={`${isShown ? 'shown' : ''}`}
+            className={`${isShown ? "shown" : ""}`}
           >
             <span className="burger"></span>
           </button>
         </div>
-        <ul className={isShown ? 'shown' : 'hidden'}>
+        <ul className={isShown ? "shown" : "hidden"}>
           <li>
-            <Link
-              className="link"
-              activeClassName="link--active"
-              to="/experience"
-            >
-              Experience
+            <Link className="link" activeClassName="link--active" to="/agile">
+              Agile
             </Link>
           </li>
           <li>
-            <Link className="link" activeClassName="link--active" to="/writing">
-              Writing
+            <Link className="link" activeClassName="link--active" to="/drupal">
+              Drupal
             </Link>
           </li>
           <li>
             <Link
               className="link"
               activeClassName="link--active"
-              to="/speaking"
+              to="/community"
             >
-              Speaking
+              Community
             </Link>
           </li>
           <li>
             <Link
               className="link"
               activeClassName="link--active"
-              to="/photography"
+              to="/diversity-&-inclusion"
             >
-              Photography
+              Diversity & Inclusion
             </Link>
           </li>
         </ul>

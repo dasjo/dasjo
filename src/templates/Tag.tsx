@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import IndexLayout from '../layouts';
-import { graphql, Link } from 'gatsby';
-import { deHyphenate } from '../utils/helpers';
-import Img from 'gatsby-image';
+import IndexLayout from "../layouts";
+import { graphql, Link } from "gatsby";
+import { deHyphenate } from "../utils/helpers";
+import Img from "gatsby-image";
 
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
 const StyledTag = styled.div`
   section {
@@ -21,6 +21,10 @@ const StyledTag = styled.div`
       max-width: 350px;
       margin: var(--gutter-large) 0 var(--gutter-small);
     }
+  }
+
+  .about {
+    margin-top: var(--gutter-small);
   }
 
   .link-container {
@@ -213,18 +217,18 @@ const TagTemplate = ({ location, data }: any) => {
       <StyledTag>
         <div className="row">
           <section>
-            <h1>{deHyphenate(location.pathname.split('/')[1])}</h1>
+            <h1>{deHyphenate(location.pathname.split("/")[1])}</h1>
             <div className="container--small">
               <div className="banner">
                 {tagImage ? <Img fluid={tagImage} className="img" /> : null}
-                {about ? <p>{about}</p> : null}
+                {about ? <p className="about">{about}</p> : null}
               </div>
               {structuredItemsToRender.map((i: any) => (
                 <section>
                   <h2>{i.date}</h2>
                   <div className="link-set">
                     {i.entries.map((entry: any) => {
-                      return entry.table === 'Speaking' ? (
+                      return entry.table === "Speaking" ? (
                         <div className="link-container">
                           <Link to={`/speaking/${entry.slug}`} target="_blank">
                             Speaking: {entry.title}
@@ -233,7 +237,7 @@ const TagTemplate = ({ location, data }: any) => {
                       ) : null;
                     })}
                     {i.entries.map((entry: any) => {
-                      return entry.table === 'Writing' ? (
+                      return entry.table === "Writing" ? (
                         <div className="link-container">
                           <Link to={`/writing/${entry.slug}`} target="_blank">
                             Writing: {entry.title}
@@ -244,7 +248,7 @@ const TagTemplate = ({ location, data }: any) => {
                   </div>
                   <div className="images-container">
                     {i.entries.map((entry: any) => {
-                      return entry.table === 'Photography' ? (
+                      return entry.table === "Photography" ? (
                         <Link to={`/photography/${entry.slug}`}>
                           <div className="g-image">
                             <Img fluid={entry.attachment} />
