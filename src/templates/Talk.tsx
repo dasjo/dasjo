@@ -1,6 +1,6 @@
 import React from "react";
 import IndexLayout from "../layouts";
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 import CompanyAndTags from "../components/CompanyAndTags";
 
 export const query = graphql`
@@ -54,58 +54,53 @@ const Talk = ({ data: { airtable: speaking } }: any) => {
   return (
     <IndexLayout>
       <div className="template">
-        <section>
-          <div className="row">
-            <div className="container--small">
-              <p>
-                {new Date(date).toLocaleDateString("en-GB", {
-                  weekday: "long",
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </p>
-              <h1>{title}</h1>
-              <CompanyAndTags organisation={organisationData} tags={tagsData} />
-              {notes ? (
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: notes.childMarkdownRemark.html,
-                  }}
-                />
+        <div className="row">
+          <div className="container--small">
+            <p>
+              {new Date(date).toLocaleDateString("en-GB", {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </p>
+            <h1>{title}</h1>
+            <CompanyAndTags organisation={organisationData} tags={tagsData} />
+            {notes ? (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: notes.childMarkdownRemark.html,
+                }}
+              />
+            ) : null}
+            <div className="links">
+              {link ? (
+                <>
+                  <a href={link} className="btn--text" target="_blank">
+                    Link <span>&nbsp;&rarr;</span>
+                  </a>
+                  <br />
+                </>
               ) : null}
-              <div className="links">
-                {link ? (
-                  <>
-                    <a href={link} className="btn--text" target="_blank">
-                      Link to Source <span>&nbsp;&rarr;</span>
-                    </a>
-                    <br />
-                  </>
-                ) : null}
-                {slides ? (
-                  <>
-                    <a href={slides} className="btn--text" target="_blank">
-                      Slides <span>&nbsp;&rarr;</span>
-                    </a>
-                    <br />
-                  </>
-                ) : null}
-                {recording ? (
-                  <>
-                    <a href={recording} className="btn--text" target="_blank">
-                      Recording <span>&nbsp;&rarr;</span>
-                    </a>
-                    <br />
-                  </>
-                ) : null}
-                <Link to="/speaking/" className="btn--text">
-                  Go to Speaking page <span>&nbsp;&rarr;</span>
-                </Link>
-              </div>
+              {slides ? (
+                <>
+                  <a href={slides} className="btn--text" target="_blank">
+                    Slides <span>&nbsp;&rarr;</span>
+                  </a>
+                  <br />
+                </>
+              ) : null}
+              {recording ? (
+                <>
+                  <a href={recording} className="btn--text" target="_blank">
+                    Recording <span>&nbsp;&rarr;</span>
+                  </a>
+                  <br />
+                </>
+              ) : null}
             </div>
           </div>
-        </section>
+        </div>
       </div>
     </IndexLayout>
   );

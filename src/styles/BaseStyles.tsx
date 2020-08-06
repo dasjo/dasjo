@@ -201,6 +201,7 @@ const BaseStyles = () => (
       }
 
       .template {
+          padding: var(--gutter-medium) 0;
         h1 {
             font-size: var(--font-size-medium-2);
             margin: .5rem 0 var(--gutter-small-3);
