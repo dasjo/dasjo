@@ -11,10 +11,10 @@ const StyledAlbumTemplate = styled.article`
   .photos {
     display: grid;
     gap: 1rem;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
 
     @media (max-width: ${breakpoints.medium}) {
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-template-columns: repeat(1, 1fr);
     }
   }
 
