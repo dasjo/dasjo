@@ -19,10 +19,22 @@ const StyledFooter = styled.footer`
 
     @media (max-width: ${breakpoints.small0}) {
       flex-direction: column;
+    }
 
-      li:not(:last-child) {
-        margin-bottom: var(--gutter-small-1);
-      }
+    li {
+      &:not(:last-child) {
+        @media (min-width: calc(${breakpoints.medium} + 1px)) {
+            margin-right: var(--gutter-medium);
+        }
+
+        @media (min-width: calc(${breakpoints.medium} + 1px)) {
+            margin-right: var(--gutter-large-1);
+        }
+
+        @media(max-width: ${breakpoints.small0}) {
+            margin-bottom: var(--gutter-small-1);
+        }
+        }
     }
 
     a {
