@@ -26,9 +26,7 @@ const StyledFooter = styled.footer`
     }
 
     a {
-      &:hover {
-        color: #3cbdf2;
-      }
+      color: #7cd9ff;
     }
   }
 `;
