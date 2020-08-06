@@ -8,20 +8,6 @@ import CompanyAndTags from "../components/CompanyAndTags";
 import { breakpoints } from "../styles/variables";
 
 const StyledAlbumTemplate = styled.article`
-  padding: var(--gutter-large-1) 0;
-
-  h1 {
-    margin-bottom: var(--gutter-small-2);
-  }
-
-  .name-tags {
-    margin-bottom: var(--gutter-small-2);
-  }
-
-  .btn--text {
-    margin: var(--gutter-small) 0;
-  }
-
   .photos {
     display: grid;
     gap: 1rem;
@@ -82,8 +68,8 @@ const AlbumTemplate = ({ data: { airtable: album } }: any) => {
   return (
     <IndexLayout>
       <div className="row">
-        <StyledAlbumTemplate>
-          <p className="date">
+        <StyledAlbumTemplate className="template">
+          <p>
             {new Date(album.data.date).toLocaleDateString("en-GB", {
               weekday: "long",
               year: "numeric",

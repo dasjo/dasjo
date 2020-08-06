@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import { Global, css } from '@emotion/core';
-import { breakpoints } from './variables';
+import { Global, css } from "@emotion/core";
+import { breakpoints } from "./variables";
 
 const BaseStyles = () => (
   <Global
@@ -203,6 +203,7 @@ const BaseStyles = () => (
       .template {
         h1 {
             font-size: var(--font-size-medium-2);
+            margin: .5rem 0 var(--gutter-small-3);
 
             @media (max-width: ${breakpoints.medium0}) {
                font-size: var(--font-size-medium-1);
@@ -260,6 +261,10 @@ const BaseStyles = () => (
                 display: block;
                 margin: var(--gutter-small-3) 0;
             }
+        }
+
+        .name-tags {
+            margin: var(--gutter-small) 0 var(--gutter-small-1);
         }
       }
 
