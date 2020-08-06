@@ -102,9 +102,6 @@ const PostBanner = ({
         </Link>
         <CompanyAndTags organisation={organisation} tags={tags} />
         <p>{excerpt}</p>
-        <Link to={`/writing/${slug}`} className="btn--text">
-          Read more <span>&nbsp;&rarr;</span>
-        </Link>
       </div>
     </div>
   </StyledPostBanner>
