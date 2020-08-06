@@ -14,7 +14,7 @@ const StyledFooter = styled.footer`
     display: flex;
     justify-content: space-between;
     max-width: 50rem;
-    margin: 0 auto var(--gutter-small);
+    margin: 0 auto var(--gutter-medium);
     list-style: none;
 
     @media (max-width: ${breakpoints.small0}) {
