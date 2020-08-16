@@ -73,8 +73,8 @@ export type AirtableData = {
   text_en?: Maybe<AirtableField>;
   files?: Maybe<Array<Maybe<AirtableDataFiles>>>;
   attachments?: Maybe<AirtableField>;
-  text_de?: Maybe<Scalars['String']>;
   highlights?: Maybe<Array<Maybe<Scalars['String']>>>;
+  text_de?: Maybe<Scalars['String']>;
   slides?: Maybe<Scalars['String']>;
   notes?: Maybe<AirtableField>;
   recording?: Maybe<Scalars['String']>;
@@ -194,8 +194,8 @@ export type AirtableDataFilterInput = {
   text_en?: Maybe<AirtableFieldFilterInput>;
   files?: Maybe<AirtableDataFilesFilterListInput>;
   attachments?: Maybe<AirtableFieldFilterInput>;
-  text_de?: Maybe<StringQueryOperatorInput>;
   highlights?: Maybe<StringQueryOperatorInput>;
+  text_de?: Maybe<StringQueryOperatorInput>;
   slides?: Maybe<StringQueryOperatorInput>;
   notes?: Maybe<AirtableFieldFilterInput>;
   recording?: Maybe<StringQueryOperatorInput>;
@@ -685,8 +685,8 @@ export type AirtableFieldsEnum =
   | 'data___tags___data___featured'
   | 'data___tags___data___slug'
   | 'data___tags___data___files'
-  | 'data___tags___data___text_de'
   | 'data___tags___data___highlights'
+  | 'data___tags___data___text_de'
   | 'data___tags___data___slides'
   | 'data___tags___data___recording'
   | 'data___tags___data___work'
@@ -738,8 +738,8 @@ export type AirtableFieldsEnum =
   | 'data___organisation___data___featured'
   | 'data___organisation___data___slug'
   | 'data___organisation___data___files'
-  | 'data___organisation___data___text_de'
   | 'data___organisation___data___highlights'
+  | 'data___organisation___data___text_de'
   | 'data___organisation___data___slides'
   | 'data___organisation___data___recording'
   | 'data___organisation___data___work'
@@ -892,8 +892,8 @@ export type AirtableFieldsEnum =
   | 'data___attachments___childMarkdownRemark___timeToRead'
   | 'data___attachments___childMarkdownRemark___tableOfContents'
   | 'data___attachments___childMarkdownRemark___children'
-  | 'data___text_de'
   | 'data___highlights'
+  | 'data___text_de'
   | 'data___slides'
   | 'data___notes___id'
   | 'data___notes___parent___id'
@@ -993,8 +993,8 @@ export type AirtableFieldsEnum =
   | 'data___person___data___featured'
   | 'data___person___data___slug'
   | 'data___person___data___files'
-  | 'data___person___data___text_de'
   | 'data___person___data___highlights'
+  | 'data___person___data___text_de'
   | 'data___person___data___slides'
   | 'data___person___data___recording'
   | 'data___person___data___work'
@@ -1115,8 +1115,8 @@ export type AirtableFieldsEnum =
   | 'data___roles___data___featured'
   | 'data___roles___data___slug'
   | 'data___roles___data___files'
-  | 'data___roles___data___text_de'
   | 'data___roles___data___highlights'
+  | 'data___roles___data___text_de'
   | 'data___roles___data___slides'
   | 'data___roles___data___recording'
   | 'data___roles___data___work'
@@ -1166,8 +1166,8 @@ export type AirtableFieldsEnum =
   | 'data___location___data___featured'
   | 'data___location___data___slug'
   | 'data___location___data___files'
-  | 'data___location___data___text_de'
   | 'data___location___data___highlights'
+  | 'data___location___data___text_de'
   | 'data___location___data___slides'
   | 'data___location___data___recording'
   | 'data___location___data___work'
