@@ -3,3 +3,4 @@ public/
 .cache/
 graphql-types.ts
 package-lock.json
+yarn-error.log
