@@ -2,6 +2,7 @@ import React from "react";
 import IndexLayout from "../layouts";
 import { graphql } from "gatsby";
 import CompanyAndTags from "../components/CompanyAndTags";
+import Tag, { TagProps } from "../components/Tag";
 
 export const query = graphql`
   query($slug: String!) {
@@ -38,9 +39,9 @@ const PostTemplate = ({ data: { airtable: writing } }: any) => {
     ? writing.data.organisation.map((o: any) => o.data.title)
     : [])[0];
 
-  const tags = writing.data.tags
-    ? writing.data.tags.map((t: any) => t.data.name)
-    : null;
+  const tags = writing.data.tags ? writing.data.tags.map((tag: TagProps, i: number) => (
+    <Tag key={i + tag.name} {...tag} />
+    )) : null;
 
   return (
     <IndexLayout>

@@ -36,17 +36,18 @@ const StyledTag = styled(Link)`
 `;
 
 export interface TagProps {
-  text: string;
+  name: string;
+  count: number;
   styles?: CSSProperties;
 }
 
-const Tag = ({ text, styles }: TagProps) => (
+const Tag = ({ name, count, styles }: TagProps) => (
   <StyledTag
-    to={`/${hyphenate(text)}`}
+    to={`/${hyphenate(name)}`}
     state={{ name: 'text' }}
     style={{ ...styles }}
   >
-    {text}
+    {name} ({count})
   </StyledTag>
 );
 

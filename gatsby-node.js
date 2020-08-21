@@ -1,5 +1,11 @@
 const hyphenate = (str) => str.split(' ').join('-').toLowerCase();
-const { paginate } = require('gatsby-awesome-pagination') 
+const { paginate } = require('gatsby-awesome-pagination');
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    devtool: "eval-source-map"
+  });
+};
 
 exports.createPages = async ({ graphql, reporter, actions }) => {
   const { createPage } = actions;
@@ -21,6 +27,7 @@ exports.createPages = async ({ graphql, reporter, actions }) => {
         nodes {
           data {
             name
+            links_count
           }
         }
       }

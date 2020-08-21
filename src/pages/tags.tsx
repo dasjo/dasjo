@@ -1,7 +1,7 @@
 import React from 'react';
 import IndexLayout from '../layouts';
 import { graphql } from 'gatsby';
-import Tag from '../components/Tag';
+import Tag, { TagProps } from '../components/Tag';
 import styled from '@emotion/styled';
 
 const StyledTagsPage = styled.div`
@@ -30,6 +30,7 @@ export const TagsPageQuery = graphql`
       nodes {
         data {
           name
+          links_count
         }
       }
     }
@@ -37,7 +38,10 @@ export const TagsPageQuery = graphql`
 `;
 
 const TagsPage = ({ data }: any) => {
-  const tags = data.allAirtable.nodes.map((t: any) => t.data.name);
+  const tags = data.allAirtable.nodes.map((t: any) => ({
+    name: t.data.name,
+    count: t.data.links_count
+  }));
   return (
     <IndexLayout>
       <StyledTagsPage>
@@ -45,10 +49,11 @@ const TagsPage = ({ data }: any) => {
           <section>
             <h1>Tags</h1>
             <div className="container--small">
-              {tags.map((tag: string, i: number) => (
+              {tags.map((tag: TagProps, i: number) => (
                 <Tag
-                  text={tag}
-                  key={i + tag}
+                  name={tag.name}
+                  count={tag.count}
+                  key={i + tag.name}
                   styles={{ fontSize: 'var(--font-size-small)' }}
                 />
               ))}

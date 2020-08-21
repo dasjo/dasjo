@@ -2,7 +2,7 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 import { breakpoints } from '../../styles/variables';
-import Tag from '../Tag';
+import Tag, { TagProps } from '../Tag';
 
 const StyledSaying = styled.div`
   background: var(--white);
@@ -47,8 +47,8 @@ const Saying = ({ quote, person, tags, organisation }: SayingProps | any) => (
         &mdash; {person}, {organisation}{' '}
       </p>
       <div className="tags">
-        {tags.map((tag: any, i: number) => (
-          <Tag text={tag} key={tag + i} />
+        {tags.map((tag: TagProps, i: number) => (
+          <Tag key={i + tag.name} {...tag} />
         ))}
       </div>
     </div>

@@ -6,6 +6,7 @@ import { graphql } from "gatsby";
 import IndexLayout from "../layouts";
 import PostBanner, { PostBannerProps } from "../components/writing/PostBanner";
 import Pager from "../components/pager";
+import Tag, { TagProps } from "../components/Tag";
 
 export const query = graphql`
   query($skip: Int!, $limit: Int!) {
@@ -70,7 +71,9 @@ const WritingPage = ({ data, pageContext }: any) => {
       w.data.attachments.localFiles.map((a: any) => {
         return a.childImageSharp.fluid;
       })[0],
-    tags: w.data.tags ? w.data.tags.map((t: any) => t.data.name) : null,
+    tags: w.data.tags ? w.data.tags.map((tag: TagProps, i: number) => (
+      <Tag key={i + tag.name} {...tag} />
+      )) : null,
   }));
   return (
     <IndexLayout>

@@ -5,6 +5,7 @@ import SectionEducation from '../components/experience/SectionEducation';
 import SectionVolunteering from '../components/experience/SectionVolunteering';
 import { graphql } from 'gatsby';
 import { filterByFeatured } from '../utils/helpers';
+import Tag, { TagProps } from '../components/Tag';
 
 export const experiencePageQuery = graphql`
   query {
@@ -101,6 +102,7 @@ export const experiencePageQuery = graphql`
           tags {
             data {
                 name
+                links_count
             }
           }
         }
@@ -126,7 +128,9 @@ const ExperiencePage = ({ data }: any) => {
         organisation: (t.data.organisation
           ? t.data.organisation.map((o: any) => o.data.title)
           : [])[0],
-        tags: t.data.tags ? t.data.tags.map((t: any) => t.data.name) : null,
+        tags: t.data.tags ? t.data.tags.map((tag: TagProps, i: number) => (
+          <Tag key={i + tag.name} {...tag} />
+          )) : null,
       }))
     ),
     education: filterByFeatured(
@@ -141,7 +145,9 @@ const ExperiencePage = ({ data }: any) => {
           organisation: (t.data.organisation
             ? t.data.organisation.map((o: any) => o.data.title)
             : [])[0],
-          tags: t.data.tags ? t.data.tags.map((t: any) => t.data.name) : null,
+            tags: t.data.tags ? t.data.tags.map((tag: TagProps, i: number) => (
+              <Tag key={i + tag.name} {...tag} />
+              )) : null,
         };
       })
     ),
@@ -155,7 +161,9 @@ const ExperiencePage = ({ data }: any) => {
         organisation: (t.data.organisation
           ? t.data.organisation.map((o: any) => o.data.title)
           : [])[0],
-        tags: t.data.tags ? t.data.tags.map((t: any) => t.data.name) : null,
+          tags: t.data.tags ? t.data.tags.map((tag: TagProps, i: number) => (
+            <Tag key={i + tag.name} {...tag} />
+            )) : null,
       }))
     ),
   };

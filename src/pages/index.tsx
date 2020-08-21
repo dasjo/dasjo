@@ -6,6 +6,7 @@ import { SayingProps } from '../components/index/Saying';
 import WhatPeopleSay from '../components/index/WhatPeopleSay';
 import { graphql } from 'gatsby';
 import { filterByFeatured } from '../utils/helpers';
+import Tag, { TagProps } from '../components/Tag';
 
 export const IndexPageQuery = graphql`
   query {
@@ -56,9 +57,9 @@ const IndexPage = ({ data }: any) => {
       organisation: (saying.data.organisation
         ? saying.data.organisation.map((o: any) => o.data.title)
         : [])[0],
-      tags: saying.data.tags
-        ? saying.data.tags.map((t: any) => t.data.name)
-        : null,
+        tags: saying.data.tags ? saying.data.tags.map((tag: TagProps, i: number) => (
+          <Tag key={i + tag.name} {...tag} />
+          )) : null,
       featured: saying.data.featured,
     }))
   );

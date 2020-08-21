@@ -4,6 +4,7 @@ import IndexLayout from '../layouts';
 import { graphql } from 'gatsby';
 import Talk, { TalkProps } from '../components/speaking/Talk';
 import styled from '@emotion/styled';
+import Tag, { TagProps } from '../components/Tag';
 
 const StyledSpeakingPage = styled.div`
   .speakings {
@@ -54,7 +55,9 @@ const SpeakingPage = ({ data }: any) => {
     organisation: (t.data.organisation
       ? t.data.organisation.map((o: any) => o.data.title)
       : [])[0],
-    tags: t.data.tags ? t.data.tags.map((t: any) => t.data.name) : null,
+    tags: t.data.tags ? t.data.tags.map((tag: TagProps, i: number) => (
+      <Tag key={i + tag.name} {...tag} />
+      )) : null,
   }));
 
   return (

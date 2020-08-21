@@ -2,6 +2,7 @@ import React from "react";
 import IndexLayout from "../layouts";
 import { graphql } from "gatsby";
 import CompanyAndTags from "../components/CompanyAndTags";
+import Tag from "../components/Tag";
 
 export const query = graphql`
   query($slug: String!) {
@@ -48,9 +49,10 @@ const Talk = ({ data: { airtable: speaking } }: any) => {
     ? organisation.map((o: any) => o.data.title)
     : [])[0];
 
-  const tagsData = tags ? tags.map((t: any) => t.data.name) : null;
+  const tagsData = tags ? tags.map((tag: any, i: number) => (
+    <Tag key={i + tag.data.name} {...tag.data} />
+    )) : null;
 
-  console.log(link);
   return (
     <IndexLayout>
       <div className="template">

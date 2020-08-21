@@ -2,7 +2,7 @@ import React from 'react'
 
 import styled from '@emotion/styled'
 import { breakpoints } from '../styles/variables'
-import Tag from './Tag'
+import Tag, { TagProps } from './Tag'
 
 const StyledCompanyAndTags = styled.div`
     display: flex;
@@ -33,9 +33,9 @@ const CompanyAndTags = ({ organisation, tags }: any) => (
     <StyledCompanyAndTags className="name-tags">
         <div className="org">{organisation}</div>
         <div className="tags-container">
-            {tags.map((tag: string, i: number) => (
-                <Tag text={tag} key={i + tag} />
-            ))}
+            {tags.map((tag: TagProps, i: number) => (
+                <Tag key={i + tag.name} {...tag} />
+            ))}            
         </div>
     </StyledCompanyAndTags>
 )

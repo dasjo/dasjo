@@ -6,6 +6,7 @@ import Img from "gatsby-image";
 import styled from "@emotion/styled";
 import CompanyAndTags from "../components/CompanyAndTags";
 import { breakpoints } from "../styles/variables";
+import Tag, { TagProps } from "../components/Tag";
 
 const StyledAlbumTemplate = styled.article`
   .photos {
@@ -61,9 +62,9 @@ const AlbumTemplate = ({ data: { airtable: album } }: any) => {
   const organisation = (album.data.organisation
     ? album.data.organisation.map((o: any) => o.data.title)
     : [])[0];
-  const tags = album.data.tags
-    ? album.data.tags.map((t: any) => t.data.name)
-    : null;
+  const tags = album.data.tags ? album.data.tags.map((tag: TagProps, i: number) => (
+    <Tag key={i + tag.name} {...tag} />
+    )) : null;
 
   return (
     <IndexLayout>
