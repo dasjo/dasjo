@@ -86,6 +86,13 @@ export type AirtableData = {
   person?: Maybe<Array<Maybe<Airtable>>>;
   quotes?: Maybe<Array<Maybe<Scalars['String']>>>;
   name?: Maybe<Scalars['String']>;
+  _education?: Maybe<Scalars['Int']>;
+  _work?: Maybe<Scalars['Int']>;
+  _writing?: Maybe<Scalars['Int']>;
+  _link?: Maybe<Scalars['Int']>;
+  _speaking?: Maybe<Scalars['Int']>;
+  _photography?: Maybe<Scalars['Int']>;
+  _volunteering?: Maybe<Scalars['Int']>;
   mentions?: Maybe<Array<Maybe<Scalars['String']>>>;
   writing?: Maybe<Array<Maybe<Scalars['String']>>>;
   values___principles?: Maybe<Array<Maybe<Scalars['String']>>>;
@@ -207,6 +214,13 @@ export type AirtableDataFilterInput = {
   person?: Maybe<AirtableFilterListInput>;
   quotes?: Maybe<StringQueryOperatorInput>;
   name?: Maybe<StringQueryOperatorInput>;
+  _education?: Maybe<IntQueryOperatorInput>;
+  _work?: Maybe<IntQueryOperatorInput>;
+  _writing?: Maybe<IntQueryOperatorInput>;
+  _link?: Maybe<IntQueryOperatorInput>;
+  _speaking?: Maybe<IntQueryOperatorInput>;
+  _photography?: Maybe<IntQueryOperatorInput>;
+  _volunteering?: Maybe<IntQueryOperatorInput>;
   mentions?: Maybe<StringQueryOperatorInput>;
   writing?: Maybe<StringQueryOperatorInput>;
   values___principles?: Maybe<StringQueryOperatorInput>;
@@ -697,6 +711,13 @@ export type AirtableFieldsEnum =
   | 'data___tags___data___person'
   | 'data___tags___data___quotes'
   | 'data___tags___data___name'
+  | 'data___tags___data____education'
+  | 'data___tags___data____work'
+  | 'data___tags___data____writing'
+  | 'data___tags___data____link'
+  | 'data___tags___data____speaking'
+  | 'data___tags___data____photography'
+  | 'data___tags___data____volunteering'
   | 'data___tags___data___mentions'
   | 'data___tags___data___writing'
   | 'data___tags___data___values___principles'
@@ -750,6 +771,13 @@ export type AirtableFieldsEnum =
   | 'data___organisation___data___person'
   | 'data___organisation___data___quotes'
   | 'data___organisation___data___name'
+  | 'data___organisation___data____education'
+  | 'data___organisation___data____work'
+  | 'data___organisation___data____writing'
+  | 'data___organisation___data____link'
+  | 'data___organisation___data____speaking'
+  | 'data___organisation___data____photography'
+  | 'data___organisation___data____volunteering'
   | 'data___organisation___data___mentions'
   | 'data___organisation___data___writing'
   | 'data___organisation___data___values___principles'
@@ -1005,6 +1033,13 @@ export type AirtableFieldsEnum =
   | 'data___person___data___person'
   | 'data___person___data___quotes'
   | 'data___person___data___name'
+  | 'data___person___data____education'
+  | 'data___person___data____work'
+  | 'data___person___data____writing'
+  | 'data___person___data____link'
+  | 'data___person___data____speaking'
+  | 'data___person___data____photography'
+  | 'data___person___data____volunteering'
   | 'data___person___data___mentions'
   | 'data___person___data___writing'
   | 'data___person___data___values___principles'
@@ -1016,6 +1051,13 @@ export type AirtableFieldsEnum =
   | 'data___person___data___location'
   | 'data___quotes'
   | 'data___name'
+  | 'data____education'
+  | 'data____work'
+  | 'data____writing'
+  | 'data____link'
+  | 'data____speaking'
+  | 'data____photography'
+  | 'data____volunteering'
   | 'data___mentions'
   | 'data___writing'
   | 'data___values___principles'
@@ -1127,6 +1169,13 @@ export type AirtableFieldsEnum =
   | 'data___roles___data___person'
   | 'data___roles___data___quotes'
   | 'data___roles___data___name'
+  | 'data___roles___data____education'
+  | 'data___roles___data____work'
+  | 'data___roles___data____writing'
+  | 'data___roles___data____link'
+  | 'data___roles___data____speaking'
+  | 'data___roles___data____photography'
+  | 'data___roles___data____volunteering'
   | 'data___roles___data___mentions'
   | 'data___roles___data___writing'
   | 'data___roles___data___values___principles'
@@ -1178,6 +1227,13 @@ export type AirtableFieldsEnum =
   | 'data___location___data___person'
   | 'data___location___data___quotes'
   | 'data___location___data___name'
+  | 'data___location___data____education'
+  | 'data___location___data____work'
+  | 'data___location___data____writing'
+  | 'data___location___data____link'
+  | 'data___location___data____speaking'
+  | 'data___location___data____photography'
+  | 'data___location___data____volunteering'
   | 'data___location___data___mentions'
   | 'data___location___data___writing'
   | 'data___location___data___values___principles'

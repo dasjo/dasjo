@@ -3,7 +3,7 @@ const baseId = 'appp5IceUTSkfnLXO';
 
 module.exports = {
   siteMetadata: {
-    title: `Josef Dabernig`,
+    title: `Josef Kruckenberg`,
   },
   plugins: [
     `gatsby-plugin-ts`,

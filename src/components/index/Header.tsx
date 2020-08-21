@@ -19,7 +19,7 @@ const StyledHeader = styled.header`
 
   .text-box {
     @media(min-width: calc(${breakpoints.large0} + 1px)) {
-      flex: 0 0 50%;
+      flex: 0 0 60%;
       margin-right: var(--gutter-large-1);
     }
 
@@ -60,7 +60,7 @@ const Header = ({ josefImg }: any) => (
     <StyledHeader role="banner">
       <div className="text-box">
         <h1>
-          Josef Dabernig <span>/ dasjo</span>
+          Josef Kruckenberg <span>/ dasjo</span>
         </h1>
         {/* <h2>Challenge the impossible!</h2> */}
         <p>

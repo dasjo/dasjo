@@ -29,7 +29,7 @@ npm manifest:
   {
     "name": "dasjo",
     "version": "1.0.0",
-    "description": "Personal website for Josef Dabernig.",
+    "description": "Personal website for Josef Kruckenberg.",
     "main": "index.js",
     "dependencies": {
       "@emotion/core": "^10.0.28",
