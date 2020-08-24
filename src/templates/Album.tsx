@@ -70,6 +70,7 @@ const AlbumTemplate = ({ data: { airtable: album } }: any) => {
       <div className="row">
         <StyledAlbumTemplate className="template">
           <p>
+            //@todo centrally define date component with locale
             {new Date(album.data.date).toLocaleDateString("en-GB", {
               weekday: "long",
               year: "numeric",
