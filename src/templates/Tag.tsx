@@ -6,6 +6,7 @@ import { deHyphenate } from "../utils/helpers";
 import Img from "gatsby-image";
 
 import styled from "@emotion/styled";
+import { breakpoints } from "../styles/variables";
 
 const StyledTag = styled.div`
   section {
@@ -46,10 +47,26 @@ const StyledTag = styled.div`
     gap: 2rem;
     margin-top: var(--gutter-large);
 
+    @media (max-width: ${breakpoints.medium}) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: ${breakpoints.medium0}) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
     .g-image {
-      max-height: 136px;
+      max-height: 150px;
       min-width: 22rem;
       overflow-y: hidden;
+
+      @media (max-width: ${breakpoints.medium}) {
+        max-height: 160px;
+      }
+
+      @media (max-width: ${breakpoints.medium0}) {
+        max-width: 300px;
+      }
 
       .gatsby-image-wrapper {
         height: 100%;
