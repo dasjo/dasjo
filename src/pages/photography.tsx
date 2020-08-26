@@ -29,7 +29,7 @@ export const photographyPageQuery = graphql`
           attachments {
             localFiles {
               childImageSharp {
-                fluid {
+                fluid(maxWidth: 650, maxHeight: 400) {
                   ...GatsbyImageSharpFluid
                 }
               }

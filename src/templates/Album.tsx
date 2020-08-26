@@ -43,7 +43,7 @@ export const query = graphql`
         attachments {
           localFiles {
             childImageSharp {
-              fluid {
+              fluid(maxWidth: 400, maxHeight: 400) {
                 ...GatsbyImageSharpFluid
               }
             }

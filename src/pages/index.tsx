@@ -37,7 +37,7 @@ export const IndexPageQuery = graphql`
     }
     file(relativePath: { eq: "josef.jpg" }) {
       childImageSharp {
-        fluid {
+        fluid(maxWidth: 500, maxHeight: 500) {
           sizes
           src
           srcSet
