@@ -54,6 +54,8 @@ export const query = graphql`
   }
 `;
 
+// @todo centrally define image component
+
 const AlbumTemplate = ({ data: { airtable: album } }: any) => {
   const attachments = album.data.attachments.localFiles.map(
     (a: any) => a.childImageSharp.fluid
@@ -65,12 +67,12 @@ const AlbumTemplate = ({ data: { airtable: album } }: any) => {
     ? album.data.tags.map((t: any) => t.data.name)
     : null;
 
+  // @todo centrally define date component with locale
   return (
     <IndexLayout>
       <div className="row">
         <StyledAlbumTemplate className="template">
           <p>
-            //@todo centrally define date component with locale
             {new Date(album.data.date).toLocaleDateString("en-GB", {
               weekday: "long",
               year: "numeric",
