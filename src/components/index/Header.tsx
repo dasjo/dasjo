@@ -61,7 +61,7 @@ const Header = ({ josefImg }: any) => (
     <StyledHeader role="banner">
       <div className="text-box">
         <h1>
-          Josef Dabernig <span>/ dasjo</span>
+          Josef Kruckenberg <span>/ dasjo</span>
         </h1>
         {/* <h2>Challenge the impossible!</h2> */}
         <p>
