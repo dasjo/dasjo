@@ -55,12 +55,13 @@ const StyledHeader = styled.header`
   }
 `;
 
+// @todo replace name with global constant
 const Header = ({ josefImg }: any) => (
   <div className="row">
     <StyledHeader role="banner">
       <div className="text-box">
         <h1>
-          Josef Kruckenberg <span>/ dasjo</span>
+          Josef Dabernig <span>/ dasjo</span>
         </h1>
         {/* <h2>Challenge the impossible!</h2> */}
         <p>

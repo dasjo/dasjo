@@ -8,7 +8,7 @@ const baseId = process.env.AIRTABLE_BASEID;
 
 module.exports = {
   siteMetadata: {
-    title: `Josef Kruckenberg`,
+    title: 'Josef Dabernig',
   },
   plugins: [
     `gatsby-plugin-ts`,
