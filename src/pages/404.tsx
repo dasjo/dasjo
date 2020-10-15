@@ -5,13 +5,14 @@ import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 
 const StyledNotFound = styled.div`
-  .btn--text {
-    margin-top: var(--gutter-small);
+
+  p {
+    margin: var(--gutter-small) 0;
   }
 `;
 
 const NotFound = () => (
-  <IndexLayout>
+  <IndexLayout pageTitle="404 Error - Page not found">
     <StyledNotFound>
       <div className="row">
         <section>

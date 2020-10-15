@@ -17,9 +17,10 @@ type StaticQueryProps = {
 
 interface IndexLayoutProps {
   children: JSX.Element;
+  pageTitle?: string;
 }
 
-const IndexLayout = ({ children }: IndexLayoutProps) => {
+const IndexLayout = ({ children, pageTitle }: IndexLayoutProps) => {
   const handleMouseDownOnce = (): void => {
     document.body.classList.remove('user-is-tabbing');
     window.removeEventListener('mousedown', handleMouseDownOnce);
@@ -58,7 +59,7 @@ const IndexLayout = ({ children }: IndexLayoutProps) => {
           <div className="page-wrapper">
             <Helmet>
               <html lang="en" />
-              <title>{data.site.siteMetadata.title}</title>
+              <title>{pageTitle ? pageTitle : data.site.siteMetadata.title }</title>
               <link rel="stylesheet" href="/font.css" />
             </Helmet>
             <Nav />
