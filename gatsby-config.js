@@ -9,12 +9,72 @@ const baseId = process.env.AIRTABLE_BASEID;
 module.exports = {
   siteMetadata: {
     title: 'Josef Kruckenberg',
+    description: "Personal home of Josef Kruckenberg",
+    siteUrl: "https://www.dasjo.at/",
   },
   plugins: [
     `gatsby-plugin-ts`,
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-remark`,
     `gatsby-transformer-sharp`,
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [{
+          serialize(value) {
+            const rssMetadata = value.query.site.siteMetadata
+            return value.query.allAirtable.nodes.map(node => ({
+              title: node.data.title,
+              description: node.data.text_en.childMarkdownRemark.excerpt,
+              date: node.data.date,
+              url: rssMetadata.siteUrl + "/writing/" + node.data.slug,
+              guid: rssMetadata.siteUrl + "/writing/" + node.data.slug,
+              
+            }))
+          },
+          query: `
+          {       
+            allAirtable(
+              filter: {
+                table: { eq: "Writing" }
+                data: { tags: { elemMatch: { data: { name: { eq: "Drupal Planet" } } } } }
+              }
+              sort: { fields: [data___date], order: DESC }
+            ) {
+              nodes {
+                table
+                data {
+                  title
+                  slug
+                  date
+                  text_en {
+                    childMarkdownRemark {
+                      excerpt
+                    }
+                  }
+                }
+              }
+            }
+          }
+         `,
+            output: "/drupal-planet.rss",
+            title: "dasjo.at drupal planet",
+          },
+        ],
+      },
+    },
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-source-filesystem`,
