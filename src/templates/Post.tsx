@@ -2,6 +2,7 @@ import React from "react";
 import IndexLayout from "../layouts";
 import { graphql } from "gatsby";
 import CompanyAndTags from "../components/CompanyAndTags";
+import Img from "gatsby-image";
 
 export const query = graphql`
   query($slug: String!) {
@@ -27,6 +28,15 @@ export const query = graphql`
             name
           }
         }
+        attachments {
+          localFiles {
+            childImageSharp {
+              fluid(maxWidth: 800, maxHeight: 800) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -41,6 +51,10 @@ const PostTemplate = ({ data: { airtable: writing } }: any) => {
   const tags = writing.data.tags
     ? writing.data.tags.map((t: any) => t.data.name)
     : null;
+
+  const attachments = writing.data.attachments ? writing.data.attachments.localFiles.map(
+    (a: any) => a.childImageSharp.fluid
+  ) : null;
 
   return (
     <IndexLayout>
@@ -63,6 +77,15 @@ const PostTemplate = ({ data: { airtable: writing } }: any) => {
               }}
             />
           ) : null}
+
+          {attachments ? (
+          <div className="photos">
+            {attachments.map((a: any, i: number) => (
+              <Img fluid={a} key={i} />
+            ))}
+          </div>
+          ) : null}
+
         </div>
       </div>
     </IndexLayout>
