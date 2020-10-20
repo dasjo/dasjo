@@ -34,15 +34,21 @@ module.exports = {
         `,
         feeds: [{
           serialize(value) {
-            const rssMetadata = value.query.site.siteMetadata
-            return value.query.allAirtable.nodes.map(node => ({
-              title: node.data.title,
-              description: node.data.text_en.childMarkdownRemark.html,
-              date: node.data.date,
-              url: rssMetadata.siteUrl + "/writing/" + node.data.slug,
-              guid: rssMetadata.siteUrl + "/writing/" + node.data.slug,
-              custom_elements: [{ "content:encoded": node.data.text_en.childMarkdownRemark.html }]
-            }))
+            const rssMetadata = value.query.site.siteMetadata;
+            return value.query.allAirtable.nodes.map(node => {
+              var rss = {};
+              var img = node.data.attachments && node.data.attachments.localFiles ? node.data.attachments.localFiles.map((a) => {
+                return a.childImageSharp.fluid.src;
+              })[0] : null;
+              var body = node.data.text_en.childMarkdownRemark.html + "<img src=\"" + rssMetadata.siteUrl + img + "\" />";
+              rss['title'] = node.data.title;
+              rss['description'] = body;
+              rss['date'] = node.data.date;
+              rss['url'] = rssMetadata.siteUrl + "/writing/" + node.data.slug;
+              rss['guid'] = rssMetadata.siteUrl + "/writing/" + node.data.slug;
+              rss['custom_elements'] = [{ "content:encoded": body }];
+              return rss;
+            })
           },
           query: `
           {       
@@ -62,6 +68,15 @@ module.exports = {
                   text_en {
                     childMarkdownRemark {
                       html
+                    }
+                  }
+                  attachments {
+                    localFiles {
+                      childImageSharp {
+                        fluid(maxWidth: 400, maxHeight: 300) {
+                          src
+                        }
+                      }
                     }
                   }
                 }

@@ -7,3 +7,5 @@ yarn-error.log
 .DS_Store
 .vscode
 .env*
+# Local Netlify folder
+.netlify
