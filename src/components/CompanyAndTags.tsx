@@ -32,11 +32,13 @@ const StyledCompanyAndTags = styled.div`
 const CompanyAndTags = ({ organisation, tags }: any) => (
     <StyledCompanyAndTags className="name-tags">
         <div className="org">{organisation}</div>
-        <div className="tags-container">
-            {tags.map((tag: string, i: number) => (
-                <Tag text={tag} key={i + tag} />
-            ))}
-        </div>
+        {tags && 
+            <div className="tags-container">
+                {tags.map((tag: string, i: number) => (
+                    <Tag text={tag} key={i + tag} />
+                ))}
+            </div>
+        }
     </StyledCompanyAndTags>
 )
 

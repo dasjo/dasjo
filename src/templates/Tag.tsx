@@ -227,14 +227,15 @@ const TagTemplate = ({ location, data }: any) => {
     structuredItemsToRender.push(entry);
   });
 
-  console.log(structuredItemsToRender);
+  const title = deHyphenate(location.pathname.split("/")[1]);
+  const tagImageSrc = tagImage ? tagImage.src : null;
 
   return (
-    <IndexLayout>
+    <IndexLayout pageTitle={title} image={tagImageSrc}>
       <StyledTag>
         <div className="row">
           <section>
-            <h1>{deHyphenate(location.pathname.split("/")[1])}</h1>
+            <h1>{title}</h1>
             <div className="container--small">
               <div className="banner">
                 {tagImage ? <Img fluid={tagImage} className="img" /> : null}

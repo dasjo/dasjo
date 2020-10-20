@@ -33,8 +33,6 @@ const Pager = ({ pageContext }: any) => {
     });
   }
 
-  console.log(pageContext, pageContext.pageNumber);
-
   return (
     <StyledPager>
       <Link

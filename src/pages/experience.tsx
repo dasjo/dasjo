@@ -160,7 +160,7 @@ const ExperiencePage = ({ data }: any) => {
     ),
   };
   return (
-    <IndexLayout>
+    <IndexLayout pageTitle="Experience">
       <div className="row">
         <section>
           <h1>Experience</h1>

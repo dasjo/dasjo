@@ -52,8 +52,7 @@ export const query = graphql`
 `;
 
 const WritingPage = ({ data, pageContext }: any) => {
-  console.log(data, pageContext);
-
+  
   const writings = data.allAirtable.nodes.map((w: any) => ({
     title: w.data.title,
     slug: w.data.slug,
@@ -72,7 +71,7 @@ const WritingPage = ({ data, pageContext }: any) => {
     tags: w.data.tags ? w.data.tags.map((t: any) => t.data.name) : null,
   }));
   return (
-    <IndexLayout>
+    <IndexLayout pageTitle="Writing">
       <div className="row">
         <section>
           <h1>Writing</h1>

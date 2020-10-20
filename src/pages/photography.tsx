@@ -81,7 +81,7 @@ const PhotographyPage = ({ data }: any) => {
   });
 
   return (
-    <IndexLayout>
+    <IndexLayout pageTitle="Photography">
       <StyledPhotoGraphyPage>
         <div className="row">
           <section>

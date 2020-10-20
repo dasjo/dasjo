@@ -58,7 +58,7 @@ const SpeakingPage = ({ data }: any) => {
   }));
 
   return (
-    <IndexLayout>
+    <IndexLayout pageTitle="Speaking">
       <StyledSpeakingPage>
         <div className="row">
           <section>

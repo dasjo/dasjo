@@ -57,7 +57,7 @@ const PostTemplate = ({ data: { airtable: writing } }: any) => {
   ) : null;
 
   return (
-    <IndexLayout>
+    <IndexLayout pageTitle={title} node={writing}>
       <div className="row">
         <div className="container--small template">
           <p>

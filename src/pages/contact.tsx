@@ -3,8 +3,8 @@ import IndexLayout from '../layouts';
 import ContactForm from '../components/contact/ContactForm';
 
 const ContactPage = () => (
-  <IndexLayout>
-    <div className="row">
+  <IndexLayout pageTitle="Contact">
+  <div className="row">
       <section>
         <h1>Contact</h1>
         <ContactForm />

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { Helmet } from 'react-helmet';
+import { SEO } from "../components/seo";
 import { StaticQuery, graphql } from 'gatsby';
 import LayoutRoot from '../components/LayoutRoot';
 import Nav from '../components/Nav';
@@ -18,9 +18,11 @@ type StaticQueryProps = {
 interface IndexLayoutProps {
   children: JSX.Element;
   pageTitle?: string;
+  node?: any;
+  image?: string;
 }
 
-const IndexLayout = ({ children, pageTitle }: IndexLayoutProps) => {
+const IndexLayout = ({ children, pageTitle, node, image }: IndexLayoutProps) => {
   const handleMouseDownOnce = (): void => {
     document.body.classList.remove('user-is-tabbing');
     window.removeEventListener('mousedown', handleMouseDownOnce);
@@ -57,11 +59,8 @@ const IndexLayout = ({ children, pageTitle }: IndexLayoutProps) => {
       render={(data: StaticQueryProps) => (
         <LayoutRoot>
           <div className="page-wrapper">
-            <Helmet>
-              <html lang="en" />
-              <title>{pageTitle ? pageTitle : data.site.siteMetadata.title }</title>
-              <link rel="stylesheet" href="/font.css" />
-            </Helmet>
+            <SEO title={pageTitle ? pageTitle : data.site.siteMetadata.title } node={node} image={image} />
+            <link rel="stylesheet" href="/font.css" />
             <Nav />
             <LayoutMain>{children}</LayoutMain>
             <Footer />

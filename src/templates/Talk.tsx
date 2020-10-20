@@ -50,9 +50,8 @@ const Talk = ({ data: { airtable: speaking } }: any) => {
 
   const tagsData = tags ? tags.map((t: any) => t.data.name) : null;
 
-  console.log(link);
   return (
-    <IndexLayout>
+    <IndexLayout pageTitle={title} node={speaking}>
       <div className="template">
         <div className="row">
           <div className="container--small">

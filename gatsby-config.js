@@ -8,9 +8,15 @@ const baseId = process.env.AIRTABLE_BASEID;
 
 module.exports = {
   siteMetadata: {
-    title: 'Josef Kruckenberg',
-    description: "Personal home of Josef Kruckenberg",
-    siteUrl: "https://www.dasjo.at/",
+    title: 'Josef Kruckenberg / dasjo',
+    description: "Agile, Drupal, Community, Diversity & Inclusion. At the intersection of Technology, User Experience and Business.",
+    siteUrl: "https://www.dasjo.at",
+
+    titleTemplate: "%s · Josef Kruckenberg / dasjo",
+    image: "/josef.jpg", // Path to your image you placed in the 'static' folder
+    twitterUsername: "@dasjo",
+    author: "dasjo"
+
   },
   plugins: [
     `gatsby-plugin-ts`,
