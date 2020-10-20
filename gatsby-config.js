@@ -37,11 +37,11 @@ module.exports = {
             const rssMetadata = value.query.site.siteMetadata
             return value.query.allAirtable.nodes.map(node => ({
               title: node.data.title,
-              description: node.data.text_en.childMarkdownRemark.excerpt,
+              description: node.data.text_en.childMarkdownRemark.html,
               date: node.data.date,
               url: rssMetadata.siteUrl + "/writing/" + node.data.slug,
               guid: rssMetadata.siteUrl + "/writing/" + node.data.slug,
-              
+              custom_elements: [{ "content:encoded": node.data.text_en.childMarkdownRemark.html }]
             }))
           },
           query: `
@@ -61,7 +61,7 @@ module.exports = {
                   date
                   text_en {
                     childMarkdownRemark {
-                      excerpt
+                      html
                     }
                   }
                 }
@@ -69,7 +69,7 @@ module.exports = {
             }
           }
          `,
-            output: "/drupal-planet.rss",
+            output: "/drupal-planet.xml",
             title: "dasjo.at drupal planet",
           },
         ],

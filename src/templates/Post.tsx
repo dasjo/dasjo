@@ -52,7 +52,7 @@ const PostTemplate = ({ data: { airtable: writing } }: any) => {
     ? writing.data.tags.map((t: any) => t.data.name)
     : null;
 
-  const attachments = writing.data.attachments ? writing.data.attachments.localFiles.map(
+  const attachments = writing.data.attachments && writing.data.attachments.localFiles ? writing.data.attachments.localFiles.map(
     (a: any) => a.childImageSharp.fluid
   ) : null;
 

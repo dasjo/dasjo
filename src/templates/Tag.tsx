@@ -159,7 +159,7 @@ export const query = graphql`
 const TagTemplate = ({ location, data }: any) => {
   const about = data.tag && data.tag.data ? data.tag.data.about : null;
   const tagImage =
-    data.tag && data.tag.data && data.tag.data.image
+    data.tag && data.tag.data && data.tag.data.image && data.tag.data.image.localFiles
       ? data.tag.data.image.localFiles.map((a: any) => {
           return a.childImageSharp.fluid;
         })[0]

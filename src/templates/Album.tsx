@@ -57,9 +57,10 @@ export const query = graphql`
 // @todo centrally define image component
 
 const AlbumTemplate = ({ data: { airtable: album } }: any) => {
-  const attachments = album.data.attachments.localFiles.map(
-    (a: any) => a.childImageSharp.fluid
-  );
+  const attachments = album.data && album.data.attachments && album.data.attachments.localFiles ? 
+    album.data.attachments.localFiles.map(
+      (a: any) => a.childImageSharp.fluid
+    ) : null;
   const organisation = (album.data.organisation
     ? album.data.organisation.map((o: any) => o.data.title)
     : [])[0];
