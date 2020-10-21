@@ -16,6 +16,7 @@ export const query = graphql`
         text_en {
           childMarkdownRemark {
             html
+            excerpt
           }
         }
         organisation {

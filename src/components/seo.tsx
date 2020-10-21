@@ -26,6 +26,11 @@ export function SEO({
     <StaticQuery
       query={detailsQuery}
       render={data => {
+
+        if(node && node.data && node.data.text_en && node.data.text_en.childMarkdownRemark) {
+          description = node.data.text_en.childMarkdownRemark.excerpt || node.data.text_en.childMarkdownRemark.html;
+        }
+
         const metaDescription = description || data.site.siteMetadata.description;
 
         if(!image && node) {
@@ -34,7 +39,7 @@ export function SEO({
           })[0] : null;  
         }
         if (!image) {
-          image = data.site.siteMetadata.image;
+          image = data.file.childImageSharp.fluid.src;
         }
 
         image = data.site.siteMetadata.siteUrl + image;
@@ -113,6 +118,16 @@ const detailsQuery = graphql`
         author
         image
         siteUrl
+      }
+    }
+    file(relativePath: { eq: "josef.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 500, maxHeight: 500) {
+          sizes
+          src
+          srcSet
+          aspectRatio
+        }
       }
     }
   }
