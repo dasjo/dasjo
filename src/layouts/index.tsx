@@ -60,7 +60,6 @@ const IndexLayout = ({ children, pageTitle, node, image }: IndexLayoutProps) => 
         <LayoutRoot>
           <div className="page-wrapper">
             <SEO title={pageTitle ? pageTitle : data.site.siteMetadata.title } node={node} image={image} />
-            <link rel="stylesheet" href="/font.css" />
             <Nav />
             <LayoutMain>{children}</LayoutMain>
             <Footer />

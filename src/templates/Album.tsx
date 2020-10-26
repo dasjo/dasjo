@@ -70,7 +70,7 @@ const AlbumTemplate = ({ data: { airtable: album } }: any) => {
 
   // @todo centrally define date component with locale
   return (
-    <IndexLayout>
+    <IndexLayout pageTitle={album.data.title} node={album}>
       <div className="row">
         <StyledAlbumTemplate className="template">
           <p>

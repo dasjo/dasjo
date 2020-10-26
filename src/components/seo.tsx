@@ -106,12 +106,13 @@ export function SEO({
             {/* inline font stlye */}
             <style type="text/css">{`
               @font-face {
-              font-family: 'Hk Grotesk';
-              font-style: normal;
-              font-weight: 400;
-              src: url('./fonts/HKGrotesk-Regular.woff') format('woff');
-            }
-          `}</style>
+                font-family: 'Hk Grotesk';
+                font-style: normal;
+                font-weight: 400;
+                font-display: swap;
+                src: url('/fonts/HKGrotesk-Regular.woff') format('woff');
+              }
+            `}</style>
           </Helmet>
         )
       }}
