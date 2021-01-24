@@ -87,6 +87,12 @@ const PostTemplate = ({ data: { airtable: writing } }: any) => {
           </div>
           ) : null}
 
+          {writing.data.link ? (
+          <a href={writing.data.link} className="btn--text" target="_blank">
+            View Original Post <span>&nbsp;&rarr;</span>
+          </a>
+          ) : null}
+
         </div>
       </div>
     </IndexLayout>
