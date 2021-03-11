@@ -178,6 +178,7 @@ module.exports = {
         ],
       },
     },
+    `gatsby-plugin-percy`,
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
