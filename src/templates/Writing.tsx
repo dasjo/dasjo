@@ -38,7 +38,12 @@ export const query = graphql`query ($skip: Int!, $limit: Int!) {
         attachments {
           localFiles {
             childImageSharp {
-              gatsbyImageData(width: 400, height: 300, layout: CONSTRAINED)
+              gatsbyImageData(
+                width: 300, 
+                height: 200, 
+                layout: CONSTRAINED,
+                transformOptions: {fit: INSIDE}
+              )
             }
           }
         }

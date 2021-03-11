@@ -143,12 +143,16 @@ export const query = graphql`query ($name: String) {
 
 const TagTemplate = ({ location, data }: any) => {
   const about = data.tag && data.tag.data ? data.tag.data.about : null;
-  const tagImage =
-    data.tag && data.tag.data && data.tag.data.image && data.tag.data.image.localFiles
-      ? data.tag.data.image.localFiles.map((a: any) => {
-          return a.childImageSharp.gatsbyImageData;
-        })[0]
-      : null;
+  // Get the first image from the localFiles array
+  let tagImage = null;
+  if (data.tag && data.tag.data && data.tag.data.image && data.tag.data.image.localFiles) {
+    for (let file of data.tag.data.image.localFiles) {
+      if (file.childImageSharp) {
+        tagImage = file.childImageSharp.gatsbyImageData;
+        break;
+      }
+    }
+  }
   let speakings: any[] = [];
   if (data.speaking.nodes.length) {
     speakings = data.speaking.nodes.map((t: any) => ({
@@ -176,9 +180,7 @@ const TagTemplate = ({ location, data }: any) => {
       date: p.data.date,
       link: p.data.link,
       slug: p.data.slug,
-      attachment: p.data.attachments.localFiles.map((a: any) => {
-        return a.childImageSharp.gatsbyImageData;
-      })[0],
+      attachment: p.data.attachments.localFiles.flatMap((a: any) => a.childImageSharp ? a.childImageSharp.gatsbyImageData : [])[0]
     }));
   }
 
