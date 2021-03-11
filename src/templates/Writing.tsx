@@ -7,48 +7,45 @@ import IndexLayout from "../layouts";
 import PostBanner, { PostBannerProps } from "../components/writing/PostBanner";
 import Pager from "../components/pager";
 
-export const query = graphql`
-  query($skip: Int!, $limit: Int!) {
-    allAirtable(
-      filter: { table: { eq: "Writing" } }
-      sort: { fields: [data___date], order: DESC }
-      skip: $skip
-      limit: $limit
-    ) {
-      nodes {
-        data {
-          slug
-          title
-          link
-          date
-          text_en {
-            childMarkdownRemark {
-              excerpt
-            }
+export const query = graphql`query ($skip: Int!, $limit: Int!) {
+  allAirtable(
+    filter: {table: {eq: "Writing"}}
+    sort: {fields: [data___date], order: DESC}
+    skip: $skip
+    limit: $limit
+  ) {
+    nodes {
+      data {
+        slug
+        title
+        link
+        date
+        text_en {
+          childMarkdownRemark {
+            excerpt
           }
-          organisation {
-            data {
-              title
-            }
+        }
+        organisation {
+          data {
+            title
           }
-          tags {
-            data {
-              name
-            }
+        }
+        tags {
+          data {
+            name
           }
-          attachments {
-            localFiles {
-              childImageSharp {
-                fluid(maxWidth: 400, maxHeight: 300) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
+        }
+        attachments {
+          localFiles {
+            childImageSharp {
+              gatsbyImageData(width: 400, height: 300, layout: CONSTRAINED)
             }
           }
         }
       }
     }
   }
+}
 `;
 
 const WritingPage = ({ data, pageContext }: any) => {
@@ -66,7 +63,7 @@ const WritingPage = ({ data, pageContext }: any) => {
       w.data.attachments &&
       w.data.attachments.localFiles &&
       w.data.attachments.localFiles.map((a: any) => {
-        return a.childImageSharp.fluid;
+        return a.childImageSharp.gatsbyImageData;
       })[0],
     tags: w.data.tags ? w.data.tags.map((t: any) => t.data.name) : null,
   }));

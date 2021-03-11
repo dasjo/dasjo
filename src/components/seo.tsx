@@ -2,6 +2,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
+import { getSrc } from 'gatsby-plugin-image';
 
 interface Props {
   description?: string
@@ -35,11 +36,11 @@ export function SEO({
 
         if(!image && node) {
           image = node.data.attachments && node.data.attachments.localFiles ? node.data.attachments.localFiles.map((a: any) => {
-            return a.childImageSharp.fluid.src;
+            return getSrc(a.childImageSharp.gatsbyImageData);
           })[0] : null;  
         }
         if (!image) {
-          image = data.file.childImageSharp.fluid.src;
+          image = getSrc(data.file.childImageSharp.gatsbyImageData);
         }
 
         image = data.site.siteMetadata.siteUrl + image;
@@ -111,7 +112,17 @@ export function SEO({
                 font-weight: 400;
                 font-display: swap;
                 src: url('/fonts/HKGrotesk-Regular.woff') format('woff');
+
               }
+              /* space-mono-regular - latin */
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Space Mono'), local('SpaceMono-Regular'),
+       url('../fonts/space-mono-v6-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('../fonts/space-mono-v6-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
             `}</style>
           </Helmet>
         )
@@ -133,12 +144,10 @@ const detailsQuery = graphql`
     }
     file(relativePath: { eq: "josef.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 500, maxHeight: 500) {
-          sizes
-          src
-          srcSet
-          aspectRatio
-        }
+        gatsbyImageData(
+          width: 500
+          height: 500
+        )
       }
     }
   }

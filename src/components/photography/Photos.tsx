@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-import Img from 'gatsby-image';
+import { GatsbyImage } from "gatsby-plugin-image";
 import { Link } from 'gatsby'
 
 const StyledPhotos = styled.section`
@@ -17,16 +17,14 @@ const StyledPhotos = styled.section`
 `;
 
 const Photos = ({ title, slug, image }: any) => {
-    return (
-        <>
-            <StyledPhotos>
-                <Link to={`/photography/${slug}`} target="_blank">
-                    <Img fluid={image} />
-                    <h3>{title}</h3>
-                </Link>
-            </StyledPhotos>
-        </>
-    );
+    return <>
+        <StyledPhotos>
+            <Link to={`/photography/${slug}`} target="_blank">
+                <GatsbyImage image={image} alt={title} />
+                <h3>{title}</h3>
+            </Link>
+        </StyledPhotos>
+    </>;
 }
 
 export default Photos;

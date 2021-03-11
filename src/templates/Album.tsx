@@ -1,7 +1,7 @@
 import React from "react";
 import IndexLayout from "../layouts";
 import { graphql } from "gatsby";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 import styled from "@emotion/styled";
 import CompanyAndTags from "../components/CompanyAndTags";
@@ -23,35 +23,32 @@ const StyledAlbumTemplate = styled.article`
   }
 `;
 
-export const query = graphql`
-  query($slug: String!) {
-    airtable(data: { slug: { eq: $slug } }) {
-      data {
-        title
-        link
-        date
-        organisation {
-          data {
-            title
-          }
+export const query = graphql`query ($slug: String!) {
+  airtable(data: {slug: {eq: $slug}}) {
+    data {
+      title
+      link
+      date
+      organisation {
+        data {
+          title
         }
-        tags {
-          data {
-            name
-          }
+      }
+      tags {
+        data {
+          name
         }
-        attachments {
-          localFiles {
-            childImageSharp {
-              fluid(maxWidth: 400, maxHeight: 400) {
-                ...GatsbyImageSharpFluid
-              }
-            }
+      }
+      attachments {
+        localFiles {
+          childImageSharp {
+            gatsbyImageData(width: 400, height: 400, layout: CONSTRAINED)
           }
         }
       }
     }
   }
+}
 `;
 
 // @todo centrally define image component
@@ -59,7 +56,7 @@ export const query = graphql`
 const AlbumTemplate = ({ data: { airtable: album } }: any) => {
   const attachments = album.data && album.data.attachments && album.data.attachments.localFiles ? 
     album.data.attachments.localFiles.map(
-      (a: any) => a.childImageSharp.fluid
+      (a: any) => a.childImageSharp.gatsbyImageData
     ) : null;
   const organisation = (album.data.organisation
     ? album.data.organisation.map((o: any) => o.data.title)
@@ -85,7 +82,7 @@ const AlbumTemplate = ({ data: { airtable: album } }: any) => {
           <CompanyAndTags organisation={organisation} tags={tags} />
           <div className="photos">
             {attachments.map((a: any, i: number) => (
-              <Img fluid={a} key={i} />
+              <GatsbyImage image={a} key={i} alt={album.data.title} />
             ))}
           </div>
           <a href={album.data.link} className="btn--text" target="_blank">

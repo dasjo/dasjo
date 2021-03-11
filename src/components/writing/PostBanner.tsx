@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import PostBannerImage from "../../resources/post-banner.jpg";
 import { breakpoints } from "../../styles/variables";
 import { Link } from "gatsby";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import CompanyAndTags from "../CompanyAndTags";
 
 const StyledPostBanner = styled.article`
@@ -83,7 +83,7 @@ const PostBanner = ({
     <div className="wrapper">
       {teaser ? (
         <Link to={`/writing/${slug}`} className="g-image">
-          <Img fluid={teaser} />
+          <GatsbyImage image={teaser} alt={`Image for ${title}`} />
         </Link>
       ) : (
         <div className="img"></div>

@@ -3,7 +3,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 import { breakpoints } from '../../styles/variables';
-import Img from 'gatsby-image';
+import { GatsbyImage } from "gatsby-plugin-image";
 
 const StyledHeader = styled.header`
   padding: var(--gutter-large-1) 0 var(--gutter-large-1);
@@ -78,7 +78,7 @@ const Header = ({ josefImg }: any) => (
         </Link>
       </div>
       <div className="img-box">
-        <Img fluid={josefImg} />
+        <GatsbyImage image={josefImg} alt="Josef Kruckenberg Portrait. Image by Boris Baldinger" />
       </div>
     </StyledHeader>
   </div>

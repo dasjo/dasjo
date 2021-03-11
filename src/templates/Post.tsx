@@ -2,45 +2,42 @@ import React from "react";
 import IndexLayout from "../layouts";
 import { graphql } from "gatsby";
 import CompanyAndTags from "../components/CompanyAndTags";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 
-export const query = graphql`
-  query($slug: String!) {
-    airtable(data: { slug: { eq: $slug } }) {
-      table
-      data {
-        slug
-        title
-        link
-        date
-        text_en {
-          childMarkdownRemark {
-            html
-            excerpt
-          }
+export const query = graphql`query ($slug: String!) {
+  airtable(data: {slug: {eq: $slug}}) {
+    table
+    data {
+      slug
+      title
+      link
+      date
+      text_en {
+        childMarkdownRemark {
+          html
+          excerpt
         }
-        organisation {
-          data {
-            title
-          }
+      }
+      organisation {
+        data {
+          title
         }
-        tags {
-          data {
-            name
-          }
+      }
+      tags {
+        data {
+          name
         }
-        attachments {
-          localFiles {
-            childImageSharp {
-              fluid(maxWidth: 800, maxHeight: 800) {
-                ...GatsbyImageSharpFluid
-              }
-            }
+      }
+      attachments {
+        localFiles {
+          childImageSharp {
+            gatsbyImageData(width: 800, height: 800, layout: CONSTRAINED)
           }
         }
       }
     }
   }
+}
 `;
 
 const PostTemplate = ({ data: { airtable: writing } }: any) => {
@@ -54,7 +51,7 @@ const PostTemplate = ({ data: { airtable: writing } }: any) => {
     : null;
 
   const attachments = writing.data.attachments && writing.data.attachments.localFiles ? writing.data.attachments.localFiles.map(
-    (a: any) => a.childImageSharp.fluid
+    (a: any) => a.childImageSharp.gatsbyImageData
   ) : null;
 
   return (
@@ -82,7 +79,7 @@ const PostTemplate = ({ data: { airtable: writing } }: any) => {
           {attachments ? (
           <div className="photos">
             {attachments.map((a: any, i: number) => (
-              <Img fluid={a} key={i} />
+              <GatsbyImage image={a} key={i} alt={title} />
             ))}
           </div>
           ) : null}

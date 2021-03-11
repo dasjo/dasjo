@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import styled from "@emotion/styled";
 import Logo from "../resources/logo.svg";
-import { Global, css } from "@emotion/core";
+import { Global, css } from "@emotion/react";
 import { breakpoints } from "../styles/variables";
 import { Link } from "gatsby";
 

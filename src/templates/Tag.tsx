@@ -3,7 +3,7 @@ import React from "react";
 import IndexLayout from "../layouts";
 import { graphql, Link } from "gatsby";
 import { deHyphenate } from "../utils/helpers";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 import styled from "@emotion/styled";
 import { breakpoints } from "../styles/variables";
@@ -80,80 +80,65 @@ const StyledTag = styled.div`
   }
 `;
 
-export const query = graphql`
-  query($name: String) {
-    tag: airtable(data: { name: { eq: $name } }) {
-      data {
-        about
-        image {
-          localFiles {
-            childImageSharp {
-              fluid(maxWidth: 400, maxHeight: 300) {
-                ...GatsbyImageSharpFluid
-              }
-            }
+export const query = graphql`query ($name: String) {
+  tag: airtable(data: {name: {eq: $name}}) {
+    data {
+      about
+      image {
+        localFiles {
+          childImageSharp {
+            gatsbyImageData(width: 400, height: 300, layout: CONSTRAINED)
           }
         }
       }
     }
-    speaking: allAirtable(
-      filter: {
-        table: { eq: "Speaking" }
-        data: { tags: { elemMatch: { data: { name: { eq: $name } } } } }
-      }
-      sort: { fields: [data___date], order: DESC }
-    ) {
-      nodes {
-        table
-        data {
-          title
-          date
-          slug
-        }
+  }
+  speaking: allAirtable(
+    filter: {table: {eq: "Speaking"}, data: {tags: {elemMatch: {data: {name: {eq: $name}}}}}}
+    sort: {fields: [data___date], order: DESC}
+  ) {
+    nodes {
+      table
+      data {
+        title
+        date
+        slug
       }
     }
-    writing: allAirtable(
-      filter: {
-        table: { eq: "Writing" }
-        data: { tags: { elemMatch: { data: { name: { eq: $name } } } } }
-      }
-      sort: { fields: [data___date], order: DESC }
-    ) {
-      nodes {
-        table
-        data {
-          title
-          slug
-          date
-        }
+  }
+  writing: allAirtable(
+    filter: {table: {eq: "Writing"}, data: {tags: {elemMatch: {data: {name: {eq: $name}}}}}}
+    sort: {fields: [data___date], order: DESC}
+  ) {
+    nodes {
+      table
+      data {
+        title
+        slug
+        date
       }
     }
-
-    photography: allAirtable(
-      filter: {
-        table: { eq: "Photography" }
-        data: { tags: { elemMatch: { data: { name: { eq: $name } } } } }
-      }
-    ) {
-      nodes {
-        table
-        data {
-          link
-          date
-          slug
-          attachments {
-            localFiles {
-              childImageSharp {
-                fluid(maxWidth: 400, maxHeight: 300) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
+  }
+  photography: allAirtable(
+    filter: {table: {eq: "Photography"}, data: {tags: {elemMatch: {data: {name: {eq: $name}}}}}}
+  ) {
+    nodes {
+      table
+      data {
+        link
+        date
+        slug
+        attachments {
+          localFiles {
+            childImageSharp {
+              gatsbyImageData(width: 400, height: 300, layout: CONSTRAINED)
             }
           }
         }
       }
     }
   }
+}
 `;
 
 const TagTemplate = ({ location, data }: any) => {
@@ -161,7 +146,7 @@ const TagTemplate = ({ location, data }: any) => {
   const tagImage =
     data.tag && data.tag.data && data.tag.data.image && data.tag.data.image.localFiles
       ? data.tag.data.image.localFiles.map((a: any) => {
-          return a.childImageSharp.fluid;
+          return a.childImageSharp.gatsbyImageData;
         })[0]
       : null;
   let speakings: any[] = [];
@@ -192,7 +177,7 @@ const TagTemplate = ({ location, data }: any) => {
       link: p.data.link,
       slug: p.data.slug,
       attachment: p.data.attachments.localFiles.map((a: any) => {
-        return a.childImageSharp.fluid;
+        return a.childImageSharp.gatsbyImageData;
       })[0],
     }));
   }
@@ -238,7 +223,7 @@ const TagTemplate = ({ location, data }: any) => {
             <h1>{title}</h1>
             <div className="container--small">
               <div className="banner">
-                {tagImage ? <Img fluid={tagImage} className="img" /> : null}
+                {tagImage ? <GatsbyImage image={tagImage} className="img" alt={title} /> : null}
                 {about ? <p className="about">{about}</p> : null}
               </div>
               {structuredItemsToRender.map((i: any) => (
@@ -269,7 +254,7 @@ const TagTemplate = ({ location, data }: any) => {
                       return entry.table === "Photography" ? (
                         <Link to={`/photography/${entry.slug}`}>
                           <div className="g-image">
-                            <Img fluid={entry.attachment} />
+                            <GatsbyImage image={entry.attachment} alt={entry.title} />
                           </div>
                         </Link>
                       ) : null;
