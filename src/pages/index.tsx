@@ -7,45 +7,44 @@ import WhatPeopleSay from '../components/index/WhatPeopleSay';
 import { graphql } from 'gatsby';
 import { filterByFeatured } from '../utils/helpers';
 
-export const IndexPageQuery = graphql`
-  query {
-    allAirtable(
-      filter: { table: { eq: "Quotes" } }
-      sort: { fields: [data___id], order: DESC }
-    ) {
-      nodes {
-        data {
-          quote
-          featured
-          person {
-            data {
-              title
-            }
-          }
-          organisation {
-            data {
-              title
-            }
-          }
-          tags {
-            data {
-              name
-            }
+export const IndexPageQuery = graphql`{
+  allAirtable(
+    filter: {table: {eq: "Quotes"}}
+    sort: {fields: [data___id], order: DESC}
+  ) {
+    nodes {
+      data {
+        quote
+        featured
+        person {
+          data {
+            title
           }
         }
-      }
-    }
-    file(relativePath: { eq: "josef.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 500, maxHeight: 500) {
-          sizes
-          src
-          srcSet
-          aspectRatio
+        organisation {
+          data {
+            title
+          }
+        }
+        tags {
+          data {
+            name
+          }
         }
       }
     }
   }
+  file(relativePath: {eq: "josef.jpg"}) {
+    childImageSharp {
+      gatsbyImageData(
+        width: 500
+        height: 500
+        placeholder: BLURRED
+        layout: CONSTRAINED
+      )
+    }
+  }
+}
 `;
 
 const IndexPage = ({ data }: any) => {
@@ -62,7 +61,7 @@ const IndexPage = ({ data }: any) => {
       featured: saying.data.featured,
     }))
   );
-  const josefImg = data.file.childImageSharp.fluid;
+  const josefImg = data.file.childImageSharp.gatsbyImageData;
 
   return (
     <IndexLayout>

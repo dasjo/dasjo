@@ -16,29 +16,26 @@ const StyledPhotoGraphyPage = styled.div`
   }
 `;
 
-export const photographyPageQuery = graphql`
-  query {
-    allAirtable(filter: { table: { eq: "Photography" } }) {
-      nodes {
-        data {
-          title
-          link
-          date
-          featured
-          slug
-          attachments {
-            localFiles {
-              childImageSharp {
-                fluid(maxWidth: 650, maxHeight: 400) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
+export const photographyPageQuery = graphql`{
+  allAirtable(filter: {table: {eq: "Photography"}}) {
+    nodes {
+      data {
+        title
+        link
+        date
+        featured
+        slug
+        attachments {
+          localFiles {
+            childImageSharp {
+              gatsbyImageData(width: 650, height: 400, layout: CONSTRAINED)
             }
           }
         }
       }
     }
   }
+}
 `;
 
 const PhotographyPage = ({ data }: any) => {
@@ -47,7 +44,7 @@ const PhotographyPage = ({ data }: any) => {
     title: p.data.title,
     slug: p.data.slug,
     image: p.data.attachments.localFiles.map((a: any) => {
-      return a.childImageSharp.fluid;
+      return a.childImageSharp.gatsbyImageData;
     })[0],
   }));
 

@@ -5,6 +5,7 @@ require("dotenv").config({
 const path = require('path');
 const baseId = process.env.AIRTABLE_BASEID;
 
+const { getSrc } = require('gatsby-plugin-image')
 
 module.exports = {
   siteMetadata: {
@@ -19,9 +20,10 @@ module.exports = {
 
   },
   plugins: [
-    `gatsby-plugin-ts`,
+    `gatsby-plugin-typescript`,
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-remark`,
+    `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-plugin-feed`,
@@ -44,7 +46,7 @@ module.exports = {
             return value.query.allAirtable.nodes.map(node => {
               var rss = {};
               var img = node.data.attachments && node.data.attachments.localFiles ? node.data.attachments.localFiles.map((a) => {
-                return a.childImageSharp.fluid.src;
+                return getSrc(a.childImageSharp.gatsbyImageData);
               })[0] : null;
               var body = node.data.text_en.childMarkdownRemark.html + "<img src=\"" + rssMetadata.siteUrl + img + "\" />";
               rss['title'] = node.data.title;
@@ -54,7 +56,7 @@ module.exports = {
               rss['guid'] = rssMetadata.siteUrl + "/writing/" + node.data.slug;
               rss['custom_elements'] = [{ "content:encoded": body }];
               return rss;
-            })
+            });
           },
           query: `
           {       
@@ -79,9 +81,10 @@ module.exports = {
                   attachments {
                     localFiles {
                       childImageSharp {
-                        fluid(maxWidth: 400, maxHeight: 300) {
-                          src
-                        }
+                        gatsbyImageData(
+                          width: 400,
+                          height: 300
+                        )
                       }
                     }
                   }
