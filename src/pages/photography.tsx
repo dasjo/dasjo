@@ -43,9 +43,7 @@ const PhotographyPage = ({ data }: any) => {
     date: p.data.date,
     title: p.data.title,
     slug: p.data.slug,
-    image: p.data.attachments.localFiles.map((a: any) => {
-      return a.childImageSharp.gatsbyImageData;
-    })[0],
+    image: p.data.attachments.localFiles.flatMap((a: any) => a.childImageSharp ? a.childImageSharp.gatsbyImageData : [])[0]
   }));
 
   const items = [...photos];
