@@ -92,6 +92,29 @@ export const query = graphql`query ($name: String) {
         }
       }
     }
+  }   
+  work: allAirtable(
+    filter: {table: {eq: "Work"}, data: {tags: {elemMatch: {data: {name: {eq: $name}}}}}}
+    sort: {fields: [data___date], order: DESC}
+  ) {
+    nodes {
+      table
+      data {
+        title
+        location {
+          data {
+            title
+          }
+        }
+        organisation {
+          data {
+            title
+          }
+        }
+        from
+        to
+      }
+    }
   }
   speaking: allAirtable(
     filter: {table: {eq: "Speaking"}, data: {tags: {elemMatch: {data: {name: {eq: $name}}}}}}
@@ -153,6 +176,27 @@ const TagTemplate = ({ location, data }: any) => {
       }
     }
   }
+  let works: any[] = [];
+  if (data.work.nodes.length) {
+    data.work.nodes.forEach((work: any) => {
+      let fromYear = new Date(work.data.from).getFullYear();
+      let toYear = new Date(work.data.to).getFullYear();
+      let entry = { 
+        table: "work",
+        location: work.data.location && work.data.location[0] && work.data.location[0].data && work.data.location[0].data.title ? work.data.location[0].data.title : null,
+        org: work.data.organisation && work.data.organisation[0] && work.data.organisation[0].data && work.data.organisation[0].data.title ? work.data.organisation[0].data.title : null,
+      }
+      work.title = work.data.title + " @ " + entry.org + ", " + entry.location;
+      if (fromYear != toYear) {
+        works.push(Object.assign({}, entry, {date: work.data.from, title: "Started " + work.title}));
+        works.push(Object.assign({}, entry, {date: work.data.to, title: "Finished " + work.title}));
+      }
+      else {
+        works.push(Object.assign({}, entry, {date: work.data.from})); 
+      }
+    });
+  }
+
   let speakings: any[] = [];
   if (data.speaking.nodes.length) {
     speakings = data.speaking.nodes.map((t: any) => ({
@@ -184,7 +228,7 @@ const TagTemplate = ({ location, data }: any) => {
     }));
   }
 
-  const items = [...writings, ...photos, ...speakings];
+  const items = [...works, ...writings, ...photos, ...speakings];
 
   const years = [
     ...new Set( // remove duplicate items
@@ -233,9 +277,18 @@ const TagTemplate = ({ location, data }: any) => {
                   <h2>{i.date}</h2>
                   <div className="link-set">
                     {i.entries.map((entry: any) => {
+                      return entry.table === "work" ? (
+                        <div className="link-container">
+                          <Link to={`/experience`}>
+                            Work: {entry.title}
+                          </Link>
+                        </div>
+                      ) : null;
+                    })}
+                    {i.entries.map((entry: any) => {
                       return entry.table === "Speaking" ? (
                         <div className="link-container">
-                          <Link to={`/speaking/${entry.slug}`} target="_blank">
+                          <Link to={`/speaking/${entry.slug}`}>
                             Speaking: {entry.title}
                           </Link>
                         </div>
@@ -244,7 +297,7 @@ const TagTemplate = ({ location, data }: any) => {
                     {i.entries.map((entry: any) => {
                       return entry.table === "Writing" ? (
                         <div className="link-container">
-                          <Link to={`/writing/${entry.slug}`} target="_blank">
+                          <Link to={`/writing/${entry.slug}`}>
                             Writing: {entry.title}
                           </Link>
                         </div>
