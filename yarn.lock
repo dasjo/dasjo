@@ -3123,14 +3123,14 @@ babel-plugin-polyfill-regenerator@^0.5.1:
   dependencies:
     "@babel/helper-define-polyfill-provider" "^0.4.1"
 
-babel-plugin-remove-graphql-queries@^5.11.0:
-  version "5.11.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-remove-graphql-queries/-/babel-plugin-remove-graphql-queries-5.11.0.tgz#161b2d0922fc0154657aec87b10d6c2bddb36591"
-  integrity sha512-C/3oy0V6dkNy4M4SeQ4iAPBujTdfoXV9R/NOk7b7q3rsNCRc6Cch+3jKZlsi2k8KvVwLvhWMC72/XyjeCMXjDg==
+babel-plugin-remove-graphql-queries@^5.11.0, babel-plugin-remove-graphql-queries@^5.12.0:
+  version "5.12.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-remove-graphql-queries/-/babel-plugin-remove-graphql-queries-5.12.0.tgz#ab692ec5276fa4fa5c3d15a47101fe1e65b23ae3"
+  integrity sha512-9lLU6pYKtS0tSfqzehAHp1ODgTzOtoZPIkVfmjCTxATtEmgCO+Z8tptdW+pcp2cKEs9BIJ6SuOkE47SEXxVeiw==
   dependencies:
     "@babel/runtime" "^7.20.13"
     "@babel/types" "^7.20.7"
-    gatsby-core-utils "^4.11.0"
+    gatsby-core-utils "^4.12.0"
 
 babel-plugin-syntax-trailing-function-commas@^7.0.0-beta.0:
   version "7.0.0-beta.0"
@@ -5510,23 +5510,23 @@ gatsby-plugin-google-analytics@^5.11.0:
     minimatch "^3.1.2"
     web-vitals "^1.1.2"
 
-gatsby-plugin-image@^3.11.0:
-  version "3.11.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-image/-/gatsby-plugin-image-3.11.0.tgz#4d322ecf80bfa304a1400e6b06a9d7199154dcca"
-  integrity sha512-hQ3MjE9v5Y84f/45wXB7D5NthO/3lgwnHzy1mFAz0Md3e1CxgV1lvKjVwY5MvI40l7Tlk4Bkx39p6Qt/0GAcEg==
+gatsby-plugin-image@^3.12.0:
+  version "3.12.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-image/-/gatsby-plugin-image-3.12.0.tgz#903e84029ff74cbd4a1dbb6f755d01134678b9aa"
+  integrity sha512-zvkEotc3EgWfxdUuIeu81fN/dTY8GRVxGYwRKI7kkHpKAFUz2CIIQjxg16LSRxv0lGfRUxfPqxuMqBuk99GWOQ==
   dependencies:
     "@babel/code-frame" "^7.18.6"
     "@babel/parser" "^7.20.13"
     "@babel/runtime" "^7.20.13"
     "@babel/traverse" "^7.20.13"
     babel-jsx-utils "^1.1.0"
-    babel-plugin-remove-graphql-queries "^5.11.0"
+    babel-plugin-remove-graphql-queries "^5.12.0"
     camelcase "^6.3.0"
     chokidar "^3.5.3"
     common-tags "^1.8.2"
     fs-extra "^11.1.1"
-    gatsby-core-utils "^4.11.0"
-    gatsby-plugin-utils "^4.11.0"
+    gatsby-core-utils "^4.12.0"
+    gatsby-plugin-utils "^4.12.0"
     objectFitPolyfill "^2.3.5"
     prop-types "^15.8.1"
 
@@ -5594,16 +5594,16 @@ gatsby-plugin-typescript@^5.11.0:
     "@babel/runtime" "^7.20.13"
     babel-plugin-remove-graphql-queries "^5.11.0"
 
-gatsby-plugin-utils@^4.11.0:
-  version "4.11.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-utils/-/gatsby-plugin-utils-4.11.0.tgz#f92852a9d938a428c8b2f99fea153c1bd995dfde"
-  integrity sha512-Eegg3BScq7vKYeJoWo6sduBwgM4DsKhYKXGIAVR9rRsGOiR1nNIWfFzT9I6OOcob9KHICeFyNgqyqpENL7odEA==
+gatsby-plugin-utils@^4.11.0, gatsby-plugin-utils@^4.12.0:
+  version "4.12.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-utils/-/gatsby-plugin-utils-4.12.0.tgz#1f6143a4ffb223fb1d4988a12285c0d2403ed074"
+  integrity sha512-lU84VmWC9qGojROMZkBgGjCAzxcAUlyGAsd75vjj2y3yqGYtyvqInvK5tZvDyNNVvU21u040Ps4AKIvRVgMV/Q==
   dependencies:
     "@babel/runtime" "^7.20.13"
     fastq "^1.15.0"
     fs-extra "^11.1.1"
-    gatsby-core-utils "^4.11.0"
-    gatsby-sharp "^1.11.0"
+    gatsby-core-utils "^4.12.0"
+    gatsby-sharp "^1.12.0"
     graphql-compose "^9.0.10"
     import-from "^4.0.0"
     joi "^17.9.2"
@@ -5626,6 +5626,13 @@ gatsby-sharp@^1.11.0:
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/gatsby-sharp/-/gatsby-sharp-1.11.0.tgz#dcf43d0bbd3a45c079256ddc474798753aeedfe2"
   integrity sha512-zJbN3JVCFur8Ilwn1scf7o8AN69//shpJhYqt3uhuwhhkU6ZMCMmVVNKHSiUiWkVqhwSRJ4y7c/I3Ys9xMxsIw==
+  dependencies:
+    sharp "^0.32.1"
+
+gatsby-sharp@^1.12.0:
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/gatsby-sharp/-/gatsby-sharp-1.12.0.tgz#8160e14155a46dc91f211bf3a4ee10ffe9b8ffda"
+  integrity sha512-5MbTPKfzkOCtwT74+FZTUFKaul/2UyF10apvMcmIKomq71/jHf6wJx+rHtSdgyq19r4VWL8DGG2CKgSpe0z9GQ==
   dependencies:
     sharp "^0.32.1"
 
