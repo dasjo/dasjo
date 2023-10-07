@@ -5629,10 +5629,10 @@ gatsby-sharp@^1.11.0:
   dependencies:
     sharp "^0.32.1"
 
-gatsby-source-airtable@^2.1.1:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/gatsby-source-airtable/-/gatsby-source-airtable-2.4.0.tgz#03d0f3fe38826c4c40010f96ffed72bea393d9d5"
-  integrity sha512-Sp/3BFpSfbwtvdWQpb3dPlL71EA6CJHyVtoTc+LUo8zJVFjhuZKfDGyiRT0YyJ6zdF33IXN7oRNu0TRdZzrbhQ==
+gatsby-source-airtable@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/gatsby-source-airtable/-/gatsby-source-airtable-2.4.1.tgz#c381f07905b3772b303e2d6067e88741ef02f7d4"
+  integrity sha512-wm0om4Q7s8fWBZExCpDT/OakKh5XxK/5zL6ernNsLWHrySI6Q7e7H2rqKGUJFkMgiWMMom2vZwkfTqu+GlFL4A==
   dependencies:
     airtable "^0.12.1"
     bluebird "^3.7.2"
