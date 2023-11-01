@@ -25,6 +25,7 @@ module.exports = {
     `gatsby-transformer-remark`,
     `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
+    `gatsby-plugin-netlify`,
     {
       resolve: `gatsby-plugin-feed`,
       options: {
