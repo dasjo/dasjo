@@ -76,7 +76,7 @@ const Footer = () => (
           </Link>
         </li>
       </ul>
-      <p>&copy; 2020 Josef Kruckenberg.</p>
+      <p>&copy; Josef Kruckenberg.</p>
     </div>
   </StyledFooter>
 );
