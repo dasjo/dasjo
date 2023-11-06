@@ -9,7 +9,7 @@
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.1.5",
     "@types/react-helmet": "^6.1.8",
-    "eslint": "^8.24.0",
+    "eslint": "^8.53.0",
     "gatsby": "^5.12.9",
     "gatsby-awesome-pagination": "^0.3.8",
     "gatsby-plugin-feed": "^5",
