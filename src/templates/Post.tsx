@@ -1,44 +1,8 @@
 import React from "react";
 import IndexLayout from "../layouts";
 import { graphql } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import CompanyAndTags from "../components/CompanyAndTags";
-import { GatsbyImage } from "gatsby-plugin-image";
-
-export const query = graphql`query ($slug: String!) {
-  airtable(data: {slug: {eq: $slug}}) {
-    table
-    data {
-      slug
-      title
-      link
-      date
-      text_en {
-        childMarkdownRemark {
-          html
-          excerpt
-        }
-      }
-      organisation {
-        data {
-          title
-        }
-      }
-      tags {
-        data {
-          name
-        }
-      }
-      attachments {
-        localFiles {
-          childImageSharp {
-            gatsbyImageData(width: 800, height: 800, layout: CONSTRAINED)
-          }
-        }
-      }
-    }
-  }
-}
-`;
 
 const PostTemplate = ({ data: { airtable: writing } }: any) => {
   const { title, date, text_en } = writing.data;
@@ -53,6 +17,13 @@ const PostTemplate = ({ data: { airtable: writing } }: any) => {
   const attachments = writing.data.attachments && writing.data.attachments.localFiles ? writing.data.attachments.localFiles.map(
     (a: any) => a.childImageSharp.gatsbyImageData
   ) : null;
+
+  const files = writing.data.files && writing.data.files.localFiles ? writing.data.files.localFiles.map((file: any) => ({
+    absolutePath: file.absolutePath,
+    relativePath: file.relativePath,
+    name: file.name,
+    publicURL: file.publicURL,
+  })) : [];
 
   return (
     <IndexLayout pageTitle={title} node={writing}>
@@ -75,25 +46,70 @@ const PostTemplate = ({ data: { airtable: writing } }: any) => {
               }}
             />
           ) : null}
-
-          {attachments ? (
-          <div className="photos">
-            {attachments.map((a: any, i: number) => (
-              <GatsbyImage image={a} key={i} alt={title} />
+          {attachments && attachments.map((attachment: any, index: number) => (
+            <GatsbyImage key={index} image={attachment} alt={title} />
+          ))}
+          <h3>Files</h3>
+          <ul>
+            {files.map((file: any) => (
+              <li key={file.absolutePath}>
+                <a href={file.publicURL} download>
+                  {file.name}{file.extension}
+                </a>
+              </li>
             ))}
-          </div>
-          ) : null}
-
-          {writing.data.link ? (
-          <a href={writing.data.link} className="btn--text" target="_blank">
-            View Original Post <span>&nbsp;&rarr;</span>
-          </a>
-          ) : null}
-
+          </ul>
         </div>
       </div>
     </IndexLayout>
   );
 };
+
+export const query = graphql`
+  query($slug: String!) {
+    airtable(data: {slug: { eq: $slug }}) {
+      data {
+        title
+        date
+        text_en {
+          childMarkdownRemark {
+            html
+          }
+        }
+        organisation {
+          data {
+            title
+          }
+        }
+        tags {
+          data {
+            name
+          }
+        }
+        attachments {
+          localFiles {
+            childImageSharp {
+              gatsbyImageData(
+                width: 300,
+                height: 200,
+                layout: CONSTRAINED,
+                transformOptions: { fit: INSIDE }
+              )
+            }
+          }
+        }
+        files {
+          localFiles {
+            absolutePath
+            relativePath
+            name
+            publicURL
+            extension
+          }
+        }
+      }
+    }
+  }
+`;
 
 export default PostTemplate;

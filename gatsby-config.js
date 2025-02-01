@@ -173,7 +173,11 @@ module.exports = {
           {
             baseId,
             tableName: `Writing`,
-            mapping: { text_en: 'text/markdown', attachments: `fileNode` },
+            mapping: {
+              text_en: 'text/markdown',
+              attachments: `fileNode`,
+              files: `fileNode`
+            },
             tableLinks: [`organisation`, `tags`],
           },
         ],
