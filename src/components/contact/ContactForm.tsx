@@ -43,7 +43,7 @@ const StyledContactForm = styled.form`
 `;
 
 const ContactForm = () => (
-  <StyledContactForm name="contact" method="POST" data-netlify="true" action="/success">
+  <StyledContactForm name="contact" method="POST" data-netlify="true">
     <input
       aria-label="Enter you Name"
       className="input--half"
