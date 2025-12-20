@@ -23,6 +23,7 @@ const PostTemplate = ({ data: { airtable: writing } }: any) => {
     relativePath: file.relativePath,
     name: file.name,
     publicURL: file.publicURL,
+    extension: file.extension
   })) : [];
 
   return (
