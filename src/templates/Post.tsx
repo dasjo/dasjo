@@ -50,16 +50,20 @@ const PostTemplate = ({ data: { airtable: writing } }: any) => {
           {attachments && attachments.map((attachment: any, index: number) => (
             <GatsbyImage key={index} image={attachment} alt={title} />
           ))}
-          <h3>Files</h3>
-          <ul>
-            {files.map((file: any) => (
-              <li key={file.absolutePath}>
-                <a href={file.publicURL} download>
-                  {file.name}{file.extension}
-                </a>
-              </li>
-            ))}
-          </ul>
+          {files && files.length > 0 && (
+            <>
+              <h3>Files</h3>
+              <ul>
+                {files.map((file: any) => (
+                  <li key={file.absolutePath}>
+                    <a href={file.publicURL} download>
+                      {file.name}{file.extension}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </div>
       </div>
     </IndexLayout>
