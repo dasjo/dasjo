@@ -169,19 +169,19 @@ const TagTemplate = ({ location, data }: any) => {
   // Get the first image from the localFiles array
   let tagImage = null;
   if (data.tag && data.tag.data && data.tag.data.image && data.tag.data.image.localFiles) {
-    for (let file of data.tag.data.image.localFiles) {
+    for (const file of data.tag.data.image.localFiles) {
       if (file.childImageSharp) {
         tagImage = file.childImageSharp.gatsbyImageData;
         break;
       }
     }
   }
-  let works: any[] = [];
+  const works: any[] = [];
   if (data.work.nodes.length) {
     data.work.nodes.forEach((work: any) => {
-      let fromYear = new Date(work.data.from).getFullYear();
-      let toYear = new Date(work.data.to).getFullYear();
-      let entry = { 
+      const fromYear = new Date(work.data.from).getFullYear();
+      const toYear = new Date(work.data.to).getFullYear();
+      const entry = { 
         table: "work",
         location: work.data.location && work.data.location[0] && work.data.location[0].data && work.data.location[0].data.title ? work.data.location[0].data.title : null,
         org: work.data.organisation && work.data.organisation[0] && work.data.organisation[0].data && work.data.organisation[0].data.title ? work.data.organisation[0].data.title : null,
