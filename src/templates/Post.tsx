@@ -1,7 +1,7 @@
 import React from "react";
 import IndexLayout from "../layouts";
 import { graphql } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import CompanyAndTags from "../components/CompanyAndTags";
 
 const PostTemplate = ({ data: { airtable: writing } }: any) => {
