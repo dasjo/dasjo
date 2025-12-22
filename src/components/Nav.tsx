@@ -206,12 +206,18 @@ const Nav = () => {
   const [isShown, setIsShown] = useState<boolean>(false);
 
   useEffect(() => {
-    document.addEventListener("keydown", (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isShown) {
         setIsShown(false);
       }
-    });
-  });
+    };
+    
+    document.addEventListener("keydown", handleKeyDown);
+    
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isShown]);
 
   const toggleIsShown = () => {
     setIsShown(!isShown);
@@ -234,6 +240,8 @@ const Nav = () => {
           <button
             onClick={toggleIsShown}
             className={`${isShown ? "shown" : ""}`}
+            aria-expanded={isShown}
+            aria-label={isShown ? "Close navigation menu" : "Open navigation menu"}
           >
             <span className="burger"></span>
           </button>

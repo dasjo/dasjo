@@ -104,25 +104,15 @@ export function SEO({
               )
               .concat(meta)}
           >
-            {/* inline font stlye */}
+            {/* inline font style */}
             <style type="text/css">{`
               @font-face {
-                font-family: 'Hk Grotesk';
+                font-family: 'HK Grotesk';
                 font-style: normal;
                 font-weight: 400;
                 font-display: swap;
                 src: url('/fonts/HKGrotesk-Regular.woff') format('woff');
-
               }
-              /* space-mono-regular - latin */
-@font-face {
-  font-family: 'Space Mono';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Space Mono'), local('SpaceMono-Regular'),
-       url('../fonts/space-mono-v6-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('../fonts/space-mono-v6-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
             `}</style>
           </Helmet>
         )
