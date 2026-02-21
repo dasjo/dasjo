@@ -179,9 +179,13 @@ const TagTemplate = ({ location, data }: any) => {
   const works: any[] = [];
   if (data.work.nodes.length) {
     data.work.nodes.forEach((work: any) => {
+      // Skip incomplete work entries (no end date)
+      if (!work.data.to) {
+        return;
+      }
       const fromYear = new Date(work.data.from).getFullYear();
       const toYear = new Date(work.data.to).getFullYear();
-      const entry = { 
+      const entry = {
         table: "work",
         location: work.data.location && work.data.location[0] && work.data.location[0].data && work.data.location[0].data.title ? work.data.location[0].data.title : null,
         org: work.data.organisation && work.data.organisation[0] && work.data.organisation[0].data && work.data.organisation[0].data.title ? work.data.organisation[0].data.title : null,
@@ -192,7 +196,7 @@ const TagTemplate = ({ location, data }: any) => {
         works.push(Object.assign({}, entry, {date: work.data.to, title: "Finished " + work.title}));
       }
       else {
-        works.push(Object.assign({}, entry, {date: work.data.from})); 
+        works.push(Object.assign({}, entry, {date: work.data.from}));
       }
     });
   }
