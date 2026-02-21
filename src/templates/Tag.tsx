@@ -179,21 +179,20 @@ const TagTemplate = ({ location, data }: any) => {
   const works: any[] = [];
   if (data.work.nodes.length) {
     data.work.nodes.forEach((work: any) => {
-      // Skip incomplete work entries (no end date)
-      if (!work.data.to) {
-        return;
-      }
       const fromYear = new Date(work.data.from).getFullYear();
-      const toYear = new Date(work.data.to).getFullYear();
+      const toYear = work.data.to ? new Date(work.data.to).getFullYear() : null;
       const entry = {
         table: "work",
         location: work.data.location && work.data.location[0] && work.data.location[0].data && work.data.location[0].data.title ? work.data.location[0].data.title : null,
         org: work.data.organisation && work.data.organisation[0] && work.data.organisation[0].data && work.data.organisation[0].data.title ? work.data.organisation[0].data.title : null,
       }
       work.title = work.data.title + " @ " + entry.org + ", " + entry.location;
-      if (fromYear != toYear) {
+      if (toYear === null || fromYear != toYear) {
         works.push(Object.assign({}, entry, {date: work.data.from, title: "Started " + work.title}));
-        works.push(Object.assign({}, entry, {date: work.data.to, title: "Finished " + work.title}));
+        // Only add "Finished" entry if the work has an end date
+        if (toYear !== null) {
+          works.push(Object.assign({}, entry, {date: work.data.to, title: "Finished " + work.title}));
+        }
       }
       else {
         works.push(Object.assign({}, entry, {date: work.data.from}));
