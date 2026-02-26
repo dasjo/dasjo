@@ -44,8 +44,8 @@ const StyledContactForm = styled.form`
 
 const ContactForm = () => (
   <StyledContactForm name="contact" method="POST" data-netlify="true">
+    <label htmlFor="name" className="sr-only">Name</label>
     <input
-      aria-label="Enter you Name"
       className="input--half"
       type="text"
       name="name"
@@ -53,8 +53,8 @@ const ContactForm = () => (
       placeholder="Name"
       required
     />
+    <label htmlFor="email" className="sr-only">Email</label>
     <input
-      aria-label="Enter you Email"
       className="input--half"
       type="email"
       name="email"
@@ -62,15 +62,21 @@ const ContactForm = () => (
       placeholder="Email"
       required
     />
+    <label htmlFor="subject" className="sr-only">Subject</label>
     <input
-      aria-label="Enter you Name"
       className="input--full"
       type="text"
       name="subject"
       id="subject"
       placeholder="Subject"
     />
-    <textarea required name="message" id="message" placeholder="Your Message"></textarea>
+    <label htmlFor="message" className="sr-only">Your Message</label>
+    <textarea
+      required
+      name="message"
+      id="message"
+      placeholder="Your Message"
+    ></textarea>
     <button className="btn" type="submit">
       Send
     </button>

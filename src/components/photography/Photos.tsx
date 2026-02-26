@@ -19,7 +19,7 @@ const StyledPhotos = styled.section`
 const Photos = ({ title, slug, image }: any) => {
     return <>
         <StyledPhotos>
-            <Link to={`/photography/${slug}`} target="_blank">
+            <Link to={`/photography/${slug}`} target="_blank" rel="noopener noreferrer">
                 <GatsbyImage image={image} alt={title} />
                 <h3>{title}</h3>
             </Link>

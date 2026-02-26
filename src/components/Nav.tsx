@@ -206,12 +206,28 @@ const Nav = () => {
   const [isShown, setIsShown] = useState<boolean>(false);
 
   useEffect(() => {
-    document.addEventListener("keydown", (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isShown) {
         setIsShown(false);
       }
-    });
-  });
+    };
+    
+    document.addEventListener("keydown", handleKeyDown);
+    
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isShown]);
+
+  useEffect(() => {
+    if (isShown) {
+      // Focus first link when menu opens
+      const firstLink = document.querySelector('nav ul.shown a');
+      if (firstLink instanceof HTMLElement) {
+        firstLink.focus();
+      }
+    }
+  }, [isShown]);
 
   const toggleIsShown = () => {
     setIsShown(!isShown);
@@ -234,11 +250,14 @@ const Nav = () => {
           <button
             onClick={toggleIsShown}
             className={`${isShown ? "shown" : ""}`}
+            aria-expanded={isShown}
+            aria-controls="main-navigation"
+            aria-label={isShown ? "Close navigation menu" : "Open navigation menu"}
           >
             <span className="burger"></span>
           </button>
         </div>
-        <ul className={isShown ? "shown" : "hidden"}>
+        <ul id="main-navigation" className={isShown ? "shown" : "hidden"}>
           <li>
             <Link className="link" activeClassName="link--active" to="/agile">
               Agile

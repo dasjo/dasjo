@@ -75,7 +75,7 @@ const Talk = ({ data: { airtable: speaking } }: any) => {
             <div className="links">
               {link ? (
                 <>
-                  <a href={link} className="btn--text" target="_blank">
+                  <a href={link} className="btn--text" target="_blank" rel="noopener noreferrer" aria-label="View talk link (opens in new tab)">
                     Link <span>&nbsp;&rarr;</span>
                   </a>
                   <br />
@@ -83,7 +83,7 @@ const Talk = ({ data: { airtable: speaking } }: any) => {
               ) : null}
               {slides ? (
                 <>
-                  <a href={slides} className="btn--text" target="_blank">
+                  <a href={slides} className="btn--text" target="_blank" rel="noopener noreferrer" aria-label="View slides (opens in new tab)">
                     Slides <span>&nbsp;&rarr;</span>
                   </a>
                   <br />
@@ -91,7 +91,7 @@ const Talk = ({ data: { airtable: speaking } }: any) => {
               ) : null}
               {recording ? (
                 <>
-                  <a href={recording} className="btn--text" target="_blank">
+                  <a href={recording} className="btn--text" target="_blank" rel="noopener noreferrer" aria-label="View recording (opens in new tab)">
                     Recording <span>&nbsp;&rarr;</span>
                   </a>
                   <br />

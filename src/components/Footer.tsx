@@ -44,7 +44,7 @@ const StyledFooter = styled.footer`
 `;
 
 const Footer = () => (
-  <StyledFooter role="footer">
+  <StyledFooter>
     <div className="row">
       <ul className="links">
         <li>

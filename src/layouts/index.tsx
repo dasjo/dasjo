@@ -58,6 +58,7 @@ const IndexLayout = ({ children, pageTitle, node, image }: IndexLayoutProps) => 
       `}
       render={(data: StaticQueryProps) => (
         <LayoutRoot>
+          <a href="#main-content" className="skip-link">Skip to main content</a>
           <div className="page-wrapper">
             <SEO title={pageTitle ? pageTitle : data.site.siteMetadata.title } node={node} image={image} />
             <Nav />

@@ -95,13 +95,13 @@ const AlbumTemplate = ({ data: { airtable: album } }: any) => {
               <a href={a.publicURL} key={i} target="_blank" rel="noopener noreferrer">
                 <GatsbyImage
                   image={a.gatsbyImageData}
-                  alt={album.data.title}
+                  alt={`${album.data.title} - Image ${i + 1}`}
                   objectPosition="50% 50%" // Center the focal point
                 />
               </a>
             ))}
           </div>
-          <a href={album.data.link} className="btn--text" target="_blank">
+          <a href={album.data.link} className="btn--text" target="_blank" rel="noopener noreferrer">
             View Full Album <span>&nbsp;&rarr;</span>
           </a>
         </StyledAlbumTemplate>

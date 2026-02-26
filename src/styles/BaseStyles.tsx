@@ -406,6 +406,32 @@ const BaseStyles = () => (
       /* ----- Accessibility ----- */
       /* ---------------------------------------- */
 
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: var(--black-0);
+        color: var(--white);
+        padding: 8px;
+        text-decoration: none;
+        z-index: 100;
+      }
+
+      .skip-link:focus {
+        top: 0;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+      }
 
       button:focus,
       input:focus,

@@ -8,7 +8,7 @@ const StyledLayoutMain = styled.main`
 `;
 
 const LayoutMain = ({ children }: { children: JSX.Element }) => (
-  <StyledLayoutMain role="main">{children}</StyledLayoutMain>
+  <StyledLayoutMain role="main" id="main-content">{children}</StyledLayoutMain>
 );
 
 export default LayoutMain;
