@@ -248,22 +248,17 @@ const Nav = () => {
         </div>
         <ul className={isShown ? "shown" : "hidden"}>
           <li>
-            <Link className="link" activeClassName="link--active" to="/agile">
-              Agile
-            </Link>
-          </li>
-          <li>
-            <Link className="link" activeClassName="link--active" to="/drupal">
-              Drupal
+            <Link className="link" activeClassName="link--active" to="/artificial-intelligence">
+              Artificial Intelligence
             </Link>
           </li>
           <li>
             <Link
               className="link"
               activeClassName="link--active"
-              to="/community"
+              to="/open-source"
             >
-              Community
+              Open Source
             </Link>
           </li>
           <li>
