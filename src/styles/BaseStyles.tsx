@@ -36,8 +36,8 @@ const BaseStyles = () => (
         --off-white-1: #f5f5f5;
         --black: #000;
         --black-0: #112211;
-        --blue: #1877f2;
-        --blue-0: #28aaff;
+        --blue: #0056b3;
+        --blue-0: #0066cc;
         --light-blue: #f4fcff;
         --outline: 2px solid var(--blue-0);
 
