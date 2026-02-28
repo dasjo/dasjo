@@ -36,6 +36,14 @@ const StyledHeader = styled.header`
     font-size: var(--font-size-medium);
   }
 
+  h2 {
+    font-size: var(--font-size-large);
+    font-weight: 700;
+    color: var(--blue-0);
+    margin-bottom: var(--gutter-medium);
+    line-height: 1.3;
+  }
+
   .img-box {
     flex: 1;
 
@@ -53,6 +61,28 @@ const StyledHeader = styled.header`
   p {
     margin-bottom: var(--gutter-small);
   }
+
+  .btn {
+    display: inline-block;
+    padding: var(--gutter-small) var(--gutter-medium);
+    background: var(--blue-0);
+    color: var(--white);
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    margin-top: var(--gutter-small);
+
+    &:hover,
+    &:focus {
+      background: var(--black-0);
+      transform: translateY(-2px);
+    }
+
+    &--primary {
+      background: var(--blue-0);
+    }
+  }
 `;
 
 // @todo replace name with global constant
@@ -63,17 +93,17 @@ const Header = ({ josefImg }: any) => (
         <h1>
           Josef Kruckenberg <span>/ dasjo</span>
         </h1>
-        {/* <h2>Challenge the impossible!</h2> */}
+        <h2>I help technical teams ship products that matter — faster, cheaper, with higher adoption rates.</h2>
         <p>
-          I am an interdisciplinary team player at the intersection of
-          technology, user experience and business. With technical experience,
-          analytical skills and empathy, I help teams remove impediments and
-          continue their journey to understand and create business value. I
-          strive for diversity & inclusion and sustainable, open source
-          solutions. Let's improve the status quo using open communication,
-          creative tools and validating ideas.
+          I work at the intersection of technology, user experience, and business strategy. 
+          With 15+ years of experience spanning open-source leadership, enterprise product strategy, 
+          and team scaling, I help remove the friction that slows teams down.
         </p>
-        <Link className="btn" to="/contact/">
+        <p>
+          If your team is wrestling with: <strong>culture scaling, technical debt, open-source stewardship, 
+          or sustainable product strategy</strong> — let's talk.
+        </p>
+        <Link className="btn btn--primary" to="/contact/">
           Get in touch
         </Link>
       </div>
