@@ -4,6 +4,7 @@ import Header from '../components/index/Header';
 import IndexLayout from '../layouts';
 import { SayingProps } from '../components/index/Saying';
 import WhatPeopleSay from '../components/index/WhatPeopleSay';
+import FeaturedWork from '../components/index/FeaturedWork';
 import { graphql } from 'gatsby';
 import { filterByFeatured } from '../utils/helpers';
 
@@ -67,6 +68,7 @@ const IndexPage = ({ data }: any) => {
     <IndexLayout>
       <>
         <Header josefImg={josefImg} />
+        <FeaturedWork />
         <WhatPeopleSay
           sayings={sayings}
           styles={{
